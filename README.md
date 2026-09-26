@@ -8,3 +8,6 @@ Specification set for Mākoha, a clinical language platform and AI-native record
 - `docpipe/`: the phase-gated documentation pipeline. `python3 docpipe/docpipe.py status`.
 
 - [Wave 2 intake assessment](docs/planning/MAKOHA_SPEC_WAVE2_INTAKE.md): baseline reconciliation findings and proposed integration into the Jira/Ketryx, Linear, GitHub and Symphony pipeline.
+
+- [AI-native SaMD CDSS SDLC playbook](docs/planning/AI_NATIVE_SAMD_CDSS_SDLC_PLAYBOOK.md): Wave 2 grounding, execution contracts and resumption sequence.
+- [Source reconciliation register](docs/planning/WAVE_TWO_SOURCE_RECONCILIATION.csv) and [pinned source manifest](docs/planning/WAVE_TWO_SOURCE_MANIFEST.json): intake inventory; item-level reconciliation is pending.

@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "observed_date": "2026-09-26",
+  "source_repository": "https://github.com/Arepo-Medtech/makoha-spec",
+  "source_commit": "974352db0acb01a8dcf0c421bcd4316ddfc889a8",
+  "original_repository": "https://github.com/Kenny-bytes/makoha-spec",
+  "identifier_count": 767,
+  "active_requirements": 176,
+  "withdrawn_requirements": 11,
+  "reconciled_identifiers": 0,
+  "status": "inventory_complete_reconciliation_pending",
+  "files": [
+    {
+      "path": "2. Three portals.md",
+      "sha256": "80b9aea9ebbb0a9d9f0d89761341089cf8038d03c8d2b4b5065f1afea42545d1",
+      "bytes": 25267
+    },
+    {
+      "path": "README.md",
+      "sha256": "a9f58dfc20343e233cfff264ff58c38b6104d9576eeb5dfb1e9728b1bc0c6b68",
+      "bytes": 520
+    },
+    {
+      "path": "docpipe.json",
+      "sha256": "b1db7b32b2e88c225f7dd4d7332a90e35d4af297ea474f86b86e97f124b7cb8e",
+      "bytes": 845
+    },
+    {
+      "path": "docs/ref/makoha-design-compendium.md",
+      "sha256": "024ca572ef28e651271bbd7eb238d20b86977ed97be82698e5c6c21159a1de84",
+      "bytes": 316042
+    },
+    {
+      "path": "docs/spec/00-idea.md",
+      "sha256": "70124d3dacb1b0725e4ec3da55322100de04dac47af8d696aa037cd71ebabed4",
+      "bytes": 2220
+    },
+    {
+      "path": "docs/spec/01-prd.md",
+      "sha256": "aa7049f617b7c7c7ef3acf2d570c5e80ffd3d9b1d5fac8479f442d3f5883301e",
+      "bytes": 38127
+    },
+    {
+      "path": "docs/spec/02-conops.md",
+      "sha256": "bc59b13e27f8a5fb90ac0238da8baeaa46383a4c59fb451ca18b4fcd45130cac",
+      "bytes": 24303
+    },
+    {
+      "path": "docs/spec/03-opscon.md",
+      "sha256": "6692657cf564b1f797ce61c8f8bb86b05210243600a3a01d830ed0cbfc908e2a",
+      "bytes": 39689
+    },
+    {
+      "path": "docs/spec/04-techspec.md",
+      "sha256": "f433e44cfb66ccb54043c46908f82821c2e75828d24c95780392ce2c3b1ae907",
+      "bytes": 32379
+    },
+    {
+      "path": "docs/spec/05-requirements.md",
+      "sha256": "4be9e14278fdaa70f3cb65436d5baef3decd84abf51b774513e6e20fee8861a0",
+      "bytes": 55441
+    },
+    {
+      "path": "docs/spec/06-validation.md",
+      "sha256": "7fd3e111278e4c16c0c63e694dc3c1211c66c099edbb703b3bb4b71838073843",
+      "bytes": 31841
+    },
+    {
+      "path": "docs/spec/07-approvals.md",
+      "sha256": "7e89dddde59b3938d9bb1ed10ee8c85d9cbb39438533b0e2f2c16499e42dd301",
+      "bytes": 6837
+    },
+    {
+      "path": "docs/spec/PSD.md",
+      "sha256": "cdbab21cbfad4cdb614c04f9142bf681ac9226452b79ffbee2355a7eb55975c4",
+      "bytes": 230465
+    },
+    {
+      "path": "docs/spec/traceability.csv",
+      "sha256": "31640fdd63aeb2a905fae4739bcf44791725ba791dca834a95da7b3174432826",
+      "bytes": 11735
+    },
+    {
+      "path": "extraction+docs.pdf",
+      "sha256": "8a49a5b05eaa3f9bd505d2ca0cf11dfada41fda878f95067e04519fc9c0eea2e",
+      "bytes": 1268843
+    }
+  ]
+}

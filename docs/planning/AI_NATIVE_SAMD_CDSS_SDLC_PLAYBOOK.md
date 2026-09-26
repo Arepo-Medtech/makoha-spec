@@ -1,9 +1,9 @@
 # AI-Native SaMD CDSS SDLC: Build and Execution Playbook
 
-**Version:** 1.1  
+**Version:** Unversioned reconciliation draft — not a successor to v1.24  
 **Prepared:** 17 September 2026  
 **Updated:** 26 September 2026  
-**Status:** Proposed implementation baseline for review and adoption  
+**Status:** Superseded-source reconstruction; recover v1.24 before integrating or adopting  
 **Product:** AI/ML-enabled clinical decision support software, planned as SaMD  
 **Market sequence:** New Zealand, then Australia, then United States  
 **Design horizon:** Build the shared foundation for all three markets from greenfield  
@@ -11,6 +11,8 @@
 **Approval required for adoption:** Engineering, Quality/Regulatory and Clinical leads
 
 **Repository copy:** `docs/planning/AI_NATIVE_SAMD_CDSS_SDLC_PLAYBOOK.md`; versioned execution playbook. Product phase documents remain in `docs/spec/`; the generated PSD is not edited by this update.
+
+> **Version correction:** The owner confirms v1.24 was the latest playbook in this session. This file was mistakenly reconstructed from the older v1.0 Downloads copy. It contains proposed Wave 2 additions but does not preserve or supersede v1.24. Recover v1.24, compare the intervening changes and integrate the additions into that baseline before assigning a successor version.
 
 **Navigation:** [Architecture](#2-target-architecture) · [Decisions and owners](#3-governance-and-responsibilities) · [Record model](#5-controlled-information-and-traceability-model) · [Bidirectional integration](#6-jiralinear-bidirectional-integration-contract) · [Delivery pipeline](#7-github-ci-and-ketryx-delivery-contract) · [Agent execution](#8-ai-engineering-execution-pipeline) · [ML lifecycle](#9-product-aiml-lifecycle) · [Acceptance tests](#12-toolchain-assurance-and-acceptance-tests) · [Build backlog](#13-implementation-backlog-and-dependency-order) · [Delivery gates](#15-delivery-and-market-entry-gates) · [Handoff checklist](#20-build-team-handoff-and-definition-of-done)
 

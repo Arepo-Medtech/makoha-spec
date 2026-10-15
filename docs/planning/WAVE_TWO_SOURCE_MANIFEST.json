@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "observed_date": "2026-09-26",
+  "observed_date": "2026-10-15",
   "source_repository": "https://github.com/Arepo-Medtech/makoha-spec",
-  "source_commit": "974352db0acb01a8dcf0c421bcd4316ddfc889a8",
+  "source_commit": "942d6ed6fb44a59faf08e6bf692da9b693ac7450",
   "original_repository": "https://github.com/Kenny-bytes/makoha-spec",
-  "identifier_count": 767,
-  "active_requirements": 176,
+  "identifier_count": 1108,
+  "active_requirements": 248,
   "withdrawn_requirements": 11,
   "reconciled_identifiers": 0,
   "status": "inventory_complete_reconciliation_pending",
@@ -17,8 +17,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "a9f58dfc20343e233cfff264ff58c38b6104d9576eeb5dfb1e9728b1bc0c6b68",
-      "bytes": 520
+      "sha256": "853bc13bc88d86149c0de5201472c2fd723b727444c1c31ac4663283307b19b4",
+      "bytes": 1536
     },
     {
       "path": "docpipe.json",
@@ -27,63 +27,66 @@
     },
     {
       "path": "docs/ref/makoha-design-compendium.md",
-      "sha256": "024ca572ef28e651271bbd7eb238d20b86977ed97be82698e5c6c21159a1de84",
-      "bytes": 316042
+      "sha256": "54d0f8e535ae873de3d3eedb3e584c6755b5e22c5d9246434989b10a8a182e82",
+      "bytes": 408851
     },
     {
       "path": "docs/spec/00-idea.md",
-      "sha256": "70124d3dacb1b0725e4ec3da55322100de04dac47af8d696aa037cd71ebabed4",
-      "bytes": 2220
+      "sha256": "0e9f1f8a3d5668f2e863e1769bc149a0f714a433dacc77c9dc55c406a98276a1",
+      "bytes": 2389
     },
     {
       "path": "docs/spec/01-prd.md",
-      "sha256": "aa7049f617b7c7c7ef3acf2d570c5e80ffd3d9b1d5fac8479f442d3f5883301e",
-      "bytes": 38127
+      "sha256": "100fbcb045bb7bec681fe0158670d5b9e2ff34a514352c3373378b6bf5998de6",
+      "bytes": 58261
     },
     {
       "path": "docs/spec/02-conops.md",
-      "sha256": "bc59b13e27f8a5fb90ac0238da8baeaa46383a4c59fb451ca18b4fcd45130cac",
-      "bytes": 24303
+      "sha256": "7a1b3540c656a334abd0c0b8ed12327716b1fdbb9dda0496f71147cc862e2510",
+      "bytes": 37020
     },
     {
       "path": "docs/spec/03-opscon.md",
-      "sha256": "6692657cf564b1f797ce61c8f8bb86b05210243600a3a01d830ed0cbfc908e2a",
-      "bytes": 39689
+      "sha256": "a6b34f11fcf726394a452522111638a4ad9f077817136c3d39ddcd111288b8fb",
+      "bytes": 60827
     },
     {
       "path": "docs/spec/04-techspec.md",
-      "sha256": "f433e44cfb66ccb54043c46908f82821c2e75828d24c95780392ce2c3b1ae907",
-      "bytes": 32379
+      "sha256": "eae3dd49bd5d22bd50a7a2573f1e8e166b33d85895e3eb0e3d0fcaae6909848b",
+      "bytes": 47337
     },
     {
       "path": "docs/spec/05-requirements.md",
-      "sha256": "4be9e14278fdaa70f3cb65436d5baef3decd84abf51b774513e6e20fee8861a0",
-      "bytes": 55441
+      "sha256": "48976a85e11479136f26775f7f3e92ce111c6cd0cbca8b718c01627f35edbd0f",
+      "bytes": 80140
     },
     {
       "path": "docs/spec/06-validation.md",
-      "sha256": "7fd3e111278e4c16c0c63e694dc3c1211c66c099edbb703b3bb4b71838073843",
-      "bytes": 31841
+      "sha256": "6d936994c5473cb33c33ed18ad44cf87f39fa3630cc1cc7c8a0d2b75677784bd",
+      "bytes": 44534
     },
     {
       "path": "docs/spec/07-approvals.md",
-      "sha256": "7e89dddde59b3938d9bb1ed10ee8c85d9cbb39438533b0e2f2c16499e42dd301",
-      "bytes": 6837
+      "sha256": "9e93ba564a745eddf7b119bfd0228726a4770cf723b23945bcc14f1476cda9c0",
+      "bytes": 12179
     },
     {
       "path": "docs/spec/PSD.md",
-      "sha256": "cdbab21cbfad4cdb614c04f9142bf681ac9226452b79ffbee2355a7eb55975c4",
-      "bytes": 230465
+      "sha256": "f1d251df3fdc26ae1cdb60f39580c9730d14627ccc6a2129e98dda20606990bf",
+      "bytes": 342315
     },
     {
       "path": "docs/spec/traceability.csv",
-      "sha256": "31640fdd63aeb2a905fae4739bcf44791725ba791dca834a95da7b3174432826",
-      "bytes": 11735
+      "sha256": "b98a7dc080342c6de9a4804cc080f4ddfb6119e5b8cbe1bdc87a983f99b3652a",
+      "bytes": 17102
     },
     {
       "path": "extraction+docs.pdf",
       "sha256": "8a49a5b05eaa3f9bd505d2ca0cf11dfada41fda878f95067e04519fc9c0eea2e",
       "bytes": 1268843
     }
-  ]
+  ],
+  "supersedes_commit": "974352db0acb01a8dcf0c421bcd4316ddfc889a8",
+  "phase_set_version": "2.0",
+  "compendium_revision": "2 (2026-10-15)"
 }

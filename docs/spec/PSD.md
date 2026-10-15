@@ -14,7 +14,7 @@ Compiled by docpipe from `docs/spec`. Edit the phase documents, not this file.
 | 4 | Technical Specifications | final | 2.0 | 2026-10-15 | 4248dd6478ed6328 |
 | 5 | Specific Requirements | final | 2.0 | 2026-10-15 | 6d65c655a1ac2b42 |
 | 6 | Validation Activities | final | 2.0 | 2026-10-15 | afcfede65dc2140a |
-| 7 | Completion and Approvals | final | 2.0 | 2026-10-15 | a792b0d3b232a21c |
+| 7 | Completion and Approvals | final | 2.0 | 2026-10-15 | 25606f82e0c91a14 |
 
 
 # 0. Idea
@@ -2327,7 +2327,7 @@ Revision 2 cycle, answered from tool output on 15 Oct 2026:
 | All change requests closed | Not met; carried as conditions CND-02 and CND-17 | CR-01 amended 15 Oct 2026 to add `projection`, still open against the compendium; CR-02 raised against compendium Volume 13.2 (the open item this revision discharges); no change request raised by phases 2 to 6 in this revision |
 | Residual risks accepted | Pending approver | Ten residual risks in 06-validation.md section 6: the five of cycle 1 plus providers not selected, taxonomy not ratified, recognition inputs missing, deferred modules without entries, and the inspection and demonstration count now 24 |
 | Requirement syntax and identifier checks | Met | `docpipe check 5` clean apart from the two deferred numbers; every new requirement EARS-shaped |
-| Traceability export | Met | `docs/spec/traceability.csv` built 15 Oct 2026: 1099 identifiers; REQ-188 to REQ-259 present with phase 6 references |
+| Traceability export | Met | `docs/spec/traceability.csv` built 15 Oct 2026: 1,108 identifiers once this document's own APR and CND identifiers are counted (1,099 before them); REQ-188 to REQ-259 present with phase 6 references |
 
 ## 3. Document register at approval
 

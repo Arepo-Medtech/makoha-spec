@@ -3,15 +3,15 @@ docpipe: 1
 phase: 6
 title: Validation Activities
 status: final
-version: 1.0
+version: 2.0
 upstream: ["05-requirements.md"]
-upstream_hash: {"05-requirements.md": "182f72a000933d5b"}
-finalised: 2026-09-25
+upstream_hash: {"05-requirements.md": "6d65c655a1ac2b42"}
+finalised: 2026-10-15
 ---
 
 # Validation Activities
 
-Plan and record of validating every requirement in 05-requirements.md (final v1.0). Cycle 1 (25 Sep 2026) is the planning cycle: every requirement has one entry inheriting its verification method and acceptance criterion, grouped into activities; complete = no throughout; modification required = no unless stated. Later cycles record outcomes and raise change requests. Identifiers minted here: VAL-nnn (one entry per requirement, same number as the requirement), ACT- (grouped activities), VCR- (change requests raised by validation). Every REQ identifier of phase 5 appears below, including the withdrawn ones, which are listed as not validated.
+Plan and record of validating every requirement in 05-requirements.md (final v2.0). Revised 15 Oct 2026 against compendium revision 2: activities ACT-14 to ACT-16 and entries VAL-188 to VAL-259 added for the new requirement sections 14 to 19; existing entries unchanged; cycle 1 remains the planning cycle. Cycle 1 (25 Sep 2026) is the planning cycle: every requirement has one entry inheriting its verification method and acceptance criterion, grouped into activities; complete = no throughout; modification required = no unless stated. Later cycles record outcomes and raise change requests. Identifiers minted here: VAL-nnn (one entry per requirement, same number as the requirement), ACT- (grouped activities), VCR- (change requests raised by validation). Every REQ identifier of phase 5 appears below, including the withdrawn ones, which are listed as not validated.
 
 ## 1. Activities
 
@@ -33,6 +33,9 @@ Each activity covers many entries; each entry references exactly one requirement
 | ACT-11 | Security test and inspection (M8): MFA, audit, break-glass, consent, tenancy, seccomp, secrets, manifest, de-identification | M8 | CI and review session | hardware-backed key store |
 | ACT-12 | Regulatory and knowledge inspection (M8): bundle verifier, obligations register, ratification gates, retention, terminology pin, configuration audit | M8 | Review session | sponsor appointed; standards list confirmed |
 | ACT-13 | Voice sidecar demonstration and tests (M9): interruption, pinned weights, transcript spans, fallback, consent, bounded loop | M9 | Staging with GPU node | voice model selected; GPU hardware |
+| ACT-14 | Front door and channels suite (M5, M7, M9; revision 2): lead register and clocks, conversion, omnichannel desk with rule routing and the PHI check (M5), front-office aperture, consoles and form designer (M7), intent classifier, follow-through drafts and campaign drafting (M9); E2E-14, E2E-15, E2E-17 | M5, M7, M9 | Staging with the synthetic lead set and provider fakes; provider sandboxes for the WhatsApp items | synthetic lead set; WhatsApp provider selected (D-14); intent taxonomy ratified (D-21) |
+| ACT-15 | Voice line telephony suite (M5, M9; revision 2): IVR floor, identity confirmation, consent prompt, booking by keypad, message taking (M5); dialogue, hand-off cues, after-hours, check-in instruments (M9); E2E-16 | M5, M9 | Staging with a carrier sandbox and the scripted call and cue set; GPU node for M9 items | telephony carrier selected (D-15); voice model (M9 items) |
+| ACT-16 | Document intake batch suite (M5, M9; revision 2): batch control, resume and idempotence, field review, unsolicited result trigger (M5); OCR, layout and handwriting engines at volume (M9); E2E-18 | M5, M9 | Staging with the synthetic archive and the reference machine | synthetic archive with handwriting; recognition models; reference machine |
 
 ## 2. Validation register
 
@@ -285,6 +288,108 @@ Columns: entry; requirement; activity; method (inherited); evidence location; co
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | VAL-187 | REQ-187 | ACT-01 | Test | `evidence/ACT-01/REQ-187/` under the build hash; mirrored to Ketryx | no | no | none |
 
+### Front door and lead register (SCN-11)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-188 | REQ-188 | ACT-14 | Test | `evidence/ACT-14/REQ-188/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-189 | REQ-189 | ACT-14 | Test | `evidence/ACT-14/REQ-189/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-190 | REQ-190 | ACT-14 | Test | `evidence/ACT-14/REQ-190/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-191 | REQ-191 | ACT-14 | Test | `evidence/ACT-14/REQ-191/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-192 | REQ-192 | ACT-14 | Test | `evidence/ACT-14/REQ-192/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-193 | REQ-193 | ACT-14 | Test | `evidence/ACT-14/REQ-193/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-194 | REQ-194 | ACT-14 | Inspection | Inspection record `evidence/ACT-14/REQ-194/` signed by the reviewer | no | no | none |
+| VAL-195 | REQ-195 | ACT-14 | Test | `evidence/ACT-14/REQ-195/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-196 | REQ-196 | ACT-14 | Test | `evidence/ACT-14/REQ-196/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-197 | REQ-197 | ACT-14 | Test | `evidence/ACT-14/REQ-197/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-198 | REQ-198 | ACT-14 | Test | `evidence/ACT-14/REQ-198/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-199 | REQ-199 | ACT-14 | Test | `evidence/ACT-14/REQ-199/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-200 | REQ-200 | ACT-14 | Test | `evidence/ACT-14/REQ-200/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-201 | REQ-201 | ACT-14 | Test | `evidence/ACT-14/REQ-201/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-202 | REQ-202 | ACT-14 | Test | `evidence/ACT-14/REQ-202/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-203 | REQ-203 | ACT-14 | Test | `evidence/ACT-14/REQ-203/` under the build hash; mirrored to Ketryx | no | no | none |
+
+### Omnichannel desk (SCN-12)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-204 | REQ-204 | ACT-14 | Test | `evidence/ACT-14/REQ-204/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-205 | REQ-205 | ACT-14 | Test | `evidence/ACT-14/REQ-205/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-206 | REQ-206 | ACT-14 | Test | `evidence/ACT-14/REQ-206/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-207 | REQ-207 | ACT-14 | Test | `evidence/ACT-14/REQ-207/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-208 | REQ-208 | ACT-14 | Test | `evidence/ACT-14/REQ-208/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-209 | REQ-209 | ACT-14 | Test | `evidence/ACT-14/REQ-209/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-210 | REQ-210 | ACT-14 | Test | `evidence/ACT-14/REQ-210/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-211 | REQ-211 | ACT-14 | Test | `evidence/ACT-14/REQ-211/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-212 | REQ-212 | ACT-14 | Test | `evidence/ACT-14/REQ-212/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-213 | REQ-213 | ACT-14 | Test | `evidence/ACT-14/REQ-213/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-214 | REQ-214 | ACT-14 | Test | `evidence/ACT-14/REQ-214/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-215 | REQ-215 | ACT-14 | Test | `evidence/ACT-14/REQ-215/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-216 | REQ-216 | ACT-14 | Demonstration | Demonstration record and recording `evidence/ACT-14/REQ-216/` | no | no | none |
+
+### Voice line (SCN-13)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-217 | REQ-217 | ACT-15 | Test | `evidence/ACT-15/REQ-217/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-218 | REQ-218 | ACT-15 | Test | `evidence/ACT-15/REQ-218/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-219 | REQ-219 | ACT-15 | Test | `evidence/ACT-15/REQ-219/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-220 | REQ-220 | ACT-15 | Test | `evidence/ACT-15/REQ-220/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-221 | REQ-221 | ACT-15 | Test | `evidence/ACT-15/REQ-221/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-222 | REQ-222 | ACT-15 | Test | `evidence/ACT-15/REQ-222/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-223 | REQ-223 | ACT-15 | Test | `evidence/ACT-15/REQ-223/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-224 | REQ-224 | ACT-15 | Test | `evidence/ACT-15/REQ-224/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-225 | REQ-225 | ACT-15 | Test | `evidence/ACT-15/REQ-225/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-226 | REQ-226 | ACT-15 | Test | `evidence/ACT-15/REQ-226/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-227 | REQ-227 | ACT-15 | Test | `evidence/ACT-15/REQ-227/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-228 | REQ-228 | ACT-15 | Test | `evidence/ACT-15/REQ-228/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-229 | REQ-229 | ACT-15 | Test | `evidence/ACT-15/REQ-229/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-230 | REQ-230 | ACT-15 | Test | `evidence/ACT-15/REQ-230/` under the build hash; mirrored to Ketryx | no | no | none |
+
+### Form designer (SCN-14)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-231 | REQ-231 | ACT-14 | Test | `evidence/ACT-14/REQ-231/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-232 | REQ-232 | ACT-14 | Test | `evidence/ACT-14/REQ-232/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-233 | REQ-233 | ACT-14 | Test | `evidence/ACT-14/REQ-233/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-234 | REQ-234 | ACT-14 | Test | `evidence/ACT-14/REQ-234/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-235 | REQ-235 | ACT-14 | Test | `evidence/ACT-14/REQ-235/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-236 | REQ-236 | ACT-14 | Test | `evidence/ACT-14/REQ-236/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-237 | REQ-237 | ACT-14 | Inspection | Inspection record `evidence/ACT-14/REQ-237/` signed by the reviewer | no | no | none |
+| VAL-238 | REQ-238 | ACT-14 | Test | `evidence/ACT-14/REQ-238/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-239 | REQ-239 | ACT-14 | Test | `evidence/ACT-14/REQ-239/` under the build hash; mirrored to Ketryx | no | no | none |
+
+### Document intake at volume (SCN-15)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-240 | REQ-240 | ACT-16 | Test | `evidence/ACT-16/REQ-240/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-241 | REQ-241 | ACT-16 | Test | `evidence/ACT-16/REQ-241/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-242 | REQ-242 | ACT-16 | Test | `evidence/ACT-16/REQ-242/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-243 | REQ-243 | ACT-16 | Test | `evidence/ACT-16/REQ-243/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-244 | REQ-244 | ACT-16 | Test | `evidence/ACT-16/REQ-244/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-245 | REQ-245 | ACT-16 | Test | `evidence/ACT-16/REQ-245/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-246 | REQ-246 | ACT-16 | Inspection | Inspection record `evidence/ACT-16/REQ-246/` signed by the reviewer | no | no | none |
+| VAL-247 | REQ-247 | ACT-16 | Test | `evidence/ACT-16/REQ-247/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-248 | REQ-248 | ACT-16 | Test | `evidence/ACT-16/REQ-248/` under the build hash; mirrored to Ketryx | no | no | none |
+
+### Campaigns, follow-through and revision 2 cross-cutting rules (SCN-16)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-249 | REQ-249 | ACT-14 | Test | `evidence/ACT-14/REQ-249/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-250 | REQ-250 | ACT-14 | Test | `evidence/ACT-14/REQ-250/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-251 | REQ-251 | ACT-14 | Test | `evidence/ACT-14/REQ-251/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-252 | REQ-252 | ACT-14 | Test | `evidence/ACT-14/REQ-252/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-253 | REQ-253 | ACT-14 | Test | `evidence/ACT-14/REQ-253/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-254 | REQ-254 | ACT-14 | Test | `evidence/ACT-14/REQ-254/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-255 | REQ-255 | ACT-14 | Test | `evidence/ACT-14/REQ-255/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-256 | REQ-256 | ACT-14 | Test | `evidence/ACT-14/REQ-256/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-257 | REQ-257 | ACT-11 | Inspection | Inspection record `evidence/ACT-11/REQ-257/` signed by the reviewer | no | no | none |
+| VAL-258 | REQ-258 | ACT-11 | Inspection | Inspection record `evidence/ACT-11/REQ-258/` signed by the reviewer | no | no | none |
+| VAL-259 | REQ-259 | ACT-10 | Test | `evidence/ACT-10/REQ-259/` under the build hash; mirrored to Ketryx | no | no | none |
+
 ### Withdrawn requirements (not validated)
 
 | Entry | Requirement | Status |
@@ -305,17 +410,17 @@ Columns: entry; requirement; activity; method (inherited); evidence location; co
 
 | Count | Value |
 | --- | --- |
-| Requirements with an entry | 176 |
+| Requirements with an entry | 248 (176 at cycle 1 plus 72 at revision 2) |
 | Withdrawn identifiers listed | 11 |
 | Entries complete | 0 |
 | Entries with modification required | 0 |
 | Open change requests | 0 |
-| Entries by method | Test 155, Inspection 15, Analysis 3, Demonstration 3 |
-| Activities | 13 |
+| Entries by method | Test 221, Inspection 20, Analysis 3, Demonstration 4 |
+| Activities | 16 |
 
 ## 4. Change requests
 
-None raised in cycle 1.
+None raised in cycle 1. Revision of 15 Oct 2026: none raised.
 
 | Id | Raised by | Target document | Target item | Change | Status |
 | --- | --- | --- | --- | --- | --- |
@@ -328,11 +433,15 @@ Every activity writes its evidence under `evidence/<activity>/<requirement>/` ke
 
 | Risk or limitation | Bearing on validation |
 | --- | --- |
-| Fifteen requirements are validated by inspection, three by analysis and three by demonstration rather than test | Acceptable for structural and measure-based items; each names its artefact; to be reconfirmed with compliance for the regulatory application |
+| 20 requirements are validated by inspection, 3 by analysis and 4 by demonstration rather than test | Acceptable for structural and measure-based items; each names its artefact; to be reconfirmed with compliance for the regulatory application |
 | REQ-145 (availability, RPO, RTO) and REQ-146 (voice turn latency) carry deferred numbers | Their entries cannot pass until the numbers are set |
 | National sandbox access (Hira, HealthLink, NZePS) is not yet arranged | ACT-09 is blocked until onboarding |
 | The voice model is not yet selected | ACT-13 and the voice items in ACT-02 are blocked until M9 |
 | The synthetic practice is not yet produced | ACT-10 and every scenario suite are blocked until it exists (PRD open item) |
+| WhatsApp and telephony providers are not yet selected (D-14, D-15; revision 2) | ACT-14 provider items and ACT-15 are blocked until selection before M5; fakes cover the rule and PHI-check items |
+| The intent taxonomy codebook is not yet ratified (D-21; revision 2) | VAL-207 and the classifier items of ACT-14 cannot pass until ratification before M7 |
+| Recognition models, the synthetic archive and the reference machine for ACT-16 do not yet exist (revision 2) | VAL-241 to VAL-246 are blocked until M9 inputs exist; batch-control items run on fixtures |
+| Deferred revision 2 modules (PRD section 8.1) carry no requirement and no entry | Their activation needs a later requirements revision and validation cycle before operation |
 
 ## 7. Assumptions
 
@@ -345,3 +454,5 @@ Every activity writes its evidence under `evidence/<activity>/<requirement>/` ke
 
 - [x] Evidence convention confirmed (section 5)
 - [ ] Blocker owners: deferred 25 Sep 2026
+- [x] Revision 2 (15 Oct 2026): ACT-14 to ACT-16, VAL-188 to VAL-259 added
+- [ ] Owners for the revision 2 blockers (providers, taxonomy, synthetic archive): platform operator for D-14 and D-15, clinical governance for D-21, otherwise deferred

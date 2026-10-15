@@ -3,15 +3,15 @@ docpipe: 1
 phase: 5
 title: Specific Requirements
 status: final
-version: 1.0
+version: 2.0
 upstream: ["01-prd.md", "03-opscon.md", "04-techspec.md"]
-upstream_hash: {"01-prd.md": "945319a42d20e0ce", "03-opscon.md": "2566aaa0e9b9bf55", "04-techspec.md": "a3e788961563417d"}
-finalised: 2026-09-25
+upstream_hash: {"01-prd.md": "0e34202c06cdf092", "03-opscon.md": "98addfd786475290", "04-techspec.md": "4248dd6478ed6328"}
+finalised: 2026-10-15
 ---
 
 # Specific Requirements
 
-The deterministic, atomic, testable requirement set for the Mākoha platform, derived mechanically from the PRD (01-prd.md), the Operations Concept (03-opscon.md) and the Technical Specifications (04-techspec.md), all final v1.0, by the seven derivation rules of this phase. Convention: EARS, one obligation per sentence, system name "Mākoha platform". Identifier family minted here: REQ-nnn, minted once, never renumbered; a removed requirement is moved to section 15 with a reason. Columns: requirement; upward trace; verification method (Test, Inspection, Analysis, Demonstration); acceptance criterion a tester applies without asking anyone. Numbers are quoted from the TechSpec targets and are signed configuration defaults, not code literals.
+The deterministic, atomic, testable requirement set for the Mākoha platform, derived mechanically from the PRD (01-prd.md), the Operations Concept (03-opscon.md) and the Technical Specifications (04-techspec.md), all final v2.0, by the seven derivation rules of this phase. Revised 15 Oct 2026 against compendium revision 2: sections 14 to 19 (REQ-188 to REQ-259) added for the front door, omnichannel desk, voice line, form designer, document intake and campaigns; the earlier sections 14 to 18 renumbered 20 to 24; no existing requirement changed. Convention: EARS, one obligation per sentence, system name "Mākoha platform". Identifier family minted here: REQ-nnn, minted once, never renumbered; a removed requirement is moved to section 21 with a reason. Columns: requirement; upward trace; verification method (Test, Inspection, Analysis, Demonstration); acceptance criterion a tester applies without asking anyone. Numbers are quoted from the TechSpec targets and are signed configuration defaults, not code literals.
 
 ## 1. Argument, gate and ledger invariants
 
@@ -255,15 +255,129 @@ Derived from PRD section 5 (the ten laws), OpsCon MN-01 to MN-05, MN-10 to MN-13
 | REQ-185 | The Mākoha platform shall not record voice audio without a consent resource for recording. | POL-05; TIF-09 | Test | Recording without the resource is refused. |
 | REQ-186 | The Mākoha platform shall pass every voice-generated text through the bounded loop's class-2 testers before it reaches a person. | Law 4; RSK-11 | Test | A voice utterance to the patient with a claim outside released facts is refused with a hand-off. |
 
-## 14. Coverage of upstream
+## 14. Front door and lead register (SCN-11; CAP-21)
 
-Every TechSpec target TGT-01 to TGT-16 is quoted: TGT-01 REQ-029; TGT-02 REQ-025; TGT-03 REQ-146; TGT-04 REQ-031, REQ-033; TGT-05 REQ-034; TGT-06 REQ-036; TGT-07 REQ-048, REQ-049; TGT-08 REQ-065, REQ-076; TGT-09 REQ-041; TGT-10 REQ-140, REQ-141; TGT-11 REQ-135 to REQ-139; TGT-12 REQ-100; TGT-13 REQ-145; TGT-14 REQ-006, REQ-142; TGT-15 REQ-143; TGT-16 REQ-009. Every OpsCon must-never MN-01 to MN-13 has a requirement: MN-01 REQ-187; MN-02 REQ-018; MN-03 REQ-017, REQ-028; MN-04 REQ-003, REQ-015; MN-05 REQ-005, REQ-007; MN-06 REQ-067; MN-07 REQ-022, REQ-168; MN-08 REQ-042, REQ-127; MN-09 REQ-086; MN-10 REQ-012; MN-11 REQ-001; MN-12 REQ-013, REQ-014; MN-13 REQ-016.
+Derived from OpsCon SCN-11, MN-14, MN-18, ROL-06, ROL-16, TechSpec COMP-25, TIF-22, TGT-17 and PRD CAP-21, D-12.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-188 | When an enquiry arrives on any capture channel, the Mākoha platform shall create a Lead as a Person in the lead compartment stamped with source, source detail and capturing principal. | SCN-11.2; COMP-25 | Test | A public form submission, a WhatsApp first contact and an inbound call each yield a Person with the lead extension carrying the three stamps and no Patient. |
+| REQ-189 | The Mākoha platform shall not create a Patient from an enquiry or message without a conversion act. | MN-18; SCN-11.9 | Test | After one hundred synthetic enquiries the Patient count is unchanged; a convert call without a staff act is refused. |
+| REQ-190 | When enquiry text is received at the public front door or on a channel, the Mākoha platform shall run the red-flag fragment over it and emit the critical-lane event within 100 ms at p99 on a match. | SCN-11.2; TIF-22; TGT-18 | Test | An enquiry containing a red-flag term produces the critical event and the emergency guidance fragment within 100 ms at p99 (OMNI-10). |
+| REQ-191 | When a Communication event occurs for a lead or the minute timer fires, the Mākoha platform shall recompute the lead's response-clock state as on track, at risk or overdue from the front-office profile's windows within 1 s at p95. | SCN-11.5; PERF-13; TGT-17 | Test | Clock state after each synthetic event equals the state computed from the profile windows; recompute latency is under 1 s at p95. |
+| REQ-192 | If a lead's response clock becomes overdue, then the Mākoha platform shall create a Task for the lead's owner and write a front-door signal row. | SCN-11.5; CAP-21 | Test | A lead with no outbound reply at window end has a Task owned by its owner and a signal row (LEAD-03). |
+| REQ-193 | When the engagement rule fragment evaluates a lead, the Mākoha platform shall emit each factor as a separate typed output with its points and rule pin. | SCN-11.3; D-12 | Test | Two leads with identical factors yield identical factor rows (LEAD-02); every row names a rule pin. |
+| REQ-194 | The Mākoha platform shall not store, compute or display a summed lead score or any composite field on a lead. | MN-14; D-12 | Inspection | The lead schema has no score column and the lead API no composite field (LEAD-05). |
+| REQ-195 | The Mākoha platform shall exclude the clinical risk tier of any patient from the input schema of every engagement rule. | MN-14; CAP-21 | Test | The engagement rule input schema contains no risk-tier field and a fragment reading one fails compile (LEAD-01). |
+| REQ-196 | The Mākoha platform shall order lead queues by response-clock state and stage only. | D-12; SCN-11.3 | Test | Queue order on the synthetic lead set equals the sort by clock state then stage; changing a factor's points changes no position. |
+| REQ-197 | When a Person opts out on any channel, the Mākoha platform shall stop every automated send to that Person on every channel permanently. | SCN-11 exceptions; MN-19 | Test | An SMS opt-out blocks a WhatsApp follow-through step to the same Person (LEAD-06) and the block has no expiry. |
+| REQ-198 | When staff convert a lead, the Mākoha platform shall run the probabilistic matcher against existing patients, linking above the upper threshold, queueing for clerical review between thresholds and creating a Patient only when no candidate exists. | SCN-11.9; COMP-05 | Test | Three fixtures (clear match, borderline, none) yield a link, a reconciliation item and a new Patient respectively. |
+| REQ-199 | When a lead is converted, the Mākoha platform shall re-point its QuestionnaireResponses and Communications to the Patient compartment with provenance source lead-intake and carry its channel consents and opt-outs to the Patient's Consent resources. | SCN-11.10 | Test | After conversion the responses carry source lead-intake (LEAD-07) and the Patient's Consent resources reproduce the lead's per-channel states. |
+| REQ-200 | The Mākoha platform shall give the engine and evaluator roles no read path to the lead compartment. | MN-18; POL-16 | Test | The engine and evaluator database roles hold no grant on the lead schema and an evaluation request citing a lead Communication as a ground is rejected. |
+| REQ-201 | When a lead list is imported, the Mākoha platform shall run a dry run reporting duplicates against existing leads and patients before any row is committed. | SCN-11 variations | Test | An import file with a known duplicate reports it in the dry run (LEAD-08) and the commit step creates no duplicate. |
+| REQ-202 | When a lead stage changes, the Mākoha platform shall record the transition with actor, reason and time, setting Converted only when a linked Patient exists and an Appointment has reached fulfilled. | SCN-11.8; COMP-25 | Test | A manual attempt to set Converted without a fulfilled Appointment is refused; every transition row has actor and time. |
+| REQ-203 | The Mākoha platform shall refuse a sign-off or any clinical act submitted with a front-office token. | ROL-06; PRD section 3 | Test | A front-office token posting a sign-off act receives 403 and no act row exists. |
+
+## 15. Omnichannel desk (SCN-12; CAP-22)
+
+Derived from OpsCon SCN-12, MN-15, DAT-12, TechSpec COMP-26, COMP-30, TIF-19, TGT-18 and PRD CAP-22, D-21.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-204 | When an inbound message or call record arrives on WhatsApp, SMS, email or the voice line, the Mākoha platform shall file it as a Communication with its medium in the tenant's one queue, threaded by partOf. | SCN-12.1; DAT-12 | Test | Items from four channels appear in one queue, each with medium set and a partOf chain to the prior items of its thread. |
+| REQ-205 | The Mākoha platform shall link an inbound item to a patient only on a single verified high-confidence phone or email identifier. | SCN-12.1; COMP-05 | Test | An item from a verified number links; an item from a number shared by two patients does not. |
+| REQ-206 | If an inbound item's sender matches a patient partially or ambiguously, then the Mākoha platform shall hold the item in the reconciliation queue without creating a Patient. | SCN-12.1; MN-06 | Test | A partial match is in the reconciliation queue and the Patient count is unchanged (OMNI-05). |
+| REQ-207 | When an inbound item is filed, the Mākoha platform shall classify its intent from the ratified taxonomy, its urgency band and its tone class, each with reliability, and assign a lane by the routing rule fragment within 2 s at p95. | SCN-12.3; TGT-18; COMP-30 | Test | Each synthetic item carries the three labels with reliability and a lane within 2 s at p95; distressed and negative tone are separated on the sealed set (OMNI-02). |
+| REQ-208 | If an inbound item contains a red-flag word or the intent possible emergency, then the Mākoha platform shall deliver it to the critical lane within 100 ms at p99 by the class-1 rule floor irrespective of the classifier output. | SCN-12.2; TGT-18 | Test | With the classifier forced to report low urgency, a red-flag item reaches the critical lane within 100 ms at p99 (OMNI-01, OMNI-07). |
+| REQ-209 | The Mākoha platform shall render the intent, urgency and tone classification only as flagged class-2 content on the clinician and front-office faces. | SCN-12.4; Law 4 | Test | The classification strip carries the flagged badge; a patient-face request for it returns 404. |
+| REQ-210 | When staff file clinical mentions from an unknown sender's thread after conversion, the Mākoha platform shall write the mentioned conditions, medications and allergies as provisional patient-reported facts with span links into the thread. | SCN-12.7 | Test | A medication mention becomes a provisional fact with a span into the Communication (OMNI-06) and no confirmed status. |
+| REQ-211 | When a reply is sent on WhatsApp outside the 24-hour customer-service window of its thread, the Mākoha platform shall send only a provider-approved template fragment. | SCN-12.5; POL-18 | Test | Free-form text outside the window is refused and an approved template is accepted (OMNI-03). |
+| REQ-212 | When an outbound message is rendered on any channel, the Mākoha platform shall run the outbound PHI check over the rendered text with the identifier pattern set and the channel's content class before the send. | SCN-12.6; COMP-26 | Test | Every send in a test run has a PHI-check record that precedes the adapter call. |
+| REQ-213 | If the outbound PHI check finds a record number, then the Mākoha platform shall block the send with no override path. | MN-15; SCN-12.6 | Test | A draft with a record number cannot be sent by any role and no override endpoint accepts it (OMNI-04). |
+| REQ-214 | If the outbound PHI check finds another identifier pattern or clinical content beyond the channel's content class, then the Mākoha platform shall show the sender the redacted version and send the original only after an override act with reason. | SCN-12.6; POL-17 | Test | A date of birth in a general-class message yields a redacted preview; sending the original requires an act row with a reason. |
+| REQ-215 | When an override act is recorded on an outbound message, the Mākoha platform shall include it in the channel surveillance signal. | SCN-12.6; Volume 2A.3 | Test | The override appears in the channel signal view by sender (REN-10). |
+| REQ-216 | When a WhatsApp number is connected, the Mākoha platform shall record the number, the provider receipt and the consent text and keep the practice's existing threads visible in the desk in coexistence mode. | SCN-11 preconditions; TIF-19 | Demonstration | A connected number shows its receipt and consent text; a message to the reception handset appears in the desk. |
+
+## 16. Voice line (SCN-13; CAP-23)
+
+Derived from OpsCon SCN-13, ROL-17, MN-16, TechSpec COMP-27, TIF-20, TGT-19 and PRD CAP-23; extends section 13.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-217 | When a call reaches a practice number, the Mākoha platform shall answer with the IVR menu fragment speaking codebook terms and accepting keypad and spoken-keyword navigation. | SCN-13.1; COMP-27 | Test | A scripted call navigates the menu by DTMF and by keyword; every menu prompt resolves to a fragment pin. |
+| REQ-218 | The Mākoha platform shall confirm a caller's identity by two identifiers before any patient-specific action on the voice line. | MN-16; SCN-13.3 | Test | A booking request before confirmation is refused; after two identifiers it proceeds (VOX-05). |
+| REQ-219 | The Mākoha platform shall not store call audio before the caller accepts the consent prompt. | SCN-13.1; POL-19 | Test | A call that declines the prompt leaves no audio object and a call that accepts leaves one (VOX-04). |
+| REQ-220 | When a call ends, the Mākoha platform shall file it as a Communication with medium phone and, where audio was consented, a transcript DocumentReference with spans. | SCN-13.7; DAT-12 | Test | The Communication exists for every call; the transcript exists only for consented calls and carries spans. |
+| REQ-221 | The Mākoha platform shall restrict the voice line's writes to QuestionnaireResponse, patient-reported Observation, Communication and Appointment transitions. | ROL-17; MN-16 | Test | A voice-line write of any other resource type is refused (VOX-01). |
+| REQ-222 | When a caller books, moves or cancels an appointment by voice, the Mākoha platform shall apply the appointment type's class-1 rules against live availability, read the confirmation back and send it on the consented text channel. | SCN-13.4; COMP-08 | Test | A voice booking occupies a free slot under the type's rules; the confirmation is spoken and a Communication exists on the consented channel. |
+| REQ-223 | If a hand-off cue fires on the voice line, then the Mākoha platform shall hand the call to a person or take a message within one dialogue turn. | SCN-13.5; TGT-19 | Test | Each cue on the scripted cue set (request for a person, distressed tone, repeated misunderstanding, clinical question) is followed by a hand-off or message within one turn (VOX-02). |
+| REQ-224 | The Mākoha platform shall not answer a clinical question on the voice line. | MN-16; POL-19 | Test | A scripted clinical question yields a hand-off or message and no answer (VOX-03). |
+| REQ-225 | If an emergency keyword is spoken on the voice line, then the Mākoha platform shall play the emergency guidance fragment and emit the critical-lane event. | SCN-13.6 | Test | The guidance fragment plays and the critical event exists within the call. |
+| REQ-226 | When the voice line speaks a statement about a patient, the Mākoha platform shall speak only a released, signed argument rendered in the plain register. | MN-16; SCN-13.3 | Test | A spoken statement about a result traces to a released, signed argument (VOX-06); a flagged argument is never spoken. |
+| REQ-227 | While after hours, the Mākoha platform shall speak the after-hours guidance fragment, take messages as Tasks carrying the transcript and hand off to on-call by the profile's escalation target. | SCN-13.3; SCN-13.5 | Test | An after-hours scripted call produces the guidance audio, a Task with transcript and a hand-off to the on-call target. |
+| REQ-228 | When a designed check-in call is placed, the Mākoha platform shall speak the assigned form item by item and store the answers as a QuestionnaireResponse with dialogue spans. | SCN-13.8; COMP-28 | Test | Each form item is spoken in order and each answer item carries a dialogue span. |
+| REQ-229 | When a voice-line dialogue turn is generated, the Mākoha platform shall pass it through the bounded loop's class-2 testers and the claims-boundary lint before synthesis. | SCN-13.7; Law 4 | Test | A turn carrying a claim outside released facts is refused before any audio is synthesised. |
+| REQ-230 | If the dialogue sidecar is unavailable, then the Mākoha platform shall continue the voice line on the IVR floor with message taking and record the fallback. | SCN-13 exceptions | Test | With the sidecar stopped a call still books by keypad and leaves a message; a fallback record exists. |
+
+## 17. Form designer (SCN-14; CAP-24)
+
+Derived from OpsCon SCN-14, DAT-13, TechSpec COMP-28 and PRD CAP-24.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-231 | When a form definition is submitted, the Mākoha platform shall admit it only through the compiler with every item bound to a FHIRPath target. | SCN-14.2; COMP-28 | Test | A form with an unbound item is refused; a shipped form has a binding on every item (FRM-01). |
+| REQ-232 | If a form binding names a FHIRPath that does not exist in the resource templates, then the Mākoha platform shall reject the form at compiler gate 1. | SCN-14.2 | Test | A binding to a non-existent path fails gate 1 with the path named (FRM-05). |
+| REQ-233 | When a form formula reproduces a calculator, the Mākoha platform shall cite the calculator fragment and store the result as the calculator's Observation. | SCN-14.1; SCN-14.4 | Test | A BMI formula result equals the calculator fragment output and is stored as its Observation (FRM-02). |
+| REQ-234 | When a form is submitted, the Mākoha platform shall re-evaluate its conditional rules server-side and apply the server result. | SCN-14.4 | Test | A client submission with a tampered rule outcome is corrected to the server outcome (FRM-03). |
+| REQ-235 | When a form is submitted, the Mākoha platform shall assemble one FHIR transaction Bundle holding a QuestionnaireResponse with span index and every bound resource with provenance by audience. | SCN-14.4; DAT-13 | Test | One Bundle per submission; each bound resource carries provenance and a span link to its response item (FRM-04). |
+| REQ-236 | When a response is rendered after its form has been republished, the Mākoha platform shall render it against the original form pin. | SCN-14.5 | Test | A response captured under pin A renders identically after pin B is published (FRM-06). |
+| REQ-237 | The Mākoha platform shall provide for every form field type a plain-register rendering, a keyboard-only path and, where the low-resource floor requires it, an IVR or SMS fallback. | Volume 3A.9 H4; Volume 4A.14 | Inspection | The field-type register lists the three renderings for each type. |
+| REQ-238 | When a public-audience form is submitted from the front door, the Mākoha platform shall create a Lead and no Patient. | SCN-11.1; TIF-22 | Test | A widget submission yields a Lead with source and no Patient (OMNI-09). |
+| REQ-239 | Where the same form step is completed on the portal, by SMS, on WhatsApp or by voice, the Mākoha platform shall produce resources that differ only in medium and span source. | SCN-14 outcome; Volume 2A.1 | Test | Four transports of one step yield resources equal except for medium and span source (OMNI-08). |
+
+## 18. Document intake at volume (SCN-15; CAP-25)
+
+Derived from OpsCon SCN-15, MN-17, DAT-14, TechSpec COMP-29, COMP-30, TIF-21, TGT-20 and PRD CAP-25.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-240 | When an archive, fax stream or scanner batch arrives, the Mākoha platform shall content-address each item and create a batch with a state and a cursor. | SCN-15.1; DAT-14 | Test | Every item has a content hash; a batch row exists in state queued with cursor zero. |
+| REQ-241 | When a batch runs, the Mākoha platform shall split each item into documents, recognise each block, classify the document type, extract fields and match the patient, recording per-block and per-field reliability and spans. | SCN-15.2; COMP-29 | Test | Every extracted field on the synthetic archive carries reliability and a span into the recognised text. |
+| REQ-242 | The Mākoha platform shall not make a recognised field that is below the reliability floor or of a review-always type a fact without a review act. | MN-17; SCN-15.3 | Test | No fact on the synthetic archive run derives from a below-floor or review-always field without an act (DAI-01). |
+| REQ-243 | When a reviewer accepts an extracted field, the Mākoha platform shall write the fact with reliability set to the review floor and the reviewer as principal. | SCN-15.5 | Test | An accepted field's fact carries the floor reliability and the reviewer's principal. |
+| REQ-244 | When a batch is paused, interrupted or re-uploaded, the Mākoha platform shall resume from its cursor and skip documents already processed by content hash. | SCN-15.6; TGT-20 | Test | An interruption drill resumes with zero re-processed documents and a re-upload creates no duplicate facts (DAI-02). |
+| REQ-245 | The Mākoha platform shall sustain document batch intake at 1,000 pages per hour on the reference machine. | TGT-20; PERF-16 | Test | The synthetic archive run reports at least 1,000 pages per hour sustained. |
+| REQ-246 | The Mākoha platform shall register the handwriting recognition engine with its own benchmark and pin separate from the OCR engine. | TECH-18 | Inspection | The registry holds two pins with two benchmark records (DAI-03). |
+| REQ-247 | When an extracted laboratory result is filed, the Mākoha platform shall create an unsolicited Observation and fire the same rules as a live result including the critical lane. | SCN-15.5 | Test | An extracted critical value raises the critical event (DAI-04). |
+| REQ-248 | If the split reliability for an item is below the floor, then the Mākoha platform shall send the whole item to the manual split queue. | SCN-15.2 | Test | A low split-reliability item appears in the split queue and yields no documents (DAI-05). |
+
+## 19. Campaigns, follow-through and revision 2 cross-cutting rules (SCN-16; CAP-21)
+
+Derived from OpsCon SCN-16, ROL-18, MN-19, DAT-15, TechSpec TGT-21, DEC-09 and PRD CST-16, MET-14, MET-15, MET-17.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-249 | When a campaign brief is filed, the Mākoha platform shall accept it only as a typed form and draft landing-page copy, a message sequence and a nurture cadence as slot text within 30 s at p95. | SCN-16.1; SCN-16.2; TGT-21 | Test | A free-text brief is refused; a typed brief yields three drafts within 30 s at p95 containing slot text only. |
+| REQ-250 | The Mākoha platform shall reject any campaign draft carrying a cure, guarantee or outcome claim at the claims-boundary lint. | MN-19; SCN-16.3 | Test | A brief yielding a cure claim is rejected with the matching rule (CAMP-01). |
+| REQ-251 | The Mākoha platform shall publish campaign drafts only through the compiler as pinned templates and a loop fragment. | SCN-16.4 | Test | A published sequence resolves to pins; an edit creates new pins (CAMP-02). |
+| REQ-252 | When a follow-through loop runs, the Mākoha platform shall send its steps at the ratified intervals on the lead's consented channels within the tenant's monthly message allowance. | SCN-11.6 | Test | Steps occur at the configured intervals on consented channels only; the allowance is never exceeded in the synthetic month. |
+| REQ-253 | When a lead replies, opts out, converts or reaches the step cap, the Mākoha platform shall stop the follow-through loop within one event. | SCN-11.6 | Test | A reply ends the loop before the next step (CAMP-03). |
+| REQ-254 | The Mākoha platform shall grant the queue-worker role no read access to resources, facts, attempts or actual arguments. | ROL-18 | Test | The role's grants exclude the four tables and a read attempt is denied (CAMP-04). |
+| REQ-255 | When a campaign audience is launched from a patient list, the Mākoha platform shall exclude deceased patients and patients lacking the contact-for-programme consent scope. | SCN-16.5 | Test | The launched audience excludes both groups and reports the exclusion count (CAMP-05). |
+| REQ-256 | When a campaign touch occurs, the Mākoha platform shall record the lead, campaign pin, step, channel and time for first-touch and last-touch attribution. | SCN-16.5; DAT-15 | Test | Each touch row carries the five fields; conversion reports name first and last touch. |
+| REQ-257 | The Mākoha platform shall reach the WhatsApp Business provider and the telephony carrier only through adapter traits with credentials held in the hardware-backed store. | DEC-09; TIF-19; TIF-20 | Inspection | No module calls a provider API outside its adapter; the secret inventory lists the provider credentials in the store. |
+| REQ-258 | The Mākoha platform shall not run a hosted model on the release path in any engine, tester or renderer. | CST-16; D-19 | Inspection | Every release-path model is a pinned self-hosted weight set; tenant-supplied keys appear in no pin. |
+| REQ-259 | The Mākoha platform shall publish front-door conversion by source and channel, response-clock breaches, no-show and rebooking rates and document intake field acceptance as Measures with lineage. | MET-14; MET-15; MET-17 | Test | Each Measure exists and its MeasureReport rows carry lineage; recomputation yields an identical hash. |
+
+## 20. Coverage of upstream
+
+Every TechSpec target TGT-01 to TGT-16 is quoted: TGT-01 REQ-029; TGT-02 REQ-025; TGT-03 REQ-146; TGT-04 REQ-031, REQ-033; TGT-05 REQ-034; TGT-06 REQ-036; TGT-07 REQ-048, REQ-049; TGT-08 REQ-065, REQ-076; TGT-09 REQ-041; TGT-10 REQ-140, REQ-141; TGT-11 REQ-135 to REQ-139; TGT-12 REQ-100; TGT-13 REQ-145; TGT-14 REQ-006, REQ-142; TGT-15 REQ-143; TGT-16 REQ-009. Every OpsCon must-never MN-01 to MN-13 has a requirement: MN-01 REQ-187; MN-02 REQ-018; MN-03 REQ-017, REQ-028; MN-04 REQ-003, REQ-015; MN-05 REQ-005, REQ-007; MN-06 REQ-067; MN-07 REQ-022, REQ-168; MN-08 REQ-042, REQ-127; MN-09 REQ-086; MN-10 REQ-012; MN-11 REQ-001; MN-12 REQ-013, REQ-014; MN-13 REQ-016. Revision 2 (15 Oct 2026): TGT-17 REQ-191; TGT-18 REQ-190, REQ-207, REQ-208; TGT-19 REQ-223; TGT-20 REQ-244, REQ-245; TGT-21 REQ-249; MN-14 REQ-194, REQ-195; MN-15 REQ-211, REQ-213; MN-16 REQ-218, REQ-224, REQ-226; MN-17 REQ-242; MN-18 REQ-189, REQ-200; MN-19 REQ-197, REQ-250. Every OpsCon scenario SCN-11 to SCN-16 and every PRD capability CAP-21 to CAP-25 is traced in sections 14 to 19; CAP-26 to CAP-28 are deferred from operation (PRD section 8.1) and carry no requirement in this revision.
 
 | Id | Requirement | Trace | Verification | Acceptance criterion |
 | --- | --- | --- | --- | --- |
 | REQ-187 | The Mākoha platform shall not transmit, dispense or act on an order, prescription or plan without a signing clinician's act. | MN-01; NG-01; POL-01 | Test | An order without a sign act cannot reach the transmitted state. |
 
-## 15. Withdrawn
+## 21. Withdrawn
 
 Withdrawn identifiers are kept here with their original text and reason and are never reused. Each was split because it carried more than one obligation.
 
@@ -281,19 +395,22 @@ Withdrawn identifiers are kept here with their original text and reason and are 
 | REQ-165 | When a de-identified export is produced, the Mākoha platform shall use an export type that cannot hold identifier fields and shall keep the residual identifier rate on the adjudicated set below the declared value. | CAP-14 | Test | Withdrawn: two obligations; replaced by REQ-166 and REQ-167. |
 | REQ-177 | The Mākoha platform shall retain every ledger row, resource version and original for at least ten years from the patient's last treatment and shall not delete them. | OpsCon section 6; STD-05 | Test | Withdrawn: two obligations; replaced by REQ-178. |
 
-## 16. Change requests to upstream
+## 22. Change requests to upstream
 
-None.
+None. Revision of 15 Oct 2026: none raised.
 
-## 17. Assumptions
+## 23. Assumptions
 
 | Assumption | Confidence | How it would be checked |
 | --- | --- | --- |
 | The configured values named "configured threshold", "configured window" and "configured interval" are each a pinned fragment by go-live | High | Compiler registry lists them |
 | The synthetic practice of 10,000 patients is available before M5 for every performance requirement | Medium | PRD open item |
+| A synthetic lead set, a scripted call and cue set and a synthetic archive with handwriting exist beside the synthetic practice for sections 14 to 19 | Medium | Produced with the synthetic practice before M5 |
 
-## 18. Open questions
+## 24. Open questions
 
 - [ ] Availability, RPO and RTO values (REQ-145, deferred with PERF-12)
 - [ ] Voice turn latency (REQ-146, set at M9)
 - [x] All thirteen sections confirmed 25 Sep 2026; verification methods accepted
+- [x] Revision 2 (15 Oct 2026): sections 14 to 19, REQ-188 to REQ-259; no existing requirement changed
+- [ ] Reference machine for REQ-245 (deferred with TGT-20)

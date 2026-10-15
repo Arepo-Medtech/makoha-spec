@@ -8,31 +8,33 @@ Compiled by docpipe from `docs/spec`. Edit the phase documents, not this file.
 
 | # | Document | Status | Version | Finalised | Hash |
 |---|---|---|---|---|---|
-| 1 | Product Requirements Document | final | 1.0 | 2026-09-25 | 945319a42d20e0ce |
-| 2 | Concept of Operations | final | 1.0 | 2026-09-25 | 978e178898dc37f9 |
-| 3 | Operations Concept | final | 1.0 | 2026-09-25 | 2566aaa0e9b9bf55 |
-| 4 | Technical Specifications | final | 1.0 | 2026-09-25 | a3e788961563417d |
-| 5 | Specific Requirements | final | 1.0 | 2026-09-25 | 182f72a000933d5b |
-| 6 | Validation Activities | final | 1.0 | 2026-09-25 | 5f7ecdaa17a52a10 |
-| 7 | Completion and Approvals | final | 1.0 | 2026-09-25 | 8ab64da5329ef3d8 |
+| 1 | Product Requirements Document | final | 2.0 | 2026-10-15 | 0e34202c06cdf092 |
+| 2 | Concept of Operations | final | 2.0 | 2026-10-15 | 7fdb53fbc48fff39 |
+| 3 | Operations Concept | final | 2.0 | 2026-10-15 | 98addfd786475290 |
+| 4 | Technical Specifications | final | 2.0 | 2026-10-15 | 4248dd6478ed6328 |
+| 5 | Specific Requirements | final | 2.0 | 2026-10-15 | 6d65c655a1ac2b42 |
+| 6 | Validation Activities | final | 2.0 | 2026-10-15 | afcfede65dc2140a |
+| 7 | Completion and Approvals | final | 2.0 | 2026-10-15 | a792b0d3b232a21c |
 
 
 # 0. Idea
 
 # Idea
 
-Mākoha is a clinical language layer and an AI-native record for primary care, built so that everything a clinician reads, a patient is told, or a regulator inspects can be traced to a structured, replayable argument. Primary care produces most of its knowledge as free text (consultation notes, referrals, discharge summaries, pathology comments, patient messages); current systems store that text but cannot reason over it, so clinicians re-read it every visit, safety checks fire on coded fields only, and audit means sampling paper. Learned models can now read that text well but with unstated error rates and no usable statement of confidence. Mākoha closes both gaps: language becomes structured facts with span-level provenance; facts feed engines that propose decisions as argument objects (claim, grounds, warrant, backing, qualifier, rebuttals) carrying six typed, non-coercible uncertainty signals; and a pure, deterministic five-stage evaluator is the only authority that assigns one of three verdicts (released, flagged, held). Every evaluation pins all its inputs by content hash so replay years later reproduces the same verdict byte for byte. One append-only ledger serves three authorised faces: patient, clinician and governance. Knowledge enters the runtime only through a signed compiler; engines are pure functions; rendering cannot change meaning; clinician attention is budgeted; evaluation is adversarial and firewalled. It serves general practice, nurse and pharmacist prescribers, telehealth, hospital in the home, practice governance and regulators, and patients. Already decided: Rust core for ledger, evaluator, argument types, terminology and render (D-01); three build-time regulatory tiers; no autonomous prescribing, no online learning in production, no fusion of probabilities across engines, no composite ranking of patients or clinicians. The full architecture and engineering plan is the Mākoha Design Compendium (thirteen volumes plus four build volumes, 25 Sep 2026, Ken Lee), kept at `docs/ref/makoha-design-compendium.md`; the decision register there holds eleven entries (D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11), several open or provisional.
+Mākoha is a clinical language layer and an AI-native record for primary care, built so that everything a clinician reads, a patient is told, or a regulator inspects can be traced to a structured, replayable argument. Primary care produces most of its knowledge as free text (consultation notes, referrals, discharge summaries, pathology comments, patient messages); current systems store that text but cannot reason over it, so clinicians re-read it every visit, safety checks fire on coded fields only, and audit means sampling paper. Learned models can now read that text well but with unstated error rates and no usable statement of confidence. Mākoha closes both gaps: language becomes structured facts with span-level provenance; facts feed engines that propose decisions as argument objects (claim, grounds, warrant, backing, qualifier, rebuttals) carrying six typed, non-coercible uncertainty signals; and a pure, deterministic five-stage evaluator is the only authority that assigns one of three verdicts (released, flagged, held). Every evaluation pins all its inputs by content hash so replay years later reproduces the same verdict byte for byte. One append-only ledger serves three authorised faces: patient, clinician and governance. Knowledge enters the runtime only through a signed compiler; engines are pure functions; rendering cannot change meaning; clinician attention is budgeted; evaluation is adversarial and firewalled. It serves general practice, nurse and pharmacist prescribers, telehealth, hospital in the home, practice governance and regulators, and patients. Already decided: Rust core for ledger, evaluator, argument types, terminology and render (D-01); three build-time regulatory tiers; no autonomous prescribing, no online learning in production, no fusion of probabilities across engines, no composite ranking of patients or clinicians. The full architecture and engineering plan is the Mākoha Design Compendium (thirteen volumes plus four build volumes, 25 Sep 2026, Ken Lee), kept at `docs/ref/makoha-design-compendium.md`; the decision register there holds eleven entries (D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11), several open or provisional; revision 2 of the compendium (15 Oct 2026) folds in the Care Execution Platform teardown and adds ten more (D-12, D-13, D-14, D-15, D-16, D-17, D-18, D-19, D-20, D-21).
 
 
 # 1. Product Requirements Document
 
-_status: final · version 1.0_
+_status: final · version 2.0_
 
 # Product Requirements Document
 
 Revised 25 Sep 2026 after finalisation on approval of change requests CCR-01 to CCR-04 raised in 02-conops.md and OCR-01 to OCR-03 raised in 03-opscon.md (FDA as possible third regulator; Ketryx and billing questions closed): first release moved to Tier 3, pre-intake agent placed in Tier 3, New Zealand regulatory wording corrected, voice capability added. Structure unchanged.
 
-Source of record for every derived statement below: the Mākoha Design Compendium (25 Sep 2026, Ken Lee), `docs/ref/makoha-design-compendium.md`, cited by volume and section. Identifiers minted here: G- (goals), NG- (non-goals), CAP- (capabilities), MET- (success metrics), CST- (constraints). Identifiers of the form D-nn and the acceptance-test ids (for example NER-01, LED-03) are the compendium's own and are carried unchanged.
+Revised 15 Oct 2026 on compendium revision 2 (15 Oct 2026), which folds the Care Execution Platform teardown into the compendium in situ: two user rows added (section 3), four metrics minted (MET-14 to MET-17), capabilities CAP-21 to CAP-28 minted from Volume 1A.2 rows 21 to 28, operations 18 to 24 placed in section 8.2, the first-release module set from revision 2 stated (section 8.1), constraints CST-14 to CST-18 minted, decisions D-12 to D-21 carried into section 10, CR-01 amended with `projection` and CR-02 raised. Scope rulings stated by Ken Lee on 15 Oct 2026. Structure unchanged.
+
+Source of record for every derived statement below: the Mākoha Design Compendium (25 Sep 2026, revision 2 of 15 Oct 2026, Ken Lee), `docs/ref/makoha-design-compendium.md`, cited by volume and section. Identifiers minted here: G- (goals), NG- (non-goals), CAP- (capabilities), MET- (success metrics), CST- (constraints). Identifiers of the form D-nn and the acceptance-test ids (for example NER-01, LED-03) are the compendium's own and are carried unchanged.
 
 ## 1. Intended purpose and conventions of this set
 
@@ -68,8 +70,10 @@ Derived from Volume 1.4 and Volume 1A.4. Each row becomes a role and a setting p
 | Practice governance and regulators | Sentinel events, prospective studies and audits are queries over the ledger; a regulator bundle is a signed export of a time window | Audit by sampling paper; studies as projects | Volumes 8, 10 |
 | Patients | Engagement loops driven by released arguments only; never sees a held or flagged item; sees a released one only after sign-off | Plan communicated verbally or not at all | Volumes 2, 9 |
 | Study owners and clinical researchers (through the governance face) | Prospective studies registered as sealed envelopes, cohorts by phenotype, enrolment on match with consent scope, endpoints as validated Measures, consented de-identified extracts | Studies as separate projects outside the record | Volumes 2A, 3A.10, 10.4 |
+| Front office and practice growth (revision 2; front-office profile, 1A.4; restricted clinician aperture, 2A.0) | A lead register with response clocks, an omnichannel desk, a voice line and a form designer that all write to the same record; outreach that is itself a released argument; nothing clinical signable | Reception handsets, spreadsheets of enquiries, paper forms, a separate CRM | Volumes 1A, 3A groups A, H, J; 9.8 |
+| Partners and integrators (revision 2; deferred from the first release, section 8.1) | Tenancy with brand packs, a developer platform with a sandbox and typed SDKs, engines admitted only under the purity contract | Bespoke integrations | Volumes 11.8, 12.4, 12.5, 3A.12b |
 
-First adopters (stated 25 Sep 2026): telehealth and hospital-in-the-home services whose workforce is general practitioners together with nurse and pharmacist prescribers, on the Tier 3 general-purpose-assistant profile so that real-time voice interaction ships from day one (CCR-02). General practice as a standalone setting, and patients as a face, follow after the first release. See section 8.
+First adopters (stated 25 Sep 2026): telehealth and hospital-in-the-home services whose workforce is general practitioners together with nurse and pharmacist prescribers, on the Tier 3 general-purpose-assistant profile so that real-time voice interaction ships from day one (CCR-02). General practice as a standalone setting, and patients as a face, follow after the first release. Front-office staff of those two services operate the front-office profile from the first release (stated 15 Oct 2026). See section 8.
 
 ## 4. Goals and non-goals
 
@@ -134,6 +138,10 @@ Derived from Volume 1A.6 (instrumented benefits) and 1A.8 (horizon thresholds). 
 | MET-11 | Inbound triage | Triage latency; queue order by urgency | p95 under 5 s | {{TBD: baseline, captured at cut-over at the first site (deferred 25 Sep 2026)}} | Weekly |
 | MET-12 | Equity visibility | Outcome measures stratified by SDOH fact presence, with imprecise-Dirichlet intervals | Published per quarter | First quarter | Quarterly |
 | MET-13 | Evidence loop | Release-capable fragments with an adherence MeasureReport per quarter / all; attempts carrying the feedback-overlay pin / all | 100%; 100% | n/a | Quarterly |
+| MET-14 | Front-door conversion and responsiveness (revision 2, 1A.6) | Leads reaching Converted / leads, by source and channel; response-clock breaches / leads; cost per acquired patient = entered campaign spend / conversions | Published per month; no target stated | First quarter {{TBD: baseline, captured at cut-over at the first site (deferred 15 Oct 2026)}} | Monthly |
+| MET-15 | Non-attendance (revision 2, 1A.6) | No-show appointments / booked; no-shows rebooked within 7 d / no-shows | Published per week; the teardown's "up to 40%" reduction is a vendor claim, not a target (CST-18) | Migration month {{TBD: baseline, captured at cut-over at the first site (deferred 15 Oct 2026)}} | Weekly |
+| MET-16 | Outreach closure (revision 2, 1A.6; measured once E3 operates, section 8.1) | Threads closed with a confirmed reply within the SLA / threads; unverified threads / breached threads | Published per month | Deferred with E3 | Monthly |
+| MET-17 | Document intake accuracy (revision 2, 1A.6) | Fields accepted unchanged at review / fields reviewed, by document type; pages per hour | Published per month; 1,000 pages per hour sustained (1A.3 op 22) | First quarter {{TBD: baseline, captured at cut-over at the first site (deferred 15 Oct 2026)}} | Monthly |
 
 ## 7. Capabilities, prioritised
 
@@ -161,8 +169,16 @@ Derived from Volume 1A.2 (eighteen capability services) and 1A.8 / 11.5 (milesto
 | CAP-18 | Workflow embedding | `orchestrator` + faces | 1 | WF-01 every rendered item has an argument id and attempt id in its response headers | G-02, G-04 |
 | CAP-20 | Real-time voice-to-voice patient interaction for pre-intake, check-ins and messages, using a self-hosted voice model whose weights are content-hash pinned (examples stated: Fish Audio); runs under the Volume 7.5 bounded loop and writes only questionnaire responses and communications with dialogue spans (minted here, stated 25 Sep 2026; CCR-02) | `voice` sidecar (3) | 3 | Scope test as for the typed pre-intake agent (Volume 3A.11): cannot write anything but QuestionnaireResponse; no recording without a consent resource (Volume 3A.11 telehealth tests); {{TBD: acceptance test for turn latency and transcript fidelity, phase 4}} | G-04, G-08; risk 9 in 02-conops.md |
 | CAP-19 | Prospective study machinery: StudyDefinition, prospective enrolment on phenotype match with consent scope, sealed envelopes, evaluation register, measure validation, findings-to-change flow (minted here from Volumes 2A, 3A.10 and 10.4) | `reporting::studies` (1), sealed envelopes (1) | 1 | ST-01 enrolment occurs on match event and is refused without consent scope; ST-02 interim reads cannot alter the sealed plan; ST-03 pin change creates a revalidation task; RE-01 fragment without evaluation-register entry refused; RE-02 every ratified change links to a prior MeasureReport and a follow-up study; ADV-03 | G-10 |
+| CAP-21 | Lead and engagement rules: response-clock state, stage transitions, follow-through step due, per-factor contributions as separate typed outputs, never a summed score (revision 2; Volume 1A.2 row 21; 3A.2 A6, A7; D-12) | `engage` (1) | 1 | LEAD-01 clinical risk tier absent from every engagement rule input; LEAD-02 two leads with identical factors yield identical outputs; LEAD-03 breached clock creates a Task and a signal row; LEAD-05 no score column or composite field; LEAD-06 opt-out on one channel blocks every channel; LEAD-07 conversion carries responses with source lead-intake; LEAD-08 import dry run reports duplicates; CAMP-01, CAMP-02, CAMP-03, CAMP-04, CAMP-05 (A7) | MET-14, MET-15 |
+| CAP-22 | Conversation intent, urgency and tone from the ratified taxonomy (D-21), each with reliability; routing target from a rule fragment; outbound PHI check (revision 2; 1A.2 row 22; 3A.11 J4; 9.8) | `lang-intent` (2) + routing rules (1) | 1 (rules, PHI check), 2 (classifier) | OMNI-01 possible-emergency intent routes to the critical lane under 100 ms; OMNI-02 distressed and negative tone distinguished on the sealed set; OMNI-03 free-form WhatsApp outside 24 h refused; OMNI-04 record number blocks the send with no override; OMNI-05 partial match goes to reconciliation and no Patient is created; OMNI-06 unknown sender's mention becomes a provisional fact with span; OMNI-07 class-1 red-flag floor fires when the classifier says low; OMNI-08, OMNI-09, OMNI-10 (2A.1 transports); REN-08, REN-09, REN-10, REN-11 (9.8) | G-06, MET-11 |
+| CAP-23 | Telephony voice line: inbound and outbound calls, IVR floor, booking through class-1 scheduling, designed check-ins, after-hours answering, message taking, hand-off (revision 2; 1A.2 row 23; 3A.11 J5; extends CAP-20) | `voiceline` sidecar (ASR 2, dialogue 3, synthesis 2) + scheduling rules (1) | 1 (IVR, booking), 2 (ASR, synthesis), 3 (dialogue) | VOX-01 a call writes nothing clinical beyond patient-reported Observation, QuestionnaireResponse, Communication and Appointment transitions; VOX-02 hand-off cue reaches a person within one turn; VOX-03 a clinical question is never answered and an emergency keyword speaks the guidance fragment; VOX-04 no accepted consent prompt means no audio stored; VOX-05 identity confirmation precedes any patient-specific action; VOX-06 a spoken statement about a result traces to a released, signed argument | G-04, G-08, MET-15 |
+| CAP-24 | Form definition and FHIR binding: typed fields, fifteen conditional operators, fixed-point formulas, every item bound to a FHIRPath target, versioned publication through the compiler (revision 2; 1A.2 row 24; 3A.9 H4) | `forms` (1) | 1 | FRM-01 every field in a shipped form has a binding; FRM-02 a formula field equals the calculator fragment output; FRM-03 rule outcome identical client and server; FRM-04 submit yields one transaction Bundle with provenance and spans; FRM-05 a binding to a non-existent FHIRPath fails compile gate 1; FRM-06 a response renders against its original pin after republication | G-01, G-08 |
+| CAP-25 | Document intake at volume: archives, fax streams, handwriting, per-block and per-field reliability, review queue for low-reliability fields, resumable idempotent batches (revision 2; 1A.2 row 25; 3A.7 F5; extends CAP-16) | `docai` (OCR, layout, handwriting 2; batch orchestration 1) | 1 (batch control), 2 (recognition) | DAI-01 a field below floor never becomes a fact without a review act; DAI-02 a 1,000-page batch is resumable and idempotent; DAI-03 handwriting engine registered with its own benchmark and pin; DAI-04 an extracted critical laboratory value fires the critical lane; DAI-05 split reliability below floor sends the item to a manual split queue | G-01, G-06, MET-17 |
+| CAP-26 | Tokenisation: deterministic HMAC tokens per identifier class with keys in a customer-owned vault; re-identification only through the vault under a recorded authority act (revision 2; 1A.2 row 26; 3A.12b L2; 12.4; D-16; deferred from the first release, section 8.1) | `tokenise` (1) | 1 | DPG-01 same identifier and key yield the same token across two exports; DPG-02 no token reverses without the vault; DPG-03 re-identification without an authority act returns 403 and writes an audit row; DPG-04 zero identifiers in logs on the synthetic run; DPG-05 analytics export holds only tokens; DPG-06 old tokens resolve after key rotation | G-09 |
+| CAP-27 | Plain-language analytics query: a drafted query over declarative views shown verbatim with its term mappings, executed only after a confirming act (revision 2; 1A.2 row 27; 3A.10 I3; 12.6; deferred from the first release) | `gen-sql` (3) + view engine (1) | 1 (views), 3 (drafter) | ANA-01 a generated query never executes without an act; ANA-02 result rows carry lineage; ANA-03 a tile bound to an unpublished query is refused; ANA-04 the term mapping is shown and pinned; ANA-05 governance drill returns aggregates without break-glass | G-09 |
+| CAP-28 | Cost and margin attribution with leakage flags and pre-submission claim check (revision 2; 1A.2 row 28; 3A.8 G4; deferred from the first release) | `cost` (1) | 1 | MRG-01 margin recomputed identically on replay; MRG-02 every leakage flag names its rule pin; MRG-03 the pre-check blocks a line whose note is unsigned; MRG-04 the margin view returns 403 to clinician and patient roles | NG-05 (no composite); MET-02 |
 
-The seventeen runtime operations (Volume 1A.3), the five setting profiles (1A.4) and the layer-to-crate map (1A.5) are the phase-3 and phase-4 derivations of this table and are not restated here.
+The twenty-four runtime operations (Volume 1A.3; operations 18 to 24 folded in at revision 2), the six setting profiles (1A.4; the front-office profile added at revision 2) and the layer-to-crate map (1A.5, with the ten crates added at revision 2 in 3A.1) are the phase-3 and phase-4 derivations of this table and are not restated here. Revision 2 also augments existing capabilities without new identifiers: the ambient capture review surface, five note types and co-sign (2A.2, 3A.3 B1; AMB-01, AMB-02, AMB-03, AMB-04, AMB-05) under CAP-12 and CAP-18; public booking and no-show recovery (3A.2 A4) and remote-monitoring programme fragments (3A.11 J3) under CAP-18; record search (3A.3 B9), panel worklist (2A.3, 3A.6 E3), surveys (J6), the HITH census board (J7), the composer (12.7) and the body map (12.8) are modules listed in section 8.1.
 
 ## 8. Release boundary
 
@@ -174,7 +190,9 @@ Derived from Volume 11.2 (tier manifests) and 11.5 (delivery plan). The compendi
 | Tier 2 — Decision support | Tier 1 plus class-2 engines under conformal wrapper, fit engine, attention layer, corruption engine, regulator bundle | Generative loop | Software as a medical device, decision-support class; flagged-only for class 2 |
 | Tier 3 — General-purpose assistant | Tier 2 plus bounded generative loop and class-3 queues | Nothing; permitted-prompt whitelist is signed configuration (D-06) | Highest class; class-3 never a control |
 
-Build order: M1 argument and fixed-point crates → M2 evaluator → M3 ledger → M4 compiler and registry → M5 spine functions → M6 Tier 1 engines → M7 faces and rendering → M8 governance → M9 Tier 2 and 3 engines. M5 is complete only when every Volume 3A module ships and parity suite E2E-01 to E2E-12 passes.
+Fold-in placement at revision 2 (D-20, Volume 11.2): the fifteen revision 2 modules A6, A7, B9, E3 (rules), F5 (batch control), G4, H4, I3 (dashboards), J4 (queue and routing), J5 (IVR floor), J6, J7, L1, L2 and L3 ship in Tier 1; the intent classifier, OCR at volume and the remote-monitoring risk programmes are class 2 and ship in Tier 2; voice-line dialogue, drafted outreach text, campaign copy and analytics query drafting are class 3 and ship only in Tier 3. The first release is Tier 3, so the build contains all of them; which are operated at the first release is stated in section 8.1.
+
+Build order: M1 argument and fixed-point crates → M2 evaluator → M3 ledger → M4 compiler and registry → M5 spine functions → M6 Tier 1 engines → M7 faces and rendering → M8 governance → M9 Tier 2 and 3 engines. M5 is complete only when every Volume 3A module ships and parity suite E2E-01 to E2E-12 passes. Fold-in milestones (revision 2, Volume 11.5): M4 adds the eleven fragment classes of 6.9 (engagement loop, profile, phenotype definition, form definition, routing rule, channel template, pattern set, tokenisation policy, brand pack, cost schedule, contract) with a rejecting fixture each; M5 adds the Tier 1 modules and the parity scenarios E2E-14, E2E-15 (IVR path), E2E-17, E2E-18 (review path), E2E-20 and E2E-21; M7 adds the front-office aperture, the desk and voice-line consoles, the form designer, the dashboard designer and the body map; M8 adds the tokenisation gateway, the synthetic cohort generator and E2E-19; M9 adds the class-2 classifiers and the class-3 dialogue, drafting and query drafting, completing E2E-16.
 
 ### 8.1 First adoptable version (stated 25 Sep 2026)
 
@@ -188,6 +206,7 @@ Build order: M1 argument and fixed-point crates → M2 evaluator → M3 ledger �
 | Launch shape (strategy, stated 25 Sep 2026) | Small launch. Prospective studies (CAP-19) run concurrently with operations from day one. Reasoning: a prospective study validates the system, supports iterative development cycles, and allows user-group feedback, so a body of research evolves alongside the demonstration of safety and efficacy (G-10) |
 | Jurisdiction order | New Zealand under Medsafe first, as a first approval before new legislation closes the current regulatory window (CST-12); Australia under the TGA second |
 | Explicit exclusions | None stated; the Tier 3 manifest excludes nothing at build (11.2) |
+| Revision 2 modules operated at the first release (stated 15 Oct 2026) | In: A6 intake pipeline and lead register, A7 campaigns and follow-through, J4 omnichannel desk, J5 voice line, H4 form designer, F5 document intake at volume, together with the front-office setting profile (1A.4), the front-office aperture (2A.0), the two front-door engagement loops (2A.1), channel templates and the outbound PHI check (9.8), the ambient capture review surface (2A.2) and public booking and no-show recovery (3A.2 A4). Deferred from first-release operation, built per D-20 and present in the Tier 3 build: B9 record search, E3 panel worklist and outreach SLA, G4 cost and margin, I3 analytics studio, J6 surveys, J7 HITH census board, L1 tenancy and brand packs, L2 tokenisation gateway, L3 developer platform, the composer (12.7), the body map and projection arguments (12.8) and the overlay deployment posture (11.6; the first release is the system of record). Deferred modules take no operating role, staffing or baseline at the first release; they are activated by a later release decision |
 
 ### 8.2 What Tier 3 leaves in for those settings (derived)
 
@@ -206,14 +225,21 @@ Derived by applying the Tier 3 manifest (11.2), which excludes nothing at build,
 | 13 Continuous risk re-scoring | yes | yes | `risk-*` engines under conformal wrapper; HITH deterioration, sepsis and readmission engines; daily trajectory | Flagged |
 | 16 Quality and safety analytics | no | yes | Whole operation | Reports |
 | Pre-intake (Volume 2A.1) | yes | yes | Conversational agent, typed or by voice (CAP-20), writing questionnaire responses with dialogue spans; pre-intake summary as a queued argument | Queue |
+| 18 Lead intake and follow-through (revision 2; front-office profile) | yes | yes | `engage` rules (CAP-21); drafted outreach text as a queue item; Communication on send | Rule outputs released; drafted text queue-only |
+| 19 Omnichannel conversation triage (revision 2; front-office profile) | yes | yes | `lang-intent`, routing rules and red-flag rules (CAP-22); one queue over WhatsApp, SMS, email and call records | Lane released; classification strip flagged |
+| 20 Voice line call handling (revision 2; front-office profile) | yes | yes | `voiceline` (CAP-23): IVR, booking, check-ins, after-hours answering, hand-off | Bookings released through class-1 rules; dialogue queue-class |
+| 21 Campaign generation (revision 2; front-office profile) | yes | yes | `gen-summary` over a typed brief; claims-boundary lint (CAP-21, A7) | Queue-class; publishes only through the compiler |
+| 22 Document batch intake (revision 2) | no | yes | `docai` (CAP-25) with services 1 to 6 and routing rules; field review queue | Facts above floor released; below floor queue only |
+| 23 Panel worklist and outreach (revision 2) | deferred | deferred | Not operated at the first release (E3, section 8.1) | Rows render exactly the verdict class |
+| 24 Cost attribution (revision 2) | deferred | deferred | Not operated at the first release (G4, section 8.1) | Released (class 1); never on the patient face |
 
 Consequence: the first release carries the whole platform for the two settings, including the generative loop and class-3 queues, with the permitted-prompt whitelist as signed configuration (D-06). Every class-2 engine needs a validation report in its pin (1A.7) and every class-3 output passes the class-2 testers of the bounded loop before it is queued.
 
-Capabilities in scope for this release: CAP-01 to CAP-20. The research path through CAP-07 (cohorts), CAP-15 (enrolment), CAP-14 (extracts) and CAP-19 is a first-launch item because of G-10.
+Capabilities in scope for this release: CAP-01 to CAP-25 (CAP-21 to CAP-25 added 15 Oct 2026); CAP-26, CAP-27 and CAP-28 are built per D-20 and deferred from operation with L2, I3 and G4. The research path through CAP-07 (cohorts), CAP-15 (enrolment), CAP-14 (extracts) and CAP-19 is a first-launch item because of G-10; de-identification (CAP-14) remains the export path until the tokenisation gateway (CAP-26) operates.
 
 ### 8.3 Claim types in the first release (stated 25 Sep 2026)
 
-The closed vocabulary for the set is the union of Volume 4.2 (diagnosis, prescribing, referral, recall, coding proposal, pre-intake summary, patient message) and the types used in Volumes 1A, 7, 7.4 and 10 (risk, safety-signal, differential, eligibility, suppression, gather_information, pre-intake question); see change request CR-01 as amended by CCR-04. The first release ships these ten, each needing a ratified loss matrix (D-05, CST-10) and a compiled template before go-live:
+The closed vocabulary for the set is the union of Volume 4.2 (diagnosis, prescribing, referral, recall, coding proposal, pre-intake summary, patient message), the types used in Volumes 1A, 7, 7.4 and 10 (risk, safety-signal, differential, eligibility, suppression, gather_information, pre-intake question) and, from revision 2, `projection` (Volume 12.8: a flagged class-2 argument answering a hypothetical, never released and never acted on); see change request CR-01 as amended by CCR-04 and on 15 Oct 2026. No separate engagement or outreach claim type exists (ruled 15 Oct 2026): lead and engagement rules run outside the evaluator in the lead compartment (3A.2 A6), and outreach reuses recall, eligibility, gather_information and patient message (2A.3). The first release ships these ten, each needing a ratified loss matrix (D-05, CST-10) and a compiled template before go-live:
 
 | Claim type | Drafted by (1A.2, 1A.3) | Settings |
 | --- | --- | --- |
@@ -228,7 +254,7 @@ The closed vocabulary for the set is the union of Volume 4.2 (diagnosis, prescri
 | patient message (confirmed 25 Sep 2026) | `lang-voice` triage and the class-3 suggested-response draft, operation 12; patient-facing engagement-loop messages (Volume 2.2); class 3 for drafted content, class 1 for rule-driven reminders | Telehealth, HITH |
 | eligibility (confirmed 25 Sep 2026) | `match` engine, CAP-15, operation 14; class 1; released only when Fit In and all criteria met, else flagged | Both; drives prospective enrolment (CAP-19) and pathway matching |
 
-Out of the first release: diagnosis, referral, coding proposal.
+Out of the first release: diagnosis, referral, coding proposal, projection (12.8; deferred with the body map, section 8.1).
 
 Order of priority if further claim types are added, judged by G-10 and the release settings:
 
@@ -238,6 +264,7 @@ Order of priority if further claim types are added, judged by G-10 and the relea
 | 2 | referral | Telehealth hand-back packet and HITH discharge-to-GP handover are referral-shaped acts; rule-driven | 1 |
 | 3 | coding proposal | Closes the coverage gap (MET-01) and register completeness (MET-06), which are study endpoints | 2 |
 | 4 | diagnosis | Highest regulatory weight; nothing in the first-launch settings needs a released diagnosis claim | 2 |
+| 5 | projection | What-If projections for the clinician face only (12.8); capped at flagged; no downstream resource; needs its own loss matrix and validation report | 2 |
 
 Milestones: the first release requires M1 to M9 complete, with M9 delivering the Bayesian, conformal-wrapper and extractor engines, the bounded generative loop and the voice sidecar (CAP-20) in the Tier 3 build.
 
@@ -260,6 +287,11 @@ Derived from Volume 13.1 and 11.3, 11.4.
 | CST-11 | Edge node is the Rust core compiled to WASM with an embedded store, additive sync | Volume 11.3, Volume 3.6 |
 | CST-13 | Voice interaction uses a self-hosted voice model whose weights are content-hash pinned (pin class W), so that Laws 5 and 7 hold; a vendor-hosted voice API is not acceptable. Examples stated: Fish Audio | Stated 25 Sep 2026; 02-conops.md open questions |
 | CST-12 | Timeline: as fast as possible, driven by a closing window of regulatory opportunity in New Zealand: the Medical Products Bill (replacing the Medicines Act 1981) will regulate software as a medical device including AI for a therapeutic purpose; the Government intends to introduce it in 2026 with commencement around 2030 and a longer transition for many devices (Cabinet decisions to 7 April 2026). The window closes at commencement. No fixed date, budget or partner commitment stated. Commercial constraints: none stated | Ken Lee, 25 Sep 2026 |
+| CST-14 | Tenancy: every resource, fact, lead, attempt and act carries a tenant and a project; row-level security and attribute-based access evaluate both; a module subset for a tenant is a profile manifest difference recorded in the build manifest, never a runtime toggle of clinical behaviour; brand packs are class U fragments under the claims-boundary lint (revision 2; applies from the first release even though L1 partner tenancy is deferred) | Volume 3A.12b L1, 11.8; D-17 |
+| CST-15 | Tokenisation boundary: analytics, evaluation-zone work, research export and any authoring-time hosted-model proposer receive identifiers only as deterministic tokens produced inside the tenant trust boundary with keys in a customer-owned vault; re-identification needs a recorded authority act and is never cached or batched. Until the gateway (L2) operates, the de-identification engine (CAP-14) with type-level identifier exclusion is the only export path (revision 2) | Volume 12.4, 3A.12b L2; D-16 |
+| CST-16 | Hosting posture and in-region inference: every model sidecar runs inside the chosen hosting posture (managed cloud, private cloud, on-premise, air-gapped) and no model call crosses the trust boundary; a hosted model, including one under tenant-supplied keys, never runs on the release path in any engine, tester or renderer and may serve only as an authoring-time proposer whose outputs enter review queues (revision 2) | Volume 11.7, 11.9; D-19; CST-13 generalised |
+| CST-17 | Messaging and telephony providers: WhatsApp Business and telephony (SIP or hosted) are reached only through adapter traits; provider agreements, template approvals, data-processing terms and a residency statement are recorded in the obligations register before the channel operates; the WhatsApp 24-hour window and provider-approved template rule bind every loop (revision 2) | Volume 3A.11 J4, J5; 10.8; D-14, D-15 |
+| CST-18 | Vendor figures quoted from the Care Execution Platform teardown (reminders cutting no-shows "by up to 40%", remote monitoring revenue, language and field-type counts) are claims, never baselines or targets; every baseline in this set is captured at cut-over (revision 2) | Compendium "How to read", 1A.6; 13.4 |
 
 ## 10. Decisions already taken
 
@@ -278,12 +310,23 @@ Carried verbatim from Volume 13.1.
 | D-09 | Live differential during encounter versus synthesis before | Synthesis before; live differential only as pre-intake question ordering | Clinical governance | 7, 9 |
 | D-10 | Severity tier vocabulary (four tiers) | Provisional | Clinical governance | 9 |
 | D-11 | Regulatory assumptions requiring confirmation (device classification per tier) | Tier 1 not a device; Tier 2 decision-support class; Tier 3 highest | Compliance | 11 |
+| D-12 | Lead and engagement scoring shape | Per-factor typed rule outputs rendered as chips; no stored or displayed composite; queues ordered by response clock and stage | Architecture; clinical governance for any factor drawn from coverage or billing bands | 1A, 3A |
+| D-13 | Overlay deployment posture | Adopted as a second profile with incumbent snapshots pinned by content hash; not operated at the first release (section 8.1); demand confirmed before the incumbent snapshot path is built | Architecture | 11 |
+| D-14 | WhatsApp Business provider and coexistence mode | Adapter trait; provider open. Owner platform operator; selected and coexistence capability recorded before M5 (13.2; confirmed 15 Oct 2026) | Platform operator | 3A, 9 |
+| D-15 | Telephony provider (SIP or hosted) and warm-transfer support | Adapter trait; provider open. Owner platform operator; selected and warm-transfer capability recorded before M5 (13.2; confirmed 15 Oct 2026) | Platform operator | 3A |
+| D-16 | Tokenisation key custody | Customer-owned vault, HSM or tenant KMS; rotation cadence open. Owners compliance and architecture; decided before M8, or before the release that operates L2 if later (13.2; confirmed 15 Oct 2026) | Compliance; architecture | 12 |
+| D-17 | White-label, reseller and pricing terms | Outside this compendium; usage meters provided as Measures | Product | 3A, 11 |
+| D-18 | Theatre scheduling and inpatient bed management | Not adopted: outside the intended purpose (primary care, telehealth, hospital in the home); the HITH census board is adopted instead | Product; clinical governance | 3A |
+| D-19 | Bring-your-own hosted model keys | Authoring-time proposers only; never on the release path | Architecture | 11 |
+| D-20 | Tier placement of the revision 2 capabilities | Class-1 modules in Tier 1; classifiers and OCR at volume in Tier 2; dialogue, drafting and query drafting in Tier 3 | Architecture; compliance | 11 |
+| D-21 | Intent taxonomy, urgency bands and tone classes | Twelve intents as shipped from the teardown's list; ratified as a codebook before M7 | Clinical governance | 3A, 6 |
 
 ## 11. Change requests to upstream
 
 | Id | Target document | Target item | Change |
 | --- | --- | --- | --- |
-| CR-01 | Mākoha Design Compendium | Volume 4.2, Claim row (closed vocabulary) | The closed vocabulary lists diagnosis, prescribing, referral, recall, coding proposal, pre-intake summary, patient message, while Volumes 1A, 7, 4A and 9 also use risk, safety-signal, differential, eligibility, gather_information, suppression and (7.4) pre-intake question. Close the vocabulary as the union of the two lists, or state which list governs. This PRD builds to the union. Amended 25 Sep 2026 by CCR-04. |
+| CR-01 | Mākoha Design Compendium | Volume 4.2, Claim row (closed vocabulary) | The closed vocabulary lists diagnosis, prescribing, referral, recall, coding proposal, pre-intake summary, patient message, while Volumes 1A, 7, 4A and 9 also use risk, safety-signal, differential, eligibility, gather_information, suppression and (7.4) pre-intake question. Close the vocabulary as the union of the two lists, or state which list governs. This PRD builds to the union. Amended 25 Sep 2026 by CCR-04. Amended 15 Oct 2026: revision 2 adds `projection` (Volume 12.8) to the union; no engagement or outreach claim type is added (section 8.3). Still open against the compendium (carried as an approvals condition). |
+| CR-02 | Mākoha Design Compendium | Volume 13.2, open item "Raise a change request against the phase set (01-prd.md and downstream)" | Discharged by this revision of 15 Oct 2026: capabilities 21 to 28, operations 18 to 24, the front-office role and the tenancy and tokenisation constraints are minted here and carried downstream. Tick the item at the next compendium revision. |
 
 ## 12. Assumptions
 
@@ -299,6 +342,9 @@ Seeded from the provisional rows of Volume 13.1 and the compendium's own convent
 | Baselines for MET-01..11 can be captured at cut-over from the incumbent system | Medium; depends on the incumbent system at the first site, which is unknown (site agnostic) | Audit sample and migration-month measures |
 | The first launch can be notified in WAND and operating before the Medical Products Bill commences (around 2030) | Medium; introduction intended 2026, commencement stated as around 2030, transition period expected | Bill progress tracked against the M1 to M9 plan; reviewed at every milestone exit |
 | Targets for MET-02 and MET-06 can be derived and captured through the Ketryx integration | Medium (scope confirmed 25 Sep 2026) | Targets recorded in Ketryx and quoted back here |
+| A WhatsApp Business provider offering coexistence mode on the practice's existing number, and a telephony provider with warm transfer, are available in New Zealand under acceptable data-processing terms (D-14, D-15) | Medium | Providers selected and terms recorded in the obligations register before M5 |
+| Front-office staff can operate the restricted clinician aperture without a professional registration, under the practice's own identity provider | High | 1A.4 front-office profile tests; identity binding at onboarding (phase 3 onboarding mode) |
+| The twelve-intent taxonomy shipped from the teardown is adequate for New Zealand telehealth and HITH enquiries until ratified (D-21) | Medium | Clinical governance ratifies the codebook before M7; misrouting measured in the channel surveillance signals |
 
 ## 13. Open questions
 
@@ -323,15 +369,23 @@ Seeded from Volume 13.2; PRD questions added.
 - [x] Eligibility confirmed as the ninth first-release claim type (section 8.3)
 - [x] Intended purpose confirmed unchanged; launch strategy recorded as detail in section 8.1
 - [x] Ketryx integration: greenfield capture of applicable standards for TGA and possibly FDA applications; MET-02 and MET-06 targets captured there (OCR-02)
+- [x] Revision 2 modules operated at the first release: A6, A7, J4, J5, H4, F5 with the front-office profile; the rest built per D-20 and deferred (section 8.1, 15 Oct 2026)
+- [x] `projection` added to the CR-01 union; no engagement or outreach claim type (section 8.3, 15 Oct 2026)
+- [x] D-14 to D-16 owners and milestones: compendium roles and dates carried; named holders remain under the approvals conditions that name role holders (section 10, 15 Oct 2026)
+- [ ] Ratify the intent taxonomy codebook and the default routing rules (D-21) before M7
+- [ ] Select the WhatsApp and telephony providers and record coexistence and warm-transfer capability (D-14, D-15) before M5
+- [ ] Decide the tokenisation vault type and rotation cadence (D-16) before M8
+- [ ] Confirm demand for the overlay posture before building the incumbent snapshot path (D-13)
+- [ ] Baseline values for MET-14, MET-15 and MET-17: captured at cut-over (section 6)
 
 
 # 2. Concept of Operations
 
-_status: final · version 1.0_
+_status: final · version 2.0_
 
 # Concept of Operations
 
-Organisation-level view of how a telehealth and hospital-in-the-home service operates once Mākoha exists. Derived from the PRD (01-prd.md, final v1.0) and, where cited, the Mākoha Design Compendium (`docs/ref/makoha-design-compendium.md`). System-level behaviour belongs to phase 3. Identifiers minted here: SIT- (operational situations), STK- (stakeholders), POL- (policies), RSK- (operational risks), EXT- (external systems), CCR- (change requests raised by this document; CR- remains the PRD's family).
+Organisation-level view of how a telehealth and hospital-in-the-home service operates once Mākoha exists. Revised 15 Oct 2026 against PRD v2.0 (compendium revision 2): front-office stakeholders, external systems, situations, policies and risks added; structure unchanged. Derived from the PRD (01-prd.md, final v2.0) and, where cited, the Mākoha Design Compendium (`docs/ref/makoha-design-compendium.md`). System-level behaviour belongs to phase 3. Identifiers minted here: SIT- (operational situations), STK- (stakeholders), POL- (policies), RSK- (operational risks), EXT- (external systems), CCR- (change requests raised by this document; CR- remains the PRD's family).
 
 ## 1. Mission and need
 
@@ -360,6 +414,8 @@ Derived from Volume 1A.3 (lifecycle: before, during, after, between, population)
 | Inbound | Letters, results and messages read in arrival order | Classified, matched to the originating order, routed by urgency; discrepancies surfaced before a clinician opens the letter |
 | Scope of practice | Nurse and pharmacist prescribers phone the GP | Profile applied at evaluation time; out-of-scope predicate creates an escalation packet with full context |
 | Governance and research | Audit by sampling; studies as projects | Sentinel events, audits and prospective studies are queries over the ledger; a study is a sealed envelope with enrolment on phenotype match |
+| Front door (revision 2; PRD section 8.1, CAP-21 to CAP-23) | Enquiries arrive on the reception phone, a WhatsApp number, email and web forms and live in spreadsheets or a separate CRM; after-hours calls go to voicemail | Every enquiry becomes a lead in its own compartment with a response clock; one desk over WhatsApp, SMS, email and calls with intent and urgency; a voice line answers, books, takes messages and hands off; nothing clinical attaches to a lead and no message carries an identifier the channel may not |
+| Forms and documents at volume (revision 2; CAP-24, CAP-25) | Paper and PDF forms re-keyed; scanned backlogs and fax archives filed unread | Designer forms bound field by field to the record, completed on portal, SMS, WhatsApp or by voice; archives split, recognised and extracted with per-field reliability, low-reliability fields reviewed by a person |
 
 ## 4. Stakeholders
 
@@ -371,15 +427,20 @@ Users derived from PRD section 3; non-users derived from PRD sections 9, 10 and 
 | STK-02 | Nurse prescribers | Protocol pathways within formulary; escalation with context | Yes |
 | STK-03 | Pharmacist prescribers | Reconciled medication history; medication review; red-flag routing | Yes |
 | STK-04 | Patients and carers | Pre-intake, check-ins, device readings, results and plan in their own words; consent | Yes |
-| STK-05 | Practice governance (clinical governance role) | Ratifies loss matrices, templates, thresholds; reviews sentinel events; owns the evaluation register | Yes |
+| STK-05 | Practice governance (clinical governance role) | Ratifies loss matrices, templates, thresholds; reviews sentinel events; owns the evaluation register; ratifies the intent taxonomy codebook (D-21) and any engagement factor drawn from coverage or billing bands (D-12) | Yes |
 | STK-06 | Study owners and clinical researchers | Register studies, enrol on match, read endpoints, receive consented extracts | Yes |
 | STK-07 | Medsafe (New Zealand), then the TGA (Australia), possibly the FDA (United States) (OCR-01) | New Zealand: WAND notification by the sponsor and post-market obligations; Australia: device classification for the Tier 3 profile (D-11); United States: classification as a compliance item; regulator bundle for each | No |
-| STK-08 | Compliance role | Terminology licence (D-07); obligations register; device confirmation | No |
-| STK-09 | Architecture role | Owns D-01, D-03, D-06, D-08 | No |
+| STK-08 | Compliance role | Terminology licence (D-07); obligations register; device confirmation; tokenisation key custody with architecture (D-16); tier placement with architecture (D-20); provider terms and marketing consent in the obligations register (CST-17) | No |
+| STK-09 | Architecture role | Owns D-01, D-03, D-06, D-08, D-12, D-13, D-19, D-20 and, with compliance, D-16 | No |
 | STK-10 | Hospitals discharging into HITH and receiving escalations | Send discharge summaries; receive handover and escalation packets | No |
 | STK-11 | Laboratories, imaging providers, pharmacies | Receive orders; return results and dispense records | No |
 | STK-12 | Health and Disability Ethics Committees (HDEC) and, for out-of-scope studies, an institutional ethics committee | Confirmed 25 Sep 2026 as low-friction. Mandated, not merely good practice, when a study is health and disability research within HDEC scope: intervention studies, and observational studies that use identifiable information without consent or carry other elevated risk. Audits and quality-improvement studies evaluating current or slightly changed practice are out of HDEC scope but still require ethics review by an institutional or independent committee under the NEAC National Ethical Standards (2019). Each study in SIT-07 is classified at registration | No |
 | STK-13 | {{TBD: payer or funder of the service (deferred)}} | | No |
+| STK-14 | Front-office and practice-growth staff (reception, intake, campaign owners) of the telehealth and HITH service (revision 2; PRD section 3, front-office profile) | Lead register with response clocks; omnichannel desk; voice-line console; campaign brief form; cannot sign any clinical act | Yes |
+| STK-15 | Enquirers and leads: people who have contacted the service but are not yet its patients (revision 2; 3A.2 A6) | A reply within the response window; their channel consents honoured; nothing clinical recorded about them before conversion | Yes (public front door and voice line only) |
+| STK-16 | Messaging and telephony providers: WhatsApp Business provider, SMS and email gateways, telephony (SIP or hosted) (revision 2; D-14, D-15, CST-17) | Provider agreements, template approvals, data-processing terms, residency statement in the obligations register; coexistence and warm-transfer capability | No |
+| STK-17 | Platform operator role (revision 2) | Owns provider selection D-14 and D-15 before M5; operates adapters and credentials | No |
+| STK-18 | Partners and integrators (revision 2; deferred with L1 and L3, PRD section 8.1) | No stake at the first release; tenancy, sandbox and SDKs follow a later release decision | No |
 
 ## 5. Operational environment
 
@@ -387,7 +448,7 @@ Derived from PRD sections 8.1 and 9, Volume 3A groups F, J and 3.2. External sys
 
 | Aspect | Description |
 | --- | --- |
-| Settings | Telehealth (video and phone sessions bound to encounters) and hospital in the home (episodes of care with scheduled visits, device streams, escalation rules) |
+| Settings | Telehealth (video and phone sessions bound to encounters) and hospital in the home (episodes of care with scheduled visits, device streams, escalation rules); from revision 2, the front office of both services under the front-office setting profile (1A.4): lead register, omnichannel desk, voice line, forms and campaigns |
 | Organisational unit | Deferred 25 Sep 2026 |
 | Jurisdiction | New Zealand first (Medsafe), Australia second (TGA); site agnostic |
 | Regulatory posture | Tier 3 profile (general-purpose assistant): class-2 outputs flagged only; class-3 outputs through review queues only, never a control; permitted-prompt whitelist as signed configuration (D-06). In New Zealand today there is no pre-market approval for medical devices under the Medicines Act 1981: a New Zealand sponsor notifies the device in Medsafe's WAND database within 30 days, holds evidence that it is safe for its intended purpose, and meets post-market obligations (complaints, adverse events, recalls, changes). The Medical Products Bill, to replace the Medicines Act, will regulate software as a medical device including AI used for a therapeutic purpose, with an internationally aligned definition that excludes general clinical software and general-use AI; Cabinet agreed further policy on 7 April 2026; the Government intends to introduce the bill in 2026 with commencement around 2030 and a longer transition for many devices. This is the closing window in CST-12. See CCR-03 |
@@ -402,11 +463,16 @@ Derived from PRD sections 8.1 and 9, Volume 3A groups F, J and 3.2. External sys
 | EXT-05 | Laboratory and imaging result feeds | Inbound | Community and hospital laboratories and radiology via HealthLink; regional repositories (TestSafe) where available |
 | EXT-06 | Hospital discharge summaries | Inbound | via EXT-02 or EXT-03 |
 | EXT-07 | Terminology edition (national SNOMED CT edition) | Pinned | New Zealand edition (D-07); {{TBD: confirm release cadence and licence holder (deferred)}} |
-| EXT-08 | Video session provider (WebRTC), SMS and email gateways | Both | Vendors deferred 25 Sep 2026. The voice agent is not an external system: it is a self-hosted sidecar (PRD CAP-20, CST-13) |
+| EXT-08 | Video session provider (WebRTC), SMS and email gateways | Both | Vendors deferred 25 Sep 2026. The voice agent is not an external system: it is a self-hosted sidecar (PRD CAP-20, CST-13); the telephony carrier it answers through is EXT-14 |
 | EXT-09 | Home device gateways | Inbound | Vendors deferred 25 Sep 2026 |
 | EXT-10 | Identity providers per face (professional registration, consumer identity) | Auth | Professional: HPI-bound registration (Medical Council, Nursing Council, Pharmacy Council). Consumer: {{TBD: national consumer health identity, unconfirmed by search (deferred)}} |
 | EXT-11 | Billing | Both | Private billing in New Zealand: invoices, payments, receipts; no claiming gateway in the first release (OCR-03); Australian claiming channels return with the TGA release |
 | EXT-12 | Independent append-only log for Merkle anchoring (D-08) | Outbound | Provider open |
+| EXT-13 | WhatsApp Business provider with coexistence mode on the practice's existing number (revision 2; 3A.11 J4) | Both | Provider open (D-14); selected before M5; adapter trait; template approvals and the 24-hour window tracked per thread |
+| EXT-14 | Telephony carrier, SIP or hosted, with warm transfer (revision 2; 3A.11 J5) | Both | Provider open (D-15); selected before M5; numbers per tenant and location; adapter trait |
+| EXT-15 | Fax gateway, scanner batches and archive exports from incumbent systems (revision 2; 3A.7 F5) | Inbound | Vendors deferred 15 Oct 2026; content-addressed on arrival |
+| EXT-16 | Public front door: website widget, QR landing pages, public booking link (revision 2; 2A.1, 3A.2 A4, A6) | Inbound | Hosted by the service on its own domain; submits public-audience forms (3A.9 H4) |
+| EXT-17 | Tenant vault, HSM or KMS for tokenisation keys (revision 2; 12.4) | Internal to the trust boundary | Deferred with L2 (PRD section 8.1); custody decided by D-16 before M8 |
 
 ## 6. Operational situations
 
@@ -423,6 +489,14 @@ Derived from Volume 1A.3 operations, the discharge acceptance episode in Volume 
 | SIT-07 | Prospective study alongside operations | Routine (governance) | Governance registers a study; cohort phenotype matches | Study owner, governance, patients (consent), evaluator | Sealed envelope; enrolment on match with consent scope; endpoints as validated Measures at window end |
 | SIT-08 | Onboarding a service or site | Onboarding | New organisation, prescriber or patient cohort joins | Compliance, governance, architecture, staff | Profiles and scope fragments compiled; identities bound; baselines for MET-01 to MET-11 captured at cut-over |
 | SIT-09 | Engine drift or retirement | Exception | Drift monitor breach on a class-2 engine | Governance, architecture | Engine pin retired; its claim types fall back to class 1; sentinel entry; no silent degradation |
+| SIT-10 | Enquiry to registration (revision 2; E2E-14) | Routine (front office) | An unknown person enquires on WhatsApp, SMS, the web widget, a QR page or by phone | Enquirer (STK-15), front-office staff (STK-14), voice line, engagement rules | A lead with source and response clock; staff reply within the window or the clock breaches to a Task; follow-through steps on consented channels; booking; arrival; conversion to Patient with pre-registration answers carried over; no clinical fact before conversion |
+| SIT-11 | Omnichannel message triage (revision 2; E2E-15) | Routine (front office); urgent when red-flagged | Inbound messages and call records on any channel | Patients and enquirers, front-office staff, clinicians by routing lane | Each item classified for intent, urgency and tone and laned by rule; emergency keywords reach the critical lane under 100 ms by the class-1 floor; replies within the WhatsApp window or by approved template; an outbound draft carrying a record number is blocked |
+| SIT-12 | After-hours call on the voice line (revision 2; E2E-16) | Routine (front office); exception on hand-off | Inbound call outside hours, or a scheduled outbound confirmation or check-in call | Caller, voice line, on-call clinician | Identity confirmed before anything patient-specific; after-hours guidance spoken; booking by class-1 rules; message taken as a Task with transcript; any clinical question handed off within one turn; emergency keyword plays the guidance fragment and emits the critical event; recording only after consent |
+| SIT-13 | Form built and completed across transports (revision 2; E2E-17) | Routine (governance, then patients) | Clinical owner designs an intake form; patient completes it on phone, partly by IVR | Clinical governance, form designer, patient, voice line | Form compiled with every field bound; assigned to an appointment type; one transaction Bundle with provisional facts and spans; identical resources whichever transport carried the answer |
+| SIT-14 | Document archive intake (revision 2; E2E-18) | Onboarding and routine | A 1,000-page archive, scanner batch or fax stream arrives | Fax gateway, document intake pipeline, reviewers (staff and clinicians) | Resumable batch; documents split, recognised, classified and matched; low-reliability fields reviewed before becoming facts; an extracted critical laboratory value fires the critical lane |
+| SIT-15 | Campaign brief to published sequence (revision 2; 1A.3 op 21) | Routine (front office, governance) | Front office or governance files a typed campaign brief | Campaign owner (STK-14), drafting loop, claims-boundary lint, clinical governance | Drafts of landing-page copy, message sequence and nurture cadence; cure, guarantee and outcome claims rejected; publication only through the compiler as pinned templates and a loop fragment; audience consent-checked at launch |
+
+Situations for the deferred revision 2 modules (panel worklist and outreach, tokenised analytics, white-label tenant, overlay deployment: E2E-19 to E2E-21 and operation 23) are not operated at the first release (PRD section 8.1) and are not refined by phase 3 in this revision.
 
 ## 7. Policies and constraints
 
@@ -445,6 +519,13 @@ Derived from PRD sections 5, 9 and 10 and Volume 2.1, 11.4. These bound how the 
 | POL-13 | Prescribing: Medicines Act 1981 and Medicines Regulations 1984 (regulations 40 and 41 on prescriptions, with a current waiver on 41); Misuse of Drugs Regulations 1977; Medicines (Designated Prescriber: Registered Nurses) Regulations 2016 with the gazetted specified-medicines list and Nursing Council guidance (August 2024); pharmacist prescriber regulations {{TBD: exact instrument not confirmed by search (deferred)}} | Search 25 Sep 2026 |
 | POL-14 | Devices: Medicines (Database of Medical Devices) Regulations 2003 (WAND notification by a New Zealand sponsor); the Medical Products Bill once enacted | Search 25 Sep 2026 |
 | POL-15 | Research: NEAC National Ethical Standards for Health and Disability Research and Quality Improvement (2019); HDEC standard operating procedures for scope | Search 25 Sep 2026 |
+| POL-16 | Lead compartment: a lead is a Person, never a Patient, until a conversion act; nothing clinical attaches to a lead; a lead's communications never become grounds; engines and the evaluator have no read path to the compartment; no lead score is stored or displayed as one number and a patient's clinical risk tier is never an input to an engagement rule | D-12; CAP-21; 3A.2 A6 |
+| POL-17 | Outbound messages: every rendered message on SMS, WhatsApp, email, IVR or voice passes the outbound PHI check; a record number blocks the send with no override; any other identifier or out-of-class clinical content needs an override act with reason; every automated message carries the label and a reach-a-person route, spoken on the voice line | 9.8; CAP-22; 2A.1 automated-message labelling |
+| POL-18 | Channel rules: WhatsApp free-form replies only within the 24-hour service window, otherwise provider-approved template fragments; an opt-out on any channel stops every channel for that Person permanently; quiet hours apply; provider agreements, template approvals, data-processing terms and residency recorded in the obligations register before a channel operates | CST-17; 3A.11 J4; 10.8 |
+| POL-19 | Voice line: identity confirmed by two identifiers before any patient-specific action; no clinical question answered; every spoken patient-specific statement is a released, signed argument in the plain register; hand-off to a person within one turn on any cue; no audio stored before the consent prompt is accepted | CAP-23; 3A.11 J5 |
+| POL-20 | Marketing and outreach: campaign copy passes the claims-boundary and plain-register lints; health information in campaigns is certified general information only; a patient-list audience needs the contact-for-programme consent scope per patient and excludes the deceased; outreach happens within the tenant's monthly message allowance; the Unsolicited Electronic Messages Act 2007 (consent, sender identification, functional unsubscribe) applies to commercial electronic messages | 3A.2 A7; 10.8; Act cited from general knowledge, to be confirmed by compliance |
+| POL-21 | Vendor figures from the teardown are claims, never baselines or targets; baselines are captured at cut-over | CST-18 |
+| POL-22 | Hosting and models: every model sidecar runs inside the chosen hosting posture; no hosted model, including one under tenant-supplied keys, runs on the release path | CST-16; D-19 |
 
 ## 8. Operational risks and mitigation concepts
 
@@ -463,6 +544,13 @@ Derived from the ten laws (PRD section 5), Volume 9.6, 3.4, 10 and PRD section 1
 | RSK-09 | Patients slow at or unable to text are excluded from pre-intake, check-ins and messaging | Patients | Real-time voice-to-voice patient interaction (PRD CAP-20); voice answers stored as questionnaire responses with dialogue spans, as typed ones are; no recording without consent | Stated 25 Sep 2026 |
 | RSK-11 | A class-3 voice or text output reaches a patient as advice | Patients | Bounded loop: class-3 outputs go to a review queue only and are never a control; the patient face renders released, signed arguments only | Law 4; Volume 7.5; POL-03 |
 | RSK-10 | Organisation-specific operational risks (staffing, home connectivity, digital access) | Deferred 25 Sep 2026 | To be added when stated | |
+| RSK-12 | Lead data leaks into clinical reasoning, or a patient's clinical standing shapes how quickly they are answered | Patients, enquirers | Lead compartment with no engine or evaluator read path; risk tier absent from every engagement rule input; queues ordered by clock and stage only | POL-16; LEAD-01 |
+| RSK-13 | An identifier or clinical detail leaves the system in a WhatsApp, SMS or email message | Patients | Outbound PHI check at render time; record number blocks with no override; override acts surveilled | POL-17; OMNI-04 |
+| RSK-14 | The voice line gives clinical advice, acts for the wrong caller, or records without consent | Patients, the programme | Dialogue class 3 under the bounded loop with hand-off cues; identity confirmation by two identifiers; consent prompt before audio storage; IVR floor is class 1 | POL-19; VOX-03, VOX-05 |
+| RSK-15 | A mis-recognised field from a scanned archive becomes a fact | Patients | Per-field reliability; below floor and review-always types go to a review queue; accepted fields carry the reviewer as principal | DAI-01 |
+| RSK-16 | Campaign or outreach copy makes a clinical claim, or reaches people who did not consent | Enquirers, patients, the programme | Claims-boundary lint; consent scope per audience member; permanent cross-channel opt-out; monthly allowance | POL-20; CAMP-01 |
+| RSK-17 | WhatsApp or telephony provider outage, policy change or template rejection | Front office, patients | Adapter traits with provider selection before M5; fallback to SMS, email and the IVR floor; template approval status stored on the fragment | D-14, D-15; CST-17 |
+| RSK-18 | Front-office staff act beyond the restricted aperture | Patients | Front-office token cannot post a sign-off or any clinical act (1A.4 front-office profile tests); every write attributed | PRD section 3; 2A.0 |
 
 ## 9. Operational Concept Graphic
 
@@ -472,16 +560,24 @@ Mermaid is the source of truth. Actors, the capability as one node, external sys
 flowchart LR
   subgraph NZ["Telehealth and hospital-in-the-home service, New Zealand (Tier 3)"]
     P[Patient at home<br/>devices, check-ins, voice]
+    E[Enquirer or lead<br/>WhatsApp, SMS, call, web form]
+    F[Front-office staff<br/>desk, lead register, voice-line console]
     C[GP, nurse and pharmacist<br/>prescribers]
     G[Governance and<br/>study owners]
     M[Mākoha<br/>record, argument, gate, ledger]
     P -->|pre-intake, readings, messages| M
     M -->|released plan, reminders| P
+    E -->|enquiry, booking, answers| M
+    M -->|reply within clock, confirmation| E
+    F -->|lead stage, reply, hand-off, file| M
+    M -->|lanes, clocks, call transcripts| F
     C -->|session, orders, signed acts| M
     M -->|brief, flagged items, escalation packet| C
     G -->|ratify, register study| M
     M -->|sentinel events, measures, bundle| G
   end
+  W[WhatsApp and telephony<br/>providers] <--> M
+  X[Fax gateway, scanner,<br/>archive exports] -->|documents at volume| M
   H[Hospitals] -->|discharge summaries| M
   M -->|handover, escalation| H
   L[Labs, imaging, pharmacies] -->|results, dispense| M
@@ -492,7 +588,7 @@ flowchart LR
 
 ## 10. Change requests to upstream
 
-The PRD is final. All four were approved and applied to 01-prd.md on 25 Sep 2026; `docpipe update` run afterwards.
+The PRD is final. All four were approved and applied to 01-prd.md on 25 Sep 2026; `docpipe update` run afterwards. Revision of 15 Oct 2026: no new change request; PRD v2.0 was revised directly from compendium revision 2 and this document derives from it.
 
 | Id | Target | Item | Change |
 | --- | --- | --- | --- |
@@ -509,6 +605,8 @@ The PRD is final. All four were approved and applied to 01-prd.md on 25 Sep 2026
 | Patients in the launch cohort have connectivity and devices adequate for daily check-ins | Deferred 25 Sep 2026 | Digital-access screening at enrolment |
 | New Zealand national systems (EXT-01 to EXT-05) expose interfaces the compendium's adapters can implement | Medium | Named in section 5 from public sources, not yet from integration documentation; confirmed in phase 4 |
 | The Medical Products Bill commences around 2030, so a Tier 3 launch under the current WAND-notification regime is achievable | Medium | Bill progress tracked at every milestone exit (RSK-06) |
+| The service's existing reception number can be kept on WhatsApp coexistence mode and ported or forwarded to the telephony provider without a service break | Medium | Provider selection and a cut-over rehearsal before M5 (EXT-13, EXT-14) |
+| Front-office staff of the launch service can staff the desk, the lead queues and the review queues for intake fields without a new role | Medium | Queue volumes measured in the onboarding pilot (phase 3 onboarding mode) |
 
 ## 12. Open questions
 
@@ -520,15 +618,18 @@ The PRD is final. All four were approved and applied to 01-prd.md on 25 Sep 2026
 - [ ] Organisation-seen operational risks deferred (RSK-10)
 - [x] CCR-01 to CCR-04 approved and applied; first release is Tier 3
 - [x] Voice engine: self-hosted, weights content-hash pinned; examples include Fish Audio (PRD CST-13)
+- [x] Revision 2 (15 Oct 2026): front office added as a setting, stakeholders STK-14 to STK-18, external systems EXT-13 to EXT-17, situations SIT-10 to SIT-15, policies POL-16 to POL-22, risks RSK-12 to RSK-18
+- [ ] Confirm the Unsolicited Electronic Messages Act 2007 reading in POL-20 with compliance
+- [ ] Vendors for EXT-13 to EXT-15 (deferred to D-14, D-15 before M5)
 
 
 # 3. Operations Concept
 
-_status: final · version 1.0_
+_status: final · version 2.0_
 
 # Operations Concept
 
-System-level view of what Mākoha does for the telehealth and hospital-in-the-home service described in 02-conops.md (final v1.0), for which roles, in which modes, through which scenarios, across which interfaces, to what user-facing performance, and what it does when things fail. What, not how. Derived from the PRD (01-prd.md, final v1.0), the ConOps and, where cited, the Mākoha Design Compendium (`docs/ref/makoha-design-compendium.md`). Identifiers minted here: ROL- (roles), MOD- (modes), SCN- (scenarios; steps are SCN-nn.k), IF- (interfaces), DAT- (data objects), PERF- (user-facing performance expectations), MN- (must-nevers), OCR- (change requests raised by this document).
+System-level view of what Mākoha does for the telehealth and hospital-in-the-home service described in 02-conops.md (final v2.0), for which roles, in which modes, through which scenarios, across which interfaces, to what user-facing performance, and what it does when things fail. What, not how. Revised 15 Oct 2026 against PRD v2.0 and ConOps v2.0 (compendium revision 2): front-office roles, scenarios SCN-11 to SCN-16, interfaces, data objects, expectations and must-nevers added; structure unchanged. Derived from the PRD (01-prd.md, final v2.0), the ConOps and, where cited, the Mākoha Design Compendium (`docs/ref/makoha-design-compendium.md`). Identifiers minted here: ROL- (roles), MOD- (modes), SCN- (scenarios; steps are SCN-nn.k), IF- (interfaces), DAT- (data objects), PERF- (user-facing performance expectations), MN- (must-nevers), OCR- (change requests raised by this document).
 
 ## 1. System overview and boundary
 
@@ -542,6 +643,7 @@ Mākoha is one append-only ledger with three authorised faces (patient, clinicia
 | Fact extraction from text, audio transcripts, scans and device streams | Video and phone transport (IF-09); device firmware and calibration (IF-10) |
 | Argument drafting, evaluation, rendering, attention budget, suppression | Hospital, laboratory, pharmacy and imaging systems on the far side of each interface |
 | Pre-intake agent (typed and voice), engagement loops, patient messaging | National identifiers, messaging network, shared record, e-prescribing service (IF-01 to IF-05) |
+| Lead register and follow-through, omnichannel desk with intent and urgency classification and the outbound PHI check, voice line (IVR, booking, check-ins, after-hours, hand-off), form designer and bound forms, document intake at volume, campaign drafting (revision 2; PRD section 8.1) | WhatsApp Business and telephony carriers (IF-16, IF-17); fax gateways and scanners (IF-18); the service's public website hosting the widget and QR pages (IF-19) |
 | Compiler, pin registry, evaluation register, sealed envelopes, study enrolment, measures, regulator bundle | Ethics review (STK-12), regulator decisions (STK-07), clinical governance judgement (STK-05) |
 | Edge node for offline operation; backup and restore | Nothing: Mākoha is the system of record for the service, including scheduling and billing (stated 25 Sep 2026). New Zealand billing is private billing: invoices, payments and receipts, no national claiming gateway in the first release (IF-14) |
 
@@ -556,7 +658,7 @@ Derived from PRD section 3, ConOps section 4, Volume 2 (identity binding, act re
 | ROL-03 | General practitioner (supervising physician for HITH) | Clinician | Full scope by registration; signs notes, orders, prescriptions, plans, summaries; acts on flagged items; receives escalation packets; supervises HITH episodes |
 | ROL-04 | Nurse prescriber | Clinician | Prescribes within the formulary and protocol pathways of the signed scope fragment; runs HITH visits and check-ins; out-of-scope predicate creates an escalation packet |
 | ROL-05 | Pharmacist prescriber | Clinician | Medication reconciliation and review; prescribes within minor-ailment and repeat-management protocols; red-flag routing blocks and escalates |
-| ROL-06 | Practice or service staff | Clinician (restricted) | Scheduling; inbound queue triage and filing where the role allows; reconciliation queue; cannot sign clinical acts |
+| ROL-06 | Practice or service staff, including front office (revision 2: the front-office aperture of 2A.0 under the front-office profile of 1A.4) | Clinician (restricted) | Scheduling; inbound queue triage and filing where the role allows; reconciliation queue; lead stages, replies by template or reviewed draft, hand-off, filing on the desk; voice-line console; campaign briefs; sees the routing lane and urgency badge but no clinical argument; cannot sign clinical acts |
 | ROL-07 | Clinical governance | Governance | Ratifies loss matrices, templates, thresholds and suppression policy; reviews sentinel events and review queues; owns the evaluation register; approves study registration |
 | ROL-08 | Study owner | Governance | Registers studies as sealed envelopes; reads enrolment and endpoints; receives consented de-identified extracts |
 | ROL-09 | Compliance | Governance | Sponsor and WAND obligations; terminology licence; obligations register; regulator bundle export |
@@ -567,6 +669,9 @@ Derived from PRD section 3, ConOps section 4, Volume 2 (identity binding, act re
 
 | ROL-14 | HITH nurse, non-prescribing (stated 25 Sep 2026) | Clinician | Runs HITH visits, check-ins and administrations under the care plan; records observations and notes; cannot prescribe; escalates to ROL-04 or ROL-03 by the profile's escalation target |
 | ROL-15 | Identity administrator (stated 25 Sep 2026) | Governance (administration) | Manages user accounts and OAuth account lifecycle for every face: creates, binds to HPI and registration, assigns profiles, suspends, revokes; every change is an audited act; cannot read clinical content |
+| ROL-16 | Enquirer or lead (revision 2; STK-15) | Public front door and voice line (no face account) | Submits public-audience forms, books from the public link, messages or calls the service; exists as a Person in the lead compartment; sees nothing from any record; becomes ROL-01 only on conversion |
+| ROL-17 | Voice line agent (non-human; revision 2; CAP-23) | Patient (telephony transport, scope token) | Answers and places calls; IVR navigation, identity confirmation, booking through class-1 scheduling rules, spoken check-in instruments, message taking, hand-off; writes only QuestionnaireResponse, patient-reported Observation, Communication and Appointment transitions; speaks about a patient only a released, signed argument |
+| ROL-18 | Follow-through and queue-worker rule step (non-human; revision 2; 3A.2 A7) | None | Decides contact, leave or hand off for a lead by class-1 rule and drafts text through the bounded loop; no read grant on resources, facts, attempts or arguments; its proposals wait on the owner's queue |
 
 Roles stated as not needed or deferred: HITH coordinator and interpreter service were not named; day-to-day administration sits with ROL-15.
 
@@ -745,6 +850,101 @@ Trigger: connectivity loss at a site with an edge node.
 
 Exceptions: two edge nodes wrote to one patient (both versions kept; disagreement rows).
 
+### SCN-11 Enquiry to registration (refines SIT-10; E2E-14)
+
+Preconditions: front-office profile in force with response-clock windows; WhatsApp number connected in coexistence mode; public booking link live. Trigger: a message from an unknown number, a public form submission, a QR landing page or an inbound call.
+
+| Step | Actor | Action or response |
+| --- | --- | --- |
+| SCN-11.1 | Enquirer (ROL-16) | Sends a WhatsApp message, submits the widget form, or calls the practice number |
+| SCN-11.2 | System | Creates a Lead as a Person in the lead compartment with source, source detail and capturing principal; runs the red-flag fragment over the enquiry text and emits the critical-lane event with the emergency guidance fragment if it fires; starts the response clock |
+| SCN-11.3 | System | Evaluates the engagement rule fragment: each factor (source class, recency band, stage progress, existing-patient status) as its own chip with points and rule pin; never a sum; places the lead on the owner queue ordered by clock state and stage |
+| SCN-11.4 | Front-office staff (ROL-06) | Replies on the inbound channel within the window, by template or a reviewed draft; moves the stage to Contacted |
+| SCN-11.5 | System | If no outbound reply exists at the window end, sets the clock overdue, creates a Task for the owner and writes a front-door signal row |
+| SCN-11.6 | Follow-through step (ROL-18) | At ratified intervals, proposes the next step on a consented channel within the monthly allowance; stops on reply, opt-out, conversion or the step cap |
+| SCN-11.7 | Enquirer | Books through the voice line or the public link; the Appointment names the lead's Person until conversion; a pre-registration form (public audience) is offered |
+| SCN-11.8 | System | On arrival sets Showed; on a fulfilled Appointment with a linked Patient sets Converted |
+| SCN-11.9 | Front-office staff | Converts the lead: the matcher runs against existing patients (link above the upper threshold; clerical review between thresholds; new Patient when none) |
+| SCN-11.10 | System | Re-points QuestionnaireResponses and Communications to the Patient compartment with provenance source lead-intake; carries channel consents and opt-outs to the Patient's Consent resources; keeps the lead row with its converted patient id |
+
+Outcome: a patient whose first contact, consents and pre-registration answers are in the record, with no clinical fact recorded before conversion. Variations: spreadsheet import with a dry run reporting duplicates; walk-in captured at the desk. Exceptions: opt-out on any channel stops every channel permanently (SCN-11.6 ends); a red flag at SCN-11.2 routes to the critical lane before any staff reply.
+
+### SCN-12 Omnichannel message triage (refines SIT-11; E2E-15)
+
+Preconditions: channels connected; routing rule fragment and intent taxonomy codebook in force (D-21). Trigger: an inbound message or call record on WhatsApp, SMS, email or the voice line.
+
+| Step | Actor | Action or response |
+| --- | --- | --- |
+| SCN-12.1 | System | Files the item as a Communication with its medium in the one queue, threaded by partOf; matches the sender only on a single verified phone or email identifier; a partial or ambiguous match goes to the reconciliation queue; an unknown sender is a Person in the lead compartment |
+| SCN-12.2 | System | Runs the class-1 red-flag floor first: a red-flag word or the possible-emergency intent reaches the critical lane within 100 ms regardless of the classifier |
+| SCN-12.3 | System | Classifies intent from the ratified taxonomy, urgency band and tone class, each with reliability; applies the routing rule fragment to a lane, queue and owner role, with a Task carrying intent and urgency; within 2 s |
+| SCN-12.4 | Front-office staff (ROL-06) or clinician by lane | Opens the thread; sees the classification strip as flagged class-2 content; replies on the inbound channel |
+| SCN-12.5 | System | On WhatsApp outside the 24-hour window, refuses free-form text and offers approved template fragments only |
+| SCN-12.6 | System | Runs the outbound PHI check on the rendered reply: shows the redacted version for any identifier pattern or out-of-class clinical content; blocks a record number with no override; records an override as an act with reason and a channel surveillance signal |
+| SCN-12.7 | Staff | For an unknown sender, drafts demographics from the conversation; mentioned conditions, medications and allergies become provisional patient-reported facts with span links only after conversion |
+
+Outcome: every message laned by rule within budget, emergencies first, nothing leaving the system that the channel may not carry. Variations: email thread; call record from the voice line with transcript. Exceptions: classifier unavailable or retired (lanes by rule only; strip absent); provider outage (SCN-12 continues on the remaining channels; see section 8).
+
+### SCN-13 After-hours call on the voice line (refines SIT-12; E2E-16)
+
+Preconditions: telephony number bound; after-hours guidance fragment, hand-off cue list and IVR menus compiled; on-call escalation target in the profile. Trigger: an inbound call outside hours, or a scheduled outbound confirmation or check-in call.
+
+| Step | Actor | Action or response |
+| --- | --- | --- |
+| SCN-13.1 | Voice line (ROL-17) | Answers with the IVR menu in codebook terms; offers the consent prompt before any audio is stored |
+| SCN-13.2 | Caller | Navigates by keypad or spoken keyword; states the reason for calling |
+| SCN-13.3 | Voice line | Confirms identity by two identifiers before anything patient-specific; speaks the after-hours guidance fragment (what the service offers, where to go in an emergency) |
+| SCN-13.4 | Voice line | For a booking, move or cancellation, applies the appointment type's class-1 rules against live availability, reads the confirmation back and sends it on the consented text channel |
+| SCN-13.5 | Voice line | For a message, creates a Task with the transcript; for a clinical question, distress, a request for a person or repeated misunderstanding, hands off to on-call within one turn with warm transfer where the carrier supports it, or takes a message |
+| SCN-13.6 | Voice line | On an emergency keyword, plays the emergency guidance fragment and emits the critical-lane event |
+| SCN-13.7 | System | Files the call as a Communication with medium phone and, where consented, the transcript with spans; every dialogue turn passed the bounded-loop testers and the claims-boundary lint before synthesis |
+| SCN-13.8 | Voice line | Next morning, places the outbound confirmation call as a loop step; a designed check-in speaks its form item by item and stores answers as QuestionnaireResponse with dialogue spans |
+
+Outcome: calls answered at any hour, bookings made by rule, messages and hand-offs reaching a person, nothing clinical spoken that is not a released, signed argument. Exceptions: dialogue sidecar unavailable (IVR floor and message taking continue; fallback recorded); carrier outage (section 8).
+
+### SCN-14 Form built and completed across transports (refines SIT-13; E2E-17)
+
+Preconditions: form designer available on the governance face; calculator fragments and terminology edition pinned. Trigger: a clinical owner designs an intake form.
+
+| Step | Actor | Action or response |
+| --- | --- | --- |
+| SCN-14.1 | Clinical governance (ROL-07) | Arranges typed items, sets conditional rules from the fifteen operators, adds a formula citing the BMI calculator fragment, binds each field from the resource-template picker, previews in each register |
+| SCN-14.2 | System | Compiles the form through the gates: refuses an unbound item or a binding to a non-existent path; publishes a pin on ratification; assigns the form to an appointment type |
+| SCN-14.3 | Patient (ROL-01) | Completes the form on the phone portal; finishes the last items by IVR through the voice line |
+| SCN-14.4 | System | Re-evaluates the conditional rules server-side on submit; assembles one transaction Bundle: QuestionnaireResponse with span index plus Observations, provisional Conditions and Consent with provenance patient-reported; stores the formula result as the calculator's Observation |
+| SCN-14.5 | System | Renders older responses against their original pin after the form is republished |
+
+Outcome: a form that is a compiled fragment, producing identical resources whichever transport carried the answer. Variations: public-audience form creating a Lead (SCN-11); clinician-audience form in session. Exceptions: formula disagreeing with the calculator fragment fails compile.
+
+### SCN-15 Document archive intake (refines SIT-14; E2E-18)
+
+Preconditions: fax gateway or archive source configured; OCR, layout and handwriting engines registered with benchmarks and pins; review queue staffed. Trigger: a 1,000-page archive, a scanner batch or a fax stream arrives.
+
+| Step | Actor | Action or response |
+| --- | --- | --- |
+| SCN-15.1 | System | Content-addresses each item; creates a batch with state and cursor; dedupes by hash |
+| SCN-15.2 | System | Splits into documents with split reliability (whole item to the manual split queue when below floor); recognises each block, handwriting by its own engine; classifies the document type; parses sections; extracts fields with reliability; matches the patient by the probabilistic matcher; routes |
+| SCN-15.3 | System | Writes facts with spans and capture context imported for fields above the floor; sends fields below the floor and every review-always field (medication doses, allergies) to the review queue grouped by document |
+| SCN-15.4 | Reviewer (ROL-06 or clinician by field type) | Sees the image crop, recognised text and proposed code; accepts, amends or rejects as an act |
+| SCN-15.5 | System | An accepted field becomes a fact at the review floor with the reviewer as principal; an extracted laboratory result becomes an unsolicited Observation and fires the same rules as a live result, including the critical lane |
+| SCN-15.6 | System | Resumes a paused or interrupted batch from its cursor; a re-upload is idempotent; progress and per-document outcome visible |
+
+Outcome: a backlog in the record with provenance, nothing below the floor filed as a fact without a person. Exceptions: patient match below threshold (SCN-05); handwriting engine retired (fields from it go to review; MOD-02).
+
+### SCN-16 Campaign brief to published sequence (refines SIT-15; operation 21)
+
+Preconditions: claims-boundary and plain-register lints compiled; consent scopes defined. Trigger: front office or governance files a typed campaign brief.
+
+| Step | Actor | Action or response |
+| --- | --- | --- |
+| SCN-16.1 | Campaign owner (ROL-06 or ROL-07) | Files the brief as a typed form: audience (phenotype pin or lead filter), goal, offer, channels, cadence, spend, owner |
+| SCN-16.2 | System | The bounded loop fills slot text only: landing-page copy, a message sequence and a nurture cadence as a loop fragment proposal, within 30 s |
+| SCN-16.3 | System | Runs the claims-boundary and plain-register lints; rejects any cure, guarantee or outcome claim with the matching rule |
+| SCN-16.4 | Clinical governance (ROL-07) | Ratifies the templates and the loop fragment through the compiler; publication is a pin |
+| SCN-16.5 | System | At launch resolves the audience: excludes the deceased and anyone without the contact-for-programme scope; sends within the monthly allowance; records each touch for first- and last-touch attribution |
+
+Outcome: outreach that is pinned, consent-checked and free of clinical claims. Exceptions: audience from a patient list where consent is absent for most members (launch proceeds for the consented subset and reports the exclusion count).
+
 ## 5. External interfaces
 
 Derived from ConOps EXT-01 to EXT-12 and Volume 3A groups F, J, K. Owner is the party on the far side.
@@ -758,7 +958,7 @@ Derived from ConOps EXT-01 to EXT-12 and Volume 3A groups F, J, K. Owner is the 
 | IF-05 | Laboratory and imaging results (EXT-05) | Inbound | Result messages matched to orders; TestSafe retrieval where available | Laboratories, radiology providers, regional repositories |
 | IF-06 | Hospital systems (EXT-06) | Both | Discharge summaries in; escalation and handover out | Hospitals |
 | IF-07 | Terminology edition (EXT-07) | Pinned import | SNOMED CT New Zealand edition releases | Health New Zealand as national release centre (to confirm in phase 4) |
-| IF-08 | Patient channels: portal, SMS, email, print | Both | Consented communications with automated label; inbound replies parsed and triaged | Gateway vendors (deferred) |
+| IF-08 | Patient channels: portal, SMS, email, print (WhatsApp through IF-16; telephony through IF-17) | Both | Consented communications with automated label; inbound replies parsed and triaged; the outbound PHI check on every send | Gateway vendors (deferred) |
 | IF-09 | Video and phone sessions | Both | Session media bound to the encounter; recording only with consent | WebRTC provider (deferred) |
 | IF-10 | Home device gateways (EXT-09) | Inbound | Time series with device identity, calibration status, sampling rate | Device and gateway vendors (deferred) |
 | IF-11 | Identity providers (EXT-10) | Auth | Professional tokens binding registration and scope; consumer identity with proofing level; delegate grants | Councils and HPI; consumer identity provider (deferred) |
@@ -766,6 +966,10 @@ Derived from ConOps EXT-01 to EXT-12 and Volume 3A groups F, J, K. Owner is the 
 | IF-13 | Merkle anchor log (EXT-12) | Outbound | Ledger root hash with receipt | Provider open (D-08) |
 | IF-14 | Private billing (EXT-11, resolved 25 Sep 2026) | Both | Invoices, payments and receipts for privately billed services; no claiming gateway in New Zealand for the first release; Australian claiming channels return with the TGA release | Payment provider (vendor deferred) |
 | IF-15 | Ketryx (resolved 25 Sep 2026) | Both | Greenfield capture of every applicable standard for the planned regulatory applications: TGA, and possibly the FDA. Requirements, risks, verification evidence and the acceptance-test ids of this set trace into Ketryx; MET-02 and MET-06 targets are derived and captured there (PRD section 6). Standards proposed, pending confirmation: ISO 13485, IEC 62304, ISO 14971, IEC 62366-1, ISO 27001, IEC 81001-5-1 | Ketryx |
+| IF-16 | WhatsApp Business provider (EXT-13; revision 2) | Both | Inbound and outbound messages on the practice's existing number in coexistence mode; template fragments with provider approval status; the 24-hour window per thread; delivery receipts | Provider open (D-14) |
+| IF-17 | Telephony carrier (EXT-14; revision 2) | Both | Inbound and outbound calls on numbers per tenant and location; media to the voice sidecar; DTMF; warm transfer to on-call where supported; call records | Carrier open (D-15) |
+| IF-18 | Fax gateway, scanner batches and archive exports (EXT-15; revision 2) | Inbound | Page images and PDF bundles, content-addressed on arrival; batch control | Gateway vendors (deferred) |
+| IF-19 | Public front door (EXT-16; revision 2) | Inbound | Public-audience form submissions from the widget, QR pages and the booking link; creates Leads and Appointments on a lead's Person; red-flag fragment on enquiry text | The service's own website |
 
 ## 6. Data concept
 
@@ -780,9 +984,14 @@ Principal objects, where born, where persisted, retention. Derived from Volume 1
 | DAT-05 | Task, Communication (with automated label and reach-a-person route), Appointment | Rules, loops, staff | Spine resources | Never deleted |
 | DAT-06 | QuestionnaireResponse with dialogue spans; patient-reported and device Observations | Pre-intake and loop agents, patient, devices | Spine resources with transcript or stream reference | Never deleted; recordings only with consent |
 | DAT-07 | Consent resources and scopes | Patient | Spine; evaluated per request | Never deleted; withdrawal is an event |
-| DAT-08 | Pin, fragment, template, threshold set, loss matrix, suppression policy, profile | Compiler | Pin registry, signed | Never deleted; superseded |
+| DAT-08 | Pin, fragment, template, threshold set, loss matrix, suppression policy, profile; from revision 2 also engagement loop, phenotype definition, form definition, routing rule and taxonomy, channel template, identifier pattern set, tokenisation policy, brand pack, cost schedule and programme contract (Volume 6.9) | Compiler | Pin registry, signed | Never deleted; superseded |
 | DAT-09 | StudyDefinition, sealed envelope, enrolment, MeasureReport, evaluation-register entry | Governance and study owner | Ledger and reporting store | Never deleted; abandoned envelopes reported |
 | DAT-10 | AuditEvent, SuppressionRecord, sentinel entry, drift record | Every request, brief, breach | Ledger | Never deleted |
+| DAT-11 | Lead (Person with the lead extension; stage transitions; factor rows with points and rule pin; response-clock state; consent snapshot; converted patient id) (revision 2) | Any capture channel; the engagement rule fragment | Lead compartment of the spine; no read path for engines or the evaluator | Never deleted; linked to the Patient on conversion |
+| DAT-12 | Thread and call record (Communication with medium whatsapp, sms, email or phone and a partOf chain; intent, urgency and tone labels with reliability; transcript DocumentReference with spans; PHI-check result and any override act) (revision 2) | Channels and the voice line | Spine resources; object store for audio with consent | Never deleted; audio only with consent |
+| DAT-13 | Form definition (compiled fragment, also a Questionnaire with SDC extensions) and its response Bundle (QuestionnaireResponse with span index plus bound resources) (revision 2) | Form designer through the compiler; patient or staff submission | Pin registry; spine resources | Never deleted; responses render against their original pin |
+| DAT-14 | Document batch (state, cursor, per-document outcome) and field review items (image crop, recognised text, proposed code, reliability, review act) (revision 2) | Archive, fax or scanner intake | Batch tables; review queue as a ledger view; facts on acceptance | Never deleted; originals content-addressed |
+| DAT-15 | Campaign brief, drafts, published templates, loop fragment and touches (lead, campaign pin, step, channel, time) (revision 2) | Campaign owner; the drafting loop; the compiler | Pin registry for templates and fragments; touch table | Never deleted |
 
 Retention policy (stated 25 Sep 2026): retention is the statutory minimum, which in New Zealand is the Health (Retention of Health Information) Regulations 1996, ten years from the last day of treatment, with the exact text confirmed in phase 4 sources. The ledger's never-delete rule exceeds the minimum; whether any destruction duty (Privacy Act 2020 principle 9) conflicts with never-delete is an assumption below.
 
@@ -804,6 +1013,11 @@ Derived from Volume 3.2, 3.7, 1A.3 budgets and PRD metrics. Stated as the user w
 | PERF-10 | Writes under 10 ms, searches under 50 ms, terminology lookup under 1 ms at the 99th percentile | All | 3.7 |
 | PERF-11 | Offline: an edge node sustains consulting for at least 8 h and flushes queued transactions in order on reconnect | SCN-10 | 3A.12 |
 | PERF-12 | Availability and accuracy as the service would state them: deferred 25 Sep 2026 | All | |
+| PERF-13 | A lead's response-clock state is current within 1 s of any message event; a breached clock shows on the owner's queue at once (revision 2) | SCN-11 | 1A.3 op 18 |
+| PERF-14 | An inbound message is laned within 2 s; an emergency keyword or possible-emergency intent reaches the critical lane within 100 ms (revision 2) | SCN-12 | 1A.3 op 19; OMNI-01 |
+| PERF-15 | The voice line begins its spoken response within the ratified turn latency and hands off within one turn of a cue (revision 2) | SCN-13 | 1A.3 op 20; VOX-02; PERF-02 lineage |
+| PERF-16 | Document batch intake sustains 1,000 pages per hour on the reference machine and resumes without re-processing after interruption (revision 2) | SCN-15 | 1A.3 op 22; DAI-02 |
+| PERF-17 | Campaign drafts appear within 30 s of filing the brief (revision 2) | SCN-16 | 1A.3 op 21 |
 
 ## 8. Failure, degraded and recovery behaviour
 
@@ -820,6 +1034,11 @@ Derived from Volume 1A.7, 3A.12, 7.5, 9.6 and ConOps section 8.
 | Store failure | Failover to the second region from continuous event-log shipping; subscribers resume from cursors | Point-in-time restore verified by ledger hash comparison; weekly drill |
 | Suspected tampering | Per-patient hash chain and Merkle anchor detect it independent of encryption; sentinel entry | Restore to last verified commit; regulator informed per obligations |
 | Attestation mismatch at start-up | The node refuses to serve | Redeploy the signed build |
+| WhatsApp provider outage or template rejection (revision 2) | Threads stay in the desk; outbound falls back to SMS or email by consent; the template's approval status is shown; the response clock keeps running | Provider restored; queued sends flush within the window rules |
+| Telephony carrier outage (revision 2) | Calls are not answered by the system; the carrier's own voicemail or diversion applies; scheduled outbound calls are rescheduled and a Task notes the gap | Carrier restored; loop steps resume |
+| Dialogue sidecar unavailable on the voice line (revision 2) | The IVR floor continues: menus, identity confirmation, booking by keypad, message taking; no dialogue; fallback recorded | Sidecar restart |
+| Intent classifier retired or unavailable (revision 2) | Lanes by the rule fragment and red-flag floor only; the classification strip is absent, not guessed (MOD-02) | New validated pin admitted |
+| OCR, layout or handwriting engine retired (revision 2) | Affected fields go to the review queue; batches continue for the other engines | New pin with its own benchmark admitted |
 
 ## 9. What the system must never do
 
@@ -840,6 +1059,12 @@ Derived from PRD non-goals, the ten laws, ConOps policies and Volume 2.1, 9.6, 2
 | MN-11 | Delete or edit a ledger row, argument or act | Loss of audit; broken replay |
 | MN-12 | Learn online in production, or let evaluation-zone artefacts reach training or knowledge except through the compiler | Drift without validation; contaminated evidence (NG-02, Law 10) |
 | MN-13 | Rank patients or clinicians by a composite | Unaccountable league tables (NG-05) |
+| MN-14 | Store or display a summed lead score, or feed a patient's clinical risk tier into an engagement rule (revision 2) | Triage by commercial value; a composite by another name (D-12, POL-16) |
+| MN-15 | Send an outbound message that carries a record number, or free-form WhatsApp text outside the 24-hour window (revision 2) | Identifier leakage on consumer channels; provider policy breach (POL-17, POL-18) |
+| MN-16 | Let the voice line answer a clinical question, act for a caller before identity is confirmed, or speak anything about a patient that is not a released, signed argument (revision 2) | Advice from a class-3 model; wrong-caller disclosure (POL-19) |
+| MN-17 | Make a recognised field below the reliability floor, or of a review-always type, a fact without a review act (revision 2) | Mis-read archives becoming grounds (RSK-15) |
+| MN-18 | Let a lead's communications become grounds, or create a Patient from a message or enquiry without a conversion act (revision 2) | Clinical reasoning over unverified people; duplicate patients (POL-16) |
+| MN-19 | Publish campaign copy with a cure, guarantee or outcome claim, or send outreach to a person who opted out on any channel (revision 2) | Misleading health claims; consent breach (POL-20) |
 
 ## 10. Support, maintenance and operations concept
 
@@ -851,7 +1076,8 @@ Derived from Volume 3A.12 and 11; the operating organisation is deferred in the 
 | Release and change | Signed build with manifest and SBOM; profile is build-time; any pin change replays the sentinel decision set before admission; knowledge changes are compiler submissions with owner and ratifier signatures |
 | Backup and restore | Continuous event-log shipping to a second region; point-in-time restore; weekly automated restore drill with hash comparison |
 | Monitoring | Health endpoints per crate; drift monitor per engine per subgroup; sentinel board; latency suite on every build against the 10,000-patient synthetic practice |
-| Incident handling | Sentinel entries and review queues on the governance face; break-glass with reason and act; obligations register drives regulator notification |
+| Incident handling | Sentinel entries and review queues on the governance face; break-glass with reason and act; obligations register drives regulator notification; from revision 2 the review queues include lead hand-offs, document intake fields, voice-line messages, PHI-check overrides and outreach breaches (Volume 10.5) |
+| Providers (revision 2) | WhatsApp Business and telephony providers behind adapter traits; agreements, template approvals, data-processing terms and residency in the obligations register; selection owned by the platform operator before M5 (D-14, D-15) |
 | Training and onboarding | MOD-05; role-based profiles; no training mode exists in the system |
 
 ## 11. Change requests to upstream
@@ -862,6 +1088,8 @@ Derived from Volume 3A.12 and 11; the operating organisation is deferred in the 
 | OCR-02 | 01-prd.md | Section 6 MET-02, MET-06; section 13 | Ketryx scope resolved: standards capture and traceability for TGA and possibly FDA applications; targets for MET-02 and MET-06 captured there. Close the two Ketryx open questions |
 | OCR-03 | 02-conops.md | EXT-11; PRD open question on billing | New Zealand billing scope resolved: private billing, no claiming gateway in the first release. Close the open question |
 
+Revision of 15 Oct 2026: no new change request.
+
 ## 12. Assumptions
 
 | Assumption | Confidence | How it would be checked |
@@ -871,6 +1099,8 @@ Derived from Volume 3A.12 and 11; the operating organisation is deferred in the 
 | The Tier 3 build's class-3 review queues can be staffed by the launch workforce without adding a role | Medium | Queue volume measured in MOD-05 pilot |
 | Never-delete does not conflict with Privacy Act 2020 principle 9 for health information held under the retention regulations | Medium | Compliance review in phase 4 |
 | The proposed standards list for Ketryx is the right set for a Tier 3 SaMD application to the TGA and FDA | Low; proposed, not stated | Compliance confirms against the TGA essential principles and FDA guidance |
+| The telephony carrier chosen under D-15 can stream call media to the self-hosted voice sidecar inside the trust boundary (CST-16) | Medium | Carrier selection before M5; media path test in phase 4 |
+| Front-office staff can review intake fields for non-clinical document types; medication doses and allergies are reviewed by a clinician | Medium | Review-always rules per document type ratified by governance |
 
 ## 13. Open questions
 
@@ -883,15 +1113,17 @@ Derived from Volume 3A.12 and 11; the operating organisation is deferred in the 
 - [x] IF-14 private billing and IF-15 Ketryx scope resolved; OCR-01 to OCR-03 raised
 - [x] OCR-01 to OCR-03 approved and applied upstream 25 Sep 2026
 - [ ] Confirm the proposed standards list for IF-15 {{TBD: standards list confirmation (deferred to compliance)}}
+- [x] Revision 2 (15 Oct 2026): ROL-16 to ROL-18, SCN-11 to SCN-16, IF-16 to IF-19, DAT-11 to DAT-15, PERF-13 to PERF-17, MN-14 to MN-19 added; deferred modules (PRD section 8.1) not refined
+- [ ] Which document types front-office staff may review and which need a clinician (SCN-15.4): ratified with the review-always rules before M5
 
 
 # 4. Technical Specifications
 
-_status: final · version 1.0_
+_status: final · version 2.0_
 
 # Technical Specifications
 
-How Mākoha is built to deliver the Operations Concept (03-opscon.md, final v1.0) within the PRD (01-prd.md, final v1.0). The Mākoha Design Compendium (`docs/ref/makoha-design-compendium.md`) is the authoritative build specification for types, schema, state machines, algorithms and tests; this document maps it to the OpsCon and fixes what the compendium leaves open. Where the compendium gives a number, it is the default the first release ships with, and every behaviour-governing number is a signed, versioned configuration value, never a code literal. Identifiers minted here: COMP- (components), TIF- (technical interfaces), TECH- (stack rows), TGT- (engineering targets), STD- (standards mapping), DEC- (design decisions), TCR- (change requests raised by this document).
+How Mākoha is built to deliver the Operations Concept (03-opscon.md, final v2.0) within the PRD (01-prd.md, final v2.0). Revised 15 Oct 2026 against compendium revision 2: components COMP-25 to COMP-31, interfaces TIF-19 to TIF-22, stack rows TECH-16 to TECH-20, targets TGT-17 to TGT-21, standards STD-17 and STD-18 and decisions DEC-08 to DEC-11 added; structure unchanged. The Mākoha Design Compendium (`docs/ref/makoha-design-compendium.md`) is the authoritative build specification for types, schema, state machines, algorithms and tests; this document maps it to the OpsCon and fixes what the compendium leaves open. Where the compendium gives a number, it is the default the first release ships with, and every behaviour-governing number is a signed, versioned configuration value, never a code literal. Identifiers minted here: COMP- (components), TIF- (technical interfaces), TECH- (stack rows), TGT- (engineering targets), STD- (standards mapping), DEC- (design decisions), TCR- (change requests raised by this document).
 
 ## 1. Architecture overview
 
@@ -907,6 +1139,7 @@ flowchart TD
   subgraph Node["Spine node (Rust, one process group)"]
     GW[API gateway<br/>FHIR R4, OAuth2, ABAC, audit]
     CORE[Core: record, facts, ledger,<br/>evaluator, terminology, render]
+    FRONT[Front door: crm, channels,<br/>voiceline, forms, docai]
     ORCH[Orchestrator]
     DB[(PostgreSQL 16<br/>RLS, triggers, outbox)]
     COL[(Columnar and<br/>time-series layers)]
@@ -918,12 +1151,17 @@ flowchart TD
     EXTR[Language extractors]
     GEN[Generative, bounded loop]
     VOICE[Self-hosted voice model]
+    INTENT[Intent, OCR, layout and<br/>handwriting classifiers]
   end
   KP[Compiler and pin registry]
   EVZ[Evaluation zone:<br/>corruption engine, case bundles]
   EDGE[Edge node: WASM core<br/>plus embedded store]
   EXT[National and vendor systems<br/>TIF-01 to TIF-15]
+  PROV[WhatsApp, telephony, fax<br/>and public front door<br/>TIF-19 to TIF-22]
   PF & CF & GF -->|mTLS| GW --> CORE --> DB
+  GW --> FRONT --> CORE
+  PROV <-->|adapter traits| FRONT
+  ORCH --> INTENT
   CORE --> COL & OBJ
   DB -->|outbox events| ORCH --> RULE & BAYES & EXTR & GEN & VOICE
   ORCH --> CORE
@@ -964,7 +1202,14 @@ Derived from Volume 3A.1 (workspace), 7.3 (engine families), 9, 10 and the OpsCo
 | COMP-21 | `api-gateway` | FHIR R4 REST, subscribe, bulk export; OAuth2 and SMART launch; ABAC per request; one AuditEvent per request; agent tool interface from CapabilityStatement; mTLS to faces | Rust | All |
 | COMP-22 | `ops`, `migration`, `media` | Event-log backup to a second region, point-in-time restore, edge sync, print rendering; importers and exporters; content-addressed object store client | Rust; object store | SCN-08, SCN-10 |
 | COMP-23 | Edge node | Core compiled to WASM plus embedded store; local pins; additive sync | Rust to WASM; browser or practice server | SCN-10 |
-| COMP-24 | Faces | Patient (text and voice), clinician, governance web clients; stateless renderers over authorised reads; submitters of signed acts | Web interfaces (stated 25 Sep 2026): browser clients over the gateway API; web framework {{TBD: chosen at M7 (deferred)}} | All |
+| COMP-24 | Faces | Patient (text and voice), clinician, governance web clients; stateless renderers over authorised reads; submitters of signed acts; from revision 2 the front-office aperture (lead register, desk, voice-line console, campaign brief form), the form designer and the ambient capture review surface | Web interfaces (stated 25 Sep 2026): browser clients over the gateway API; web framework {{TBD: chosen at M7 (deferred)}} | All |
+| COMP-25 | `crm` (revision 2; 3A.2 A6, A7) | Lead compartment: Person with the lead extension, stage transitions, response clocks from the front-office profile, factor rows from the `engage` rule fragment, consent snapshots, conversion through the matcher, spreadsheet import with dry run; campaigns: typed briefs, follow-through loops, queue-worker rule step, touches and attribution | Rust; private tables with RLS; no read grant for engines or the evaluator | SCN-11, SCN-16 |
+| COMP-26 | `channels` (revision 2; 3A.11 J4, 9.8) | One queue over WhatsApp, SMS, email and call records; verified-identifier matching; coexistence self-connect; 24-hour window per thread; routing rule fragments with the class-1 red-flag floor; the outbound PHI check with the identifier pattern set and content class per channel; override acts | Rust; provider adapter traits (TIF-19, TIF-08) | SCN-11, SCN-12 |
+| COMP-27 | `voiceline` (revision 2; 3A.11 J5) | Telephony adapter host, numbers per tenant and location, IVR floor from menu fragments, identity confirmation, consent prompt, booking through `scheduling`, spoken instruments from `forms`, after-hours guidance, hand-off cues and warm transfer, call records and transcripts; dialogue turns through COMP-19 under the bounded loop | Rust; carrier adapter trait (TIF-20); media to COMP-19 inside the trust boundary | SCN-13 |
+| COMP-28 | `forms` (revision 2; 3A.9 H4) | FormDefinition fragments (26 base field types, fifteen operators, fixed-point formulas citing calculator fragments, FHIRPath bindings, locale packs); compile through COMP-13; render per register with keyboard and IVR or SMS fallbacks; server-side rule evaluation; transaction Bundle assembly with span index; render against the original pin | Rust; also serialised as FHIR Questionnaire with SDC extensions | SCN-11, SCN-13, SCN-14 |
+| COMP-29 | `docai` (revision 2; 3A.7 F5) | Batch control (state, cursor, content-hash idempotence), split, OCR, handwriting, document type, section parsing, field extraction with reliability, patient match, field review queue, unsolicited result trigger | Rust orchestration; recognition engines in COMP-30 | SCN-15 |
+| COMP-30 | Classifier sidecars (revision 2; 7.3) | `lang-intent` (intent from the ratified taxonomy, urgency, tone with reliability); layout, OCR and handwriting recognition with per-block and per-field reliability, handwriting as its own pin; speech recognition and synthesis for the voice line | Model runtime in seccomp sandbox; frozen weights pinned (class W); validation report in each pin | SCN-12, SCN-13, SCN-15 |
+| COMP-31 | Deferred revision 2 crates: `cost`, `analytics`, `tenancy`, `tokenise`, `devportal`, `recalls::panel`, `clinical::search`, `comms::surveys`, `telehealth::census`, the composer and the body map (3A.1, 12.4 to 12.8) | Built per D-20 and present in the Tier 3 workspace; not operated at the first release (PRD section 8.1, DEC-08); tenant and project scoping (CST-14) applies from the first release through COMP-02 and COMP-21 | Rust | None at the first release |
 
 ## 3. Technical interfaces
 
@@ -979,7 +1224,7 @@ Each OpsCon interface IF-01 to IF-15 is realised here. Derived from Volume 3A.1 
 | TIF-05 | IF-05 results | HL7 v2 ORU over HealthLink and direct feeds; matched to orders by identifier then probabilistic matcher | As TIF-02 | HL7 v2.x profile per sender |
 | TIF-06 | IF-06 hospitals | Discharge summaries inbound via TIF-02 or TIF-03; handover and escalation outbound via TIF-02 | As TIF-02 | As TIF-02 |
 | TIF-07 | IF-07 terminology | SNOMED CT New Zealand edition release files imported by the compiler as pin class S; FHIR terminology operations exposed internally | Licence recorded in obligations register | Edition date is the pin |
-| TIF-08 | IF-08 patient channels | SMS and email gateway adapter traits (two-way, short-code parsing, webhooks); portal messaging over TIF-13; print batch | Gateway API keys in hardware-backed store | Adapter per vendor |
+| TIF-08 | IF-08 patient channels | SMS and email gateway adapter traits (two-way, short-code parsing, webhooks); portal messaging over TIF-13; print batch; every outbound render passes the PHI check in COMP-26 before the adapter | Gateway API keys in hardware-backed store | Adapter per vendor |
 | TIF-09 | IF-09 video and phone | WebRTC provider adapter trait; short-lived join tokens; recording only with a consent resource; audio chunks to the transcription pipeline | Join token bound to encounter and principal | Adapter per vendor |
 | TIF-10 | IF-10 devices | Device gateway ingest (`POST /devices/streams`): device identity, calibration status, sampling rate; time-series store; promotion rules as pinned fragments | Device credentials per gateway | Per gateway vendor |
 | TIF-11 | IF-11 identity | OAuth2 and OpenID Connect per face; SMART app launch for embedded apps; professional tokens carry HPI, registration and scope profile; TOTP MFA for clinician and governance faces; argon2id password hashing; consumer identity with proofing level (provider deferred 25 Sep 2026) | OIDC | Per provider |
@@ -990,6 +1235,10 @@ Each OpsCon interface IF-01 to IF-15 is realised here. Derived from Volume 3A.1 
 | TIF-16 | IF-15 Ketryx | Export of requirements (phase 5 ids), risks, verification evidence and acceptance-test results with lineage; import of standards clauses and controlled targets (MET-02, MET-06); exchange by the Ketryx API and its Model Context Protocol (MCP) server (stated 25 Sep 2026), so that this document set and its agents read and write Ketryx items directly | Ketryx credentials; MCP server authorisation | Per Ketryx API version |
 | TIF-17 | Sidecar boundary | stdin and stdout only; JSON Schema for `ArgumentDraft` and for each extractor output validated at the process boundary; no network namespace | Process identity; seccomp profile per sidecar | Harness protocol version pinned |
 | TIF-18 | Edge sync | Additive sync of resource versions by hash; conflicts to disagreement rows; queued national transactions flush in order | mTLS with node certificate | Sync protocol version |
+| TIF-19 | IF-16 WhatsApp Business provider (revision 2) | Provider adapter trait: inbound webhook with signature check, outbound send, template registry with approval status, coexistence self-connect recording number, receipt and consent text, delivery receipts; the 24-hour window computed in COMP-26, not trusted from the provider | Provider credentials in hardware-backed store; webhook signatures verified | Adapter per provider (D-14) |
+| TIF-20 | IF-17 telephony carrier (revision 2) | SIP trunk or hosted-provider adapter trait: inbound call events, media stream to COMP-27 and COMP-19 inside the trust boundary, DTMF, outbound dialling, warm transfer where supported, call detail records | Carrier credentials in hardware-backed store; SRTP or TLS media | Adapter per carrier (D-15) |
+| TIF-21 | IF-18 fax, scanner and archive intake (revision 2) | Fax-gateway and scanner drop adapters; archive upload (zip, PDF bundle) over TIF-13; every page content-addressed on arrival; batch API in COMP-29 | Gateway credentials; upload under a staff token | Adapter per vendor |
+| TIF-22 | IF-19 public front door (revision 2) | Public-audience form submission and booking endpoints with rate limiting and bot defence, no account; creates Leads and Appointments on the lead's Person; red-flag fragment on enquiry text; widget and QR pages served from the brand pack domain | Anonymous with per-tenant origin allow-list and signed form pin | Form pin; API version in path |
 
 ## 4. Data model, storage, retention and migration
 
@@ -1003,8 +1252,13 @@ Derived from Volume 1A.1 (Fact), 4 (argument types), 5.7, 8.1 (ledger DDL), 3A.1
 | Pin, fragment, template, threshold set, loss matrix, profile (DAT-08) | `pin_registry` (pin, class S R K I W F M P U, locator, effective dates, signature, retired flag); `generic_argument` | Ledger; content-addressed store for artefact bytes | Never deleted; retired flag |
 | StudyDefinition, sealed envelope, enrolment, MeasureReport, evaluation register (DAT-09) | As Volume 3A.10 and 10.4 | Ledger and reporting store | Never deleted |
 | AuditEvent, SuppressionRecord, sentinel entry, drift record (DAT-10) | One AuditEvent per request | Ledger | Never deleted |
+| Lead (DAT-11; revision 2) | `Person` with extension `lead` and `link` to Patient on conversion; private tables `lead`, `lead_stage_transition`, `lead_factor` (points as integers, rule pin); Communications with `subject = Person` | Lead compartment schema with its own RLS policies; no grant to engine or evaluator roles | Never deleted; `converted_patient_id` kept |
+| Thread and call record (DAT-12; revision 2) | `Communication` with `medium` and a `partOf` chain; classification labels as extensions with reliability; transcript `DocumentReference` with spans; PHI-check result and override act | `resource` table; audio originals in the object store with consent | Never deleted |
+| Form definition and response (DAT-13; revision 2) | `FormDefinition` fragment (class R) serialised as `Questionnaire` with SDC extensions, pin as `Questionnaire.version`; `QuestionnaireResponse` with span index plus bound resources in one transaction Bundle | Pin registry; `resource` table | Never deleted; responses render against their original pin |
+| Document batch and field review (DAT-14; revision 2) | `docai_batch(batch_id, tenant_id, source, pages, state, cursor)`; field items with image crop reference, recognised text, proposed code, reliability; review acts | Batch tables; review queue as a ledger view; originals content-addressed | Never deleted |
+| Campaign (DAT-15; revision 2) | `CampaignBrief` typed form; class U templates and an `EngagementLoop` fragment through the compiler; `campaign_touch(lead_id, campaign_pin, step, channel, at)` | Pin registry; touch table | Never deleted |
 
-Storage layers: relational (PostgreSQL 16) as source of truth for resources, ledger and indexes; columnar layer for views, registers and cohort queries rebuilt by event replay; time-series layer for device streams; content-addressed object store for originals (documents, images, audio); in-memory fact graph per active patient. Retention: statutory minimum of ten years from last treatment (OpsCon section 6) is exceeded by never-delete; archival by window with Merkle anchor. Migration: importers for incumbent formats with lineage on every migrated resource; unstructured legacy content stored as originals and extracted through the inbound pipeline; exporters as bulk FHIR, CSV and NDJSON. Multi-tenancy: tenant and project scoping on every resource; one deployment may serve many services.
+Storage layers: relational (PostgreSQL 16) as source of truth for resources, ledger and indexes; columnar layer for views, registers and cohort queries rebuilt by event replay; time-series layer for device streams; content-addressed object store for originals (documents, images, audio); in-memory fact graph per active patient. Retention: statutory minimum of ten years from last treatment (OpsCon section 6) is exceeded by never-delete; archival by window with Merkle anchor. Migration: importers for incumbent formats with lineage on every migrated resource; unstructured legacy content stored as originals and extracted through the inbound pipeline; exporters as bulk FHIR, CSV and NDJSON. Multi-tenancy: tenant and project scoping on every resource, fact, lead, attempt and act (CST-14); one deployment may serve many services; a module subset per tenant is a profile manifest difference. Fragment classes at revision 2 (Volume 6.9): the original ten plus engagement loop, profile, phenotype definition, form definition, routing rule, channel template, pattern set, tokenisation policy, brand pack, cost schedule and contract, each with a rejecting compiler fixture at M4.
 
 ## 5. Stack
 
@@ -1026,7 +1280,12 @@ Every row carries a pin or an explicit TBD. Reasons from Volume 11.3 and D-01 un
 | TECH-12 | Cryptography | sha256 content addressing; signatures by compiler, ratifier and governance keys in a hardware-backed store; mTLS; store-level encryption | Laws 5 and 6; CST-06, CST-08 |
 | TECH-13 | Faces | Web interfaces; framework {{TBD: web framework, chosen at M7 (deferred)}} | Stated 25 Sep 2026; thin, API-only, stateless; the edge node alone uses the Rust core compiled to WASM |
 | TECH-14 | Packaging and orchestration | Container images with digests; `docker compose` for single-node bring-up; production orchestrator deferred 25 Sep 2026 | One-command bring-up (Volume 3A.1); signed manifest lists images |
-| TECH-15 | Hosting and data residency | cloud or on-premises, region and New Zealand data residency deferred 25 Sep 2026 | Health information sovereignty |
+| TECH-15 | Hosting and data residency | cloud or on-premises, region and New Zealand data residency deferred 25 Sep 2026; the four hosting postures of Volume 11.7 (managed cloud, private cloud, on-premise, air-gapped) are the options, each with in-region inference (CST-16) | Health information sovereignty |
+| TECH-16 | WhatsApp Business provider (revision 2) | provider deferred to D-14, selected before M5; coexistence mode required | CST-17; adapter trait in COMP-26 |
+| TECH-17 | Telephony carrier (revision 2) | SIP or hosted, deferred to D-15, selected before M5; warm transfer required where available; media must reach COMP-19 inside the trust boundary | CST-16, CST-17; adapter trait in COMP-27 |
+| TECH-18 | Layout, OCR and handwriting models (revision 2) | runtime as TECH-06; models deferred 15 Oct 2026; handwriting pinned separately with its own benchmark | CAP-25; DAI-03 |
+| TECH-19 | Intent, urgency and tone classifier (revision 2) | frozen text classifier over the ratified taxonomy; model deferred 15 Oct 2026; taxonomy codebook ratified before M7 (D-21) | CAP-22 |
+| TECH-20 | Deployment posture (revision 2) | System of record (DEC-03); the overlay profile of Volume 11.6 is built per D-13 and not operated at the first release (DEC-11) | PRD section 8.1 |
 
 ## 6. Security and privacy
 
@@ -1043,6 +1302,10 @@ Derived from Volume 11.4, 3A.1, 2.1, 8.3, PRD CST-06 to CST-08, ConOps POL-03, P
 | Supply chain | SBOM (SPDX) per build; crate and image digests in the signed manifest; reproducible build check on CI; `cargo deny` for dependency and float-math policy |
 | Sandboxing | Sidecars killed on any denied syscall; custom operation scripts sandboxed with no file, network or clock access |
 | Privacy | Consent scopes gate secondary use, research export, agent contact and each communication channel; withdrawal is an event honoured within 100 ms by subscribers; de-identification with type-level exclusion of identifier fields from export types; quiet hours and opt-out keywords for messaging |
+| Lead compartment (revision 2) | Separate schema and RLS policies; engine and evaluator database roles hold no grant on it; cross-tenant lead reads return 404; a lead's Communications are never resolvable as grounds; the queue-worker role holds no grant on `resource`, `fact`, `attempt` or `actual_argument` |
+| Outbound PHI check (revision 2) | Deterministic render-time pass in COMP-26 over every outbound text with the identifier pattern set (class K) and the channel's content class; record number blocks with no code path to override; other findings need an override act with reason, surveilled as a channel signal; no identifier in any log line, enforced by schema-typed log fields and a lint |
+| Providers and boundary (revision 2) | WhatsApp, telephony, fax and SMS credentials in the hardware-backed store; webhook signatures verified; call media and recognition stay inside the hosting posture (CST-16); tenant-supplied hosted-model keys, if any, are held in the hardware-backed store, never enter a pin and serve authoring-time proposers only (D-19) |
+| Public front door (revision 2) | Anonymous endpoints rate-limited per origin and tenant with bot defence; submissions create Leads only; no record read is reachable from a public token |
 
 ## 7. Engineering targets
 
@@ -1066,6 +1329,11 @@ Each OpsCon expectation PERF-01 to PERF-12 has a number and a measurement method
 | TGT-14 | Replay fidelity | Every replayed attempt reproduces its verdict byte for byte; regulator bundle replays 1% of attempts identically | Replay report per bundle |
 | TGT-15 | Purity | Two-process harness byte-compares engine outputs on at least 50 fixtures per claim type and 1,000 corruption-engine inputs | Registration gate |
 | TGT-16 | Render invariance | No register omits, adds or reorders a rebuttal or qualifier signal | Property test |
+| TGT-17 | Response clock (PERF-13; revision 2) | Clock state recomputed within 1 s of the Communication event at p95; minute timer for boundaries | Event timestamp to clock-state commit on the synthetic lead set |
+| TGT-18 | Message triage (PERF-14; revision 2) | Lane assigned within 2 s at p95; red-flag word or possible-emergency intent in the critical lane within 100 ms at p99 by the class-1 floor | Inbound commit to lane timestamps; forced classifier delay test |
+| TGT-19 | Voice line (PERF-15; revision 2) | First spoken response within the TGT-03 turn latency at p95; hand-off within one dialogue turn of a cue on the scripted cue set | Sidecar timing log; scripted call set |
+| TGT-20 | Document batch throughput (PERF-16; revision 2) | 1,000 pages per hour sustained on the reference machine; resume from cursor with zero re-processed documents on re-upload | Batch run on the synthetic archive; interruption drill |
+| TGT-21 | Campaign drafting (PERF-17; revision 2) | Drafts within 30 s of brief submission at p95 | Brief commit to draft commit |
 
 ## 8. Deployment, environments, CI/CD and rollback
 
@@ -1076,7 +1344,7 @@ Derived from Volume 11.1, 11.5, 3A.1 and 3A.12.
 | Profiles | Build-time Cargo features `tier1`, `tier2`, `tier3`; signed `manifest.json` with build hash, profile, features, crate list with hashes, sidecar image digests, SBOM, seccomp profiles, pin classes present; the node attests its manifest at start-up and refuses to serve on mismatch |
 | Environments | development, evaluation zone, staging with the synthetic practice, production; count and separation deferred 25 Sep 2026 |
 | CI | On every build: unit and compile-fail tests, purity harness, performance suite on the synthetic practice, render-invariance property, compiler gate fixtures, reproducible-build check, SBOM; CI provider deferred 25 Sep 2026 |
-| Delivery order | M1 argument and fixed-point crates, M2 evaluator, M3 ledger, M4 compiler and registry, M5 spine functions (all Volume 3A modules; parity suite), M6 Tier 1 engines, M7 faces and rendering, M8 governance, M9 Tier 2 and Tier 3 engines including the generative loop and the voice sidecar; each gated by the acceptance tests of the volumes it completes |
+| Delivery order | M1 argument and fixed-point crates, M2 evaluator, M3 ledger, M4 compiler and registry, M5 spine functions (all Volume 3A modules; parity suite), M6 Tier 1 engines, M7 faces and rendering, M8 governance, M9 Tier 2 and Tier 3 engines including the generative loop and the voice sidecar; each gated by the acceptance tests of the volumes it completes. Fold-in at revision 2 (PRD section 8): M4 adds the eleven new fragment classes with rejecting fixtures; M5 adds COMP-25 to COMP-29 with E2E-14, E2E-15 (IVR path), E2E-17 and E2E-18 (review path), and the deferred crates of COMP-31 with E2E-20 and E2E-21 as build-only gates; M7 adds the front-office aperture, consoles and designers; M8 adds the tokenisation gateway and E2E-19 as a build-only gate; M9 adds COMP-30 classifiers and the class-3 dialogue, drafting and query drafting, completing E2E-16 |
 | Knowledge changes | Compiler submissions only; any pin change replays the sentinel decision set before admission; effective-from dates |
 | Rollback | Builds: redeploy the previous signed manifest; ledger unaffected. Knowledge: retire the pin and reinstate the prior fragment version with a new effective-from; no deletion. Data: point-in-time restore from the event log with ledger chain verification |
 | Backup | Continuous event-log and object-store shipping to a second region with per-tenant keys; weekly automated restore drill with hash comparison |
@@ -1091,7 +1359,7 @@ Every regulatory constraint from the PRD and every ConOps policy appears here. R
 | STD-01 | Medicines Act 1981; Medicines (Database of Medical Devices) Regulations 2003: New Zealand sponsor, WAND notification, safety evidence, post-market obligations (CST-03, POL-14) | Obligations register (COMP-09 reporting, Volume 10.8); regulator bundle TIF-12; manifest attestation |
 | STD-02 | Medical Products Bill, software as a medical device including AI (CST-12) | Tier profiles and manifest (section 8); Ketryx standards capture TIF-16 |
 | STD-03 | TGA classification per tier (D-11, CST-03) and possibly FDA (OCR-01) | Ketryx TIF-16; profile manifests |
-| STD-04 | Privacy Act 2020; Health Information Privacy Code 2020; Telecommunications Information Privacy Code 2020 (POL-11) | Section 6: consent scopes, audit, access report, encryption, tenant scoping; retention section 4 |
+| STD-04 | Privacy Act 2020; Health Information Privacy Code 2020; Telecommunications Information Privacy Code 2020 (POL-11) | Section 6: consent scopes, audit, access report, encryption, tenant scoping; retention section 4; from revision 2 the lead compartment holds personal information about non-patients under the Privacy Act and the outbound PHI check limits disclosure on consumer channels |
 | STD-05 | Health (Retention of Health Information) Regulations 1996 | Section 4 retention |
 | STD-06 | Health Practitioners Competence Assurance Act 2003; HDC Code of Rights; Medical Council telehealth statement; RNZCGP telehealth position (POL-12) | Professional identity binding TIF-11; scope profiles; consent for recording TIF-09 |
 | STD-07 | Medicines Regulations 1984 (regulations 40 and 41); Misuse of Drugs Regulations 1977; Medicines (Designated Prescriber: Registered Nurses) Regulations 2016; pharmacist prescriber regulations (POL-13) | Scope fragments and formulary as signed profiles (COMP-13, COMP-15); e-prescription conformance COMP-06; controlled-drug register |
@@ -1103,7 +1371,9 @@ Every regulatory constraint from the PRD and every ConOps policy appears here. R
 | STD-13 | ISO 13485 quality management (proposed) | Ketryx; obligations register |
 | STD-14 | IEC 62366-1 usability engineering (proposed) | Faces, attention budget, patient register grade-8 rule; Ketryx |
 | STD-15 | ISO 27001 information security and IEC 81001-5-1 health software security (proposed) | Section 6; supply chain |
-| STD-16 | Rust core, forbid unsafe, float ban (CST-01); build-time profiles with signed manifest (CST-02); sandboxed sidecars (CST-05); PostgreSQL 16 with RLS and insert-only ledger (CST-06); identity, mTLS, break-glass (CST-07); no clinical behaviour on secrets (CST-08); provisional templates flagged only (CST-09); loss-matrix ratification (CST-10); WASM edge (CST-11); self-hosted pinned voice (CST-13) | Sections 2, 5, 6, 8; DEC-01 to DEC-05 |
+| STD-16 | Rust core, forbid unsafe, float ban (CST-01); build-time profiles with signed manifest (CST-02); sandboxed sidecars (CST-05); PostgreSQL 16 with RLS and insert-only ledger (CST-06); identity, mTLS, break-glass (CST-07); no clinical behaviour on secrets (CST-08); provisional templates flagged only (CST-09); loss-matrix ratification (CST-10); WASM edge (CST-11); self-hosted pinned voice (CST-13); tenancy on every row (CST-14); tokenisation boundary (CST-15); in-region inference and no hosted model on the release path (CST-16); provider adapters and obligations (CST-17); vendor figures as claims (CST-18) | Sections 2, 5, 6, 8; DEC-01 to DEC-05, DEC-08 to DEC-11 |
+| STD-17 | Unsolicited Electronic Messages Act 2007 (POL-20; reading to be confirmed by compliance) | Campaign and follow-through templates carry sender identification and a functional unsubscribe; consent scope per audience member; permanent cross-channel opt-out in COMP-25 and COMP-26 |
+| STD-18 | WhatsApp Business provider and telephony provider terms: provider agreement, template approvals, data-processing terms, residency statement (CST-17; Volume 10.8); marketing and outreach consent records; tokenisation key custody records when L2 operates | Obligations register (COMP-09 reporting); TIF-19, TIF-20; DEC-09 |
 
 ## 10. Design decisions
 
@@ -1118,10 +1388,14 @@ Compendium decisions D-01 to D-11 are carried as given (PRD section 10). Decisio
 | DEC-05 | Edge node capability retained in the first release for outage operation (MOD-03) | Cloud-only with degraded read-only mode | HITH and telehealth continue through outages; prescriptions on paper | Yes; feature is a build of the same core |
 | DEC-06 | Ketryx as the regulatory traceability system (TIF-16) | Traceability kept in this document set only | Greenfield standards capture for TGA and possibly FDA applications | Yes; exchange is export and import |
 | DEC-07 | Rule engine language and runtime | Deferred 25 Sep 2026 | | |
+| DEC-08 | Revision 2 modules operated at the first release: A6, A7, J4, J5, H4, F5 with the front-office profile (COMP-25 to COMP-30); B9, E3, G4, I3, J6, J7, L1, L2, L3, the composer and the body map built per D-20 and deferred from operation (COMP-31) (PRD section 8.1, stated 15 Oct 2026) | Operate all fifteen modules; operate none until a second release | The six serve the front door of the two launch settings and the inbound backlog at cut-over; the rest add class-3 surface, new claim types or partner scope the small launch does not need | Yes: activation is a release decision and a profile manifest change, not a rebuild |
+| DEC-09 | WhatsApp and telephony behind adapter traits with provider selection owned by the platform operator before M5 (D-14, D-15) | Pick providers now; build against one provider's API directly | Providers are commercial choices with residency and coexistence conditions not yet known; the adapter keeps the module testable against a fake | Yes at the adapter boundary |
+| DEC-10 | Tokenisation gateway deferred with L2; de-identification (CAP-14, COMP-17) remains the export path; key custody decided by D-16 before M8 or before the release that operates L2 | Ship the gateway in the first release | No partner export, analytics studio or synthetic generator operates at the first release, so the gateway has no consumer; the vault type is open | Yes: the gateway is additive and the de-identification engine shares its policy model |
+| DEC-11 | Overlay deployment posture not operated at the first release; Mākoha is the system of record (DEC-03) | Offer overlay from day one | Demand unconfirmed (D-13 open item); replay against incumbent snapshots adds a pin element and a shadow order state machine the launch service does not need | Yes: the posture is a second profile |
 
 ## 11. Change requests to upstream
 
-None yet.
+None yet. Revision of 15 Oct 2026: none raised.
 
 ## 12. Assumptions
 
@@ -1131,6 +1405,8 @@ None yet.
 | A self-hosted speech-to-speech model can meet a conversational turn latency on affordable GPU hardware with pinned weights | Low | TGT-03 measured on the candidate in M9 |
 | The JVM rule engine can be made deterministic and sandboxed as Volume 7.1 requires | Medium | Purity harness in M6 |
 | The Ketryx proposed standards list is complete for a Tier 3 SaMD | Low | Compliance review |
+| A telephony carrier can deliver call media into the self-hosted voice sidecar inside the hosting posture at conversational latency (TGT-19) | Medium | Carrier selection under D-15; media path test before M5 |
+| OCR, layout and handwriting models with declared per-field reliability are available for self-hosting at 1,000 pages per hour on the reference machine (TGT-20) | Medium | Benchmark registration at M9; batch run on the synthetic archive |
 
 ## 13. Open questions
 
@@ -1142,15 +1418,19 @@ None yet.
 - [ ] Environments count and separation (section 8; deferred)
 - [x] NHI and HPI by Hira API; Ketryx by API and MCP; consumer identity provider deferred
 - [ ] Availability, RPO and RTO numbers (TGT-13; deferred with PERF-12)
+- [x] Revision 2 (15 Oct 2026): COMP-25 to COMP-31, TIF-19 to TIF-22, TECH-16 to TECH-20, TGT-17 to TGT-21, STD-17, STD-18, DEC-08 to DEC-11 added
+- [ ] WhatsApp provider and telephony carrier (TECH-16, TECH-17; D-14, D-15; before M5)
+- [ ] OCR, layout, handwriting and intent classifier models (TECH-18, TECH-19; deferred)
+- [ ] Reference machine for TGT-20 (deferred with the performance rig)
 
 
 # 5. Specific Requirements
 
-_status: final · version 1.0_
+_status: final · version 2.0_
 
 # Specific Requirements
 
-The deterministic, atomic, testable requirement set for the Mākoha platform, derived mechanically from the PRD (01-prd.md), the Operations Concept (03-opscon.md) and the Technical Specifications (04-techspec.md), all final v1.0, by the seven derivation rules of this phase. Convention: EARS, one obligation per sentence, system name "Mākoha platform". Identifier family minted here: REQ-nnn, minted once, never renumbered; a removed requirement is moved to section 15 with a reason. Columns: requirement; upward trace; verification method (Test, Inspection, Analysis, Demonstration); acceptance criterion a tester applies without asking anyone. Numbers are quoted from the TechSpec targets and are signed configuration defaults, not code literals.
+The deterministic, atomic, testable requirement set for the Mākoha platform, derived mechanically from the PRD (01-prd.md), the Operations Concept (03-opscon.md) and the Technical Specifications (04-techspec.md), all final v2.0, by the seven derivation rules of this phase. Revised 15 Oct 2026 against compendium revision 2: sections 14 to 19 (REQ-188 to REQ-259) added for the front door, omnichannel desk, voice line, form designer, document intake and campaigns; the earlier sections 14 to 18 renumbered 20 to 24; no existing requirement changed. Convention: EARS, one obligation per sentence, system name "Mākoha platform". Identifier family minted here: REQ-nnn, minted once, never renumbered; a removed requirement is moved to section 21 with a reason. Columns: requirement; upward trace; verification method (Test, Inspection, Analysis, Demonstration); acceptance criterion a tester applies without asking anyone. Numbers are quoted from the TechSpec targets and are signed configuration defaults, not code literals.
 
 ## 1. Argument, gate and ledger invariants
 
@@ -1394,15 +1674,129 @@ Derived from PRD section 5 (the ten laws), OpsCon MN-01 to MN-05, MN-10 to MN-13
 | REQ-185 | The Mākoha platform shall not record voice audio without a consent resource for recording. | POL-05; TIF-09 | Test | Recording without the resource is refused. |
 | REQ-186 | The Mākoha platform shall pass every voice-generated text through the bounded loop's class-2 testers before it reaches a person. | Law 4; RSK-11 | Test | A voice utterance to the patient with a claim outside released facts is refused with a hand-off. |
 
-## 14. Coverage of upstream
+## 14. Front door and lead register (SCN-11; CAP-21)
 
-Every TechSpec target TGT-01 to TGT-16 is quoted: TGT-01 REQ-029; TGT-02 REQ-025; TGT-03 REQ-146; TGT-04 REQ-031, REQ-033; TGT-05 REQ-034; TGT-06 REQ-036; TGT-07 REQ-048, REQ-049; TGT-08 REQ-065, REQ-076; TGT-09 REQ-041; TGT-10 REQ-140, REQ-141; TGT-11 REQ-135 to REQ-139; TGT-12 REQ-100; TGT-13 REQ-145; TGT-14 REQ-006, REQ-142; TGT-15 REQ-143; TGT-16 REQ-009. Every OpsCon must-never MN-01 to MN-13 has a requirement: MN-01 REQ-187; MN-02 REQ-018; MN-03 REQ-017, REQ-028; MN-04 REQ-003, REQ-015; MN-05 REQ-005, REQ-007; MN-06 REQ-067; MN-07 REQ-022, REQ-168; MN-08 REQ-042, REQ-127; MN-09 REQ-086; MN-10 REQ-012; MN-11 REQ-001; MN-12 REQ-013, REQ-014; MN-13 REQ-016.
+Derived from OpsCon SCN-11, MN-14, MN-18, ROL-06, ROL-16, TechSpec COMP-25, TIF-22, TGT-17 and PRD CAP-21, D-12.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-188 | When an enquiry arrives on any capture channel, the Mākoha platform shall create a Lead as a Person in the lead compartment stamped with source, source detail and capturing principal. | SCN-11.2; COMP-25 | Test | A public form submission, a WhatsApp first contact and an inbound call each yield a Person with the lead extension carrying the three stamps and no Patient. |
+| REQ-189 | The Mākoha platform shall not create a Patient from an enquiry or message without a conversion act. | MN-18; SCN-11.9 | Test | After one hundred synthetic enquiries the Patient count is unchanged; a convert call without a staff act is refused. |
+| REQ-190 | When enquiry text is received at the public front door or on a channel, the Mākoha platform shall run the red-flag fragment over it and emit the critical-lane event within 100 ms at p99 on a match. | SCN-11.2; TIF-22; TGT-18 | Test | An enquiry containing a red-flag term produces the critical event and the emergency guidance fragment within 100 ms at p99 (OMNI-10). |
+| REQ-191 | When a Communication event occurs for a lead or the minute timer fires, the Mākoha platform shall recompute the lead's response-clock state as on track, at risk or overdue from the front-office profile's windows within 1 s at p95. | SCN-11.5; PERF-13; TGT-17 | Test | Clock state after each synthetic event equals the state computed from the profile windows; recompute latency is under 1 s at p95. |
+| REQ-192 | If a lead's response clock becomes overdue, then the Mākoha platform shall create a Task for the lead's owner and write a front-door signal row. | SCN-11.5; CAP-21 | Test | A lead with no outbound reply at window end has a Task owned by its owner and a signal row (LEAD-03). |
+| REQ-193 | When the engagement rule fragment evaluates a lead, the Mākoha platform shall emit each factor as a separate typed output with its points and rule pin. | SCN-11.3; D-12 | Test | Two leads with identical factors yield identical factor rows (LEAD-02); every row names a rule pin. |
+| REQ-194 | The Mākoha platform shall not store, compute or display a summed lead score or any composite field on a lead. | MN-14; D-12 | Inspection | The lead schema has no score column and the lead API no composite field (LEAD-05). |
+| REQ-195 | The Mākoha platform shall exclude the clinical risk tier of any patient from the input schema of every engagement rule. | MN-14; CAP-21 | Test | The engagement rule input schema contains no risk-tier field and a fragment reading one fails compile (LEAD-01). |
+| REQ-196 | The Mākoha platform shall order lead queues by response-clock state and stage only. | D-12; SCN-11.3 | Test | Queue order on the synthetic lead set equals the sort by clock state then stage; changing a factor's points changes no position. |
+| REQ-197 | When a Person opts out on any channel, the Mākoha platform shall stop every automated send to that Person on every channel permanently. | SCN-11 exceptions; MN-19 | Test | An SMS opt-out blocks a WhatsApp follow-through step to the same Person (LEAD-06) and the block has no expiry. |
+| REQ-198 | When staff convert a lead, the Mākoha platform shall run the probabilistic matcher against existing patients, linking above the upper threshold, queueing for clerical review between thresholds and creating a Patient only when no candidate exists. | SCN-11.9; COMP-05 | Test | Three fixtures (clear match, borderline, none) yield a link, a reconciliation item and a new Patient respectively. |
+| REQ-199 | When a lead is converted, the Mākoha platform shall re-point its QuestionnaireResponses and Communications to the Patient compartment with provenance source lead-intake and carry its channel consents and opt-outs to the Patient's Consent resources. | SCN-11.10 | Test | After conversion the responses carry source lead-intake (LEAD-07) and the Patient's Consent resources reproduce the lead's per-channel states. |
+| REQ-200 | The Mākoha platform shall give the engine and evaluator roles no read path to the lead compartment. | MN-18; POL-16 | Test | The engine and evaluator database roles hold no grant on the lead schema and an evaluation request citing a lead Communication as a ground is rejected. |
+| REQ-201 | When a lead list is imported, the Mākoha platform shall run a dry run reporting duplicates against existing leads and patients before any row is committed. | SCN-11 variations | Test | An import file with a known duplicate reports it in the dry run (LEAD-08) and the commit step creates no duplicate. |
+| REQ-202 | When a lead stage changes, the Mākoha platform shall record the transition with actor, reason and time, setting Converted only when a linked Patient exists and an Appointment has reached fulfilled. | SCN-11.8; COMP-25 | Test | A manual attempt to set Converted without a fulfilled Appointment is refused; every transition row has actor and time. |
+| REQ-203 | The Mākoha platform shall refuse a sign-off or any clinical act submitted with a front-office token. | ROL-06; PRD section 3 | Test | A front-office token posting a sign-off act receives 403 and no act row exists. |
+
+## 15. Omnichannel desk (SCN-12; CAP-22)
+
+Derived from OpsCon SCN-12, MN-15, DAT-12, TechSpec COMP-26, COMP-30, TIF-19, TGT-18 and PRD CAP-22, D-21.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-204 | When an inbound message or call record arrives on WhatsApp, SMS, email or the voice line, the Mākoha platform shall file it as a Communication with its medium in the tenant's one queue, threaded by partOf. | SCN-12.1; DAT-12 | Test | Items from four channels appear in one queue, each with medium set and a partOf chain to the prior items of its thread. |
+| REQ-205 | The Mākoha platform shall link an inbound item to a patient only on a single verified high-confidence phone or email identifier. | SCN-12.1; COMP-05 | Test | An item from a verified number links; an item from a number shared by two patients does not. |
+| REQ-206 | If an inbound item's sender matches a patient partially or ambiguously, then the Mākoha platform shall hold the item in the reconciliation queue without creating a Patient. | SCN-12.1; MN-06 | Test | A partial match is in the reconciliation queue and the Patient count is unchanged (OMNI-05). |
+| REQ-207 | When an inbound item is filed, the Mākoha platform shall classify its intent from the ratified taxonomy, its urgency band and its tone class, each with reliability, and assign a lane by the routing rule fragment within 2 s at p95. | SCN-12.3; TGT-18; COMP-30 | Test | Each synthetic item carries the three labels with reliability and a lane within 2 s at p95; distressed and negative tone are separated on the sealed set (OMNI-02). |
+| REQ-208 | If an inbound item contains a red-flag word or the intent possible emergency, then the Mākoha platform shall deliver it to the critical lane within 100 ms at p99 by the class-1 rule floor irrespective of the classifier output. | SCN-12.2; TGT-18 | Test | With the classifier forced to report low urgency, a red-flag item reaches the critical lane within 100 ms at p99 (OMNI-01, OMNI-07). |
+| REQ-209 | The Mākoha platform shall render the intent, urgency and tone classification only as flagged class-2 content on the clinician and front-office faces. | SCN-12.4; Law 4 | Test | The classification strip carries the flagged badge; a patient-face request for it returns 404. |
+| REQ-210 | When staff file clinical mentions from an unknown sender's thread after conversion, the Mākoha platform shall write the mentioned conditions, medications and allergies as provisional patient-reported facts with span links into the thread. | SCN-12.7 | Test | A medication mention becomes a provisional fact with a span into the Communication (OMNI-06) and no confirmed status. |
+| REQ-211 | When a reply is sent on WhatsApp outside the 24-hour customer-service window of its thread, the Mākoha platform shall send only a provider-approved template fragment. | SCN-12.5; POL-18 | Test | Free-form text outside the window is refused and an approved template is accepted (OMNI-03). |
+| REQ-212 | When an outbound message is rendered on any channel, the Mākoha platform shall run the outbound PHI check over the rendered text with the identifier pattern set and the channel's content class before the send. | SCN-12.6; COMP-26 | Test | Every send in a test run has a PHI-check record that precedes the adapter call. |
+| REQ-213 | If the outbound PHI check finds a record number, then the Mākoha platform shall block the send with no override path. | MN-15; SCN-12.6 | Test | A draft with a record number cannot be sent by any role and no override endpoint accepts it (OMNI-04). |
+| REQ-214 | If the outbound PHI check finds another identifier pattern or clinical content beyond the channel's content class, then the Mākoha platform shall show the sender the redacted version and send the original only after an override act with reason. | SCN-12.6; POL-17 | Test | A date of birth in a general-class message yields a redacted preview; sending the original requires an act row with a reason. |
+| REQ-215 | When an override act is recorded on an outbound message, the Mākoha platform shall include it in the channel surveillance signal. | SCN-12.6; Volume 2A.3 | Test | The override appears in the channel signal view by sender (REN-10). |
+| REQ-216 | When a WhatsApp number is connected, the Mākoha platform shall record the number, the provider receipt and the consent text and keep the practice's existing threads visible in the desk in coexistence mode. | SCN-11 preconditions; TIF-19 | Demonstration | A connected number shows its receipt and consent text; a message to the reception handset appears in the desk. |
+
+## 16. Voice line (SCN-13; CAP-23)
+
+Derived from OpsCon SCN-13, ROL-17, MN-16, TechSpec COMP-27, TIF-20, TGT-19 and PRD CAP-23; extends section 13.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-217 | When a call reaches a practice number, the Mākoha platform shall answer with the IVR menu fragment speaking codebook terms and accepting keypad and spoken-keyword navigation. | SCN-13.1; COMP-27 | Test | A scripted call navigates the menu by DTMF and by keyword; every menu prompt resolves to a fragment pin. |
+| REQ-218 | The Mākoha platform shall confirm a caller's identity by two identifiers before any patient-specific action on the voice line. | MN-16; SCN-13.3 | Test | A booking request before confirmation is refused; after two identifiers it proceeds (VOX-05). |
+| REQ-219 | The Mākoha platform shall not store call audio before the caller accepts the consent prompt. | SCN-13.1; POL-19 | Test | A call that declines the prompt leaves no audio object and a call that accepts leaves one (VOX-04). |
+| REQ-220 | When a call ends, the Mākoha platform shall file it as a Communication with medium phone and, where audio was consented, a transcript DocumentReference with spans. | SCN-13.7; DAT-12 | Test | The Communication exists for every call; the transcript exists only for consented calls and carries spans. |
+| REQ-221 | The Mākoha platform shall restrict the voice line's writes to QuestionnaireResponse, patient-reported Observation, Communication and Appointment transitions. | ROL-17; MN-16 | Test | A voice-line write of any other resource type is refused (VOX-01). |
+| REQ-222 | When a caller books, moves or cancels an appointment by voice, the Mākoha platform shall apply the appointment type's class-1 rules against live availability, read the confirmation back and send it on the consented text channel. | SCN-13.4; COMP-08 | Test | A voice booking occupies a free slot under the type's rules; the confirmation is spoken and a Communication exists on the consented channel. |
+| REQ-223 | If a hand-off cue fires on the voice line, then the Mākoha platform shall hand the call to a person or take a message within one dialogue turn. | SCN-13.5; TGT-19 | Test | Each cue on the scripted cue set (request for a person, distressed tone, repeated misunderstanding, clinical question) is followed by a hand-off or message within one turn (VOX-02). |
+| REQ-224 | The Mākoha platform shall not answer a clinical question on the voice line. | MN-16; POL-19 | Test | A scripted clinical question yields a hand-off or message and no answer (VOX-03). |
+| REQ-225 | If an emergency keyword is spoken on the voice line, then the Mākoha platform shall play the emergency guidance fragment and emit the critical-lane event. | SCN-13.6 | Test | The guidance fragment plays and the critical event exists within the call. |
+| REQ-226 | When the voice line speaks a statement about a patient, the Mākoha platform shall speak only a released, signed argument rendered in the plain register. | MN-16; SCN-13.3 | Test | A spoken statement about a result traces to a released, signed argument (VOX-06); a flagged argument is never spoken. |
+| REQ-227 | While after hours, the Mākoha platform shall speak the after-hours guidance fragment, take messages as Tasks carrying the transcript and hand off to on-call by the profile's escalation target. | SCN-13.3; SCN-13.5 | Test | An after-hours scripted call produces the guidance audio, a Task with transcript and a hand-off to the on-call target. |
+| REQ-228 | When a designed check-in call is placed, the Mākoha platform shall speak the assigned form item by item and store the answers as a QuestionnaireResponse with dialogue spans. | SCN-13.8; COMP-28 | Test | Each form item is spoken in order and each answer item carries a dialogue span. |
+| REQ-229 | When a voice-line dialogue turn is generated, the Mākoha platform shall pass it through the bounded loop's class-2 testers and the claims-boundary lint before synthesis. | SCN-13.7; Law 4 | Test | A turn carrying a claim outside released facts is refused before any audio is synthesised. |
+| REQ-230 | If the dialogue sidecar is unavailable, then the Mākoha platform shall continue the voice line on the IVR floor with message taking and record the fallback. | SCN-13 exceptions | Test | With the sidecar stopped a call still books by keypad and leaves a message; a fallback record exists. |
+
+## 17. Form designer (SCN-14; CAP-24)
+
+Derived from OpsCon SCN-14, DAT-13, TechSpec COMP-28 and PRD CAP-24.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-231 | When a form definition is submitted, the Mākoha platform shall admit it only through the compiler with every item bound to a FHIRPath target. | SCN-14.2; COMP-28 | Test | A form with an unbound item is refused; a shipped form has a binding on every item (FRM-01). |
+| REQ-232 | If a form binding names a FHIRPath that does not exist in the resource templates, then the Mākoha platform shall reject the form at compiler gate 1. | SCN-14.2 | Test | A binding to a non-existent path fails gate 1 with the path named (FRM-05). |
+| REQ-233 | When a form formula reproduces a calculator, the Mākoha platform shall cite the calculator fragment and store the result as the calculator's Observation. | SCN-14.1; SCN-14.4 | Test | A BMI formula result equals the calculator fragment output and is stored as its Observation (FRM-02). |
+| REQ-234 | When a form is submitted, the Mākoha platform shall re-evaluate its conditional rules server-side and apply the server result. | SCN-14.4 | Test | A client submission with a tampered rule outcome is corrected to the server outcome (FRM-03). |
+| REQ-235 | When a form is submitted, the Mākoha platform shall assemble one FHIR transaction Bundle holding a QuestionnaireResponse with span index and every bound resource with provenance by audience. | SCN-14.4; DAT-13 | Test | One Bundle per submission; each bound resource carries provenance and a span link to its response item (FRM-04). |
+| REQ-236 | When a response is rendered after its form has been republished, the Mākoha platform shall render it against the original form pin. | SCN-14.5 | Test | A response captured under pin A renders identically after pin B is published (FRM-06). |
+| REQ-237 | The Mākoha platform shall provide for every form field type a plain-register rendering, a keyboard-only path and, where the low-resource floor requires it, an IVR or SMS fallback. | Volume 3A.9 H4; Volume 4A.14 | Inspection | The field-type register lists the three renderings for each type. |
+| REQ-238 | When a public-audience form is submitted from the front door, the Mākoha platform shall create a Lead and no Patient. | SCN-11.1; TIF-22 | Test | A widget submission yields a Lead with source and no Patient (OMNI-09). |
+| REQ-239 | Where the same form step is completed on the portal, by SMS, on WhatsApp or by voice, the Mākoha platform shall produce resources that differ only in medium and span source. | SCN-14 outcome; Volume 2A.1 | Test | Four transports of one step yield resources equal except for medium and span source (OMNI-08). |
+
+## 18. Document intake at volume (SCN-15; CAP-25)
+
+Derived from OpsCon SCN-15, MN-17, DAT-14, TechSpec COMP-29, COMP-30, TIF-21, TGT-20 and PRD CAP-25.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-240 | When an archive, fax stream or scanner batch arrives, the Mākoha platform shall content-address each item and create a batch with a state and a cursor. | SCN-15.1; DAT-14 | Test | Every item has a content hash; a batch row exists in state queued with cursor zero. |
+| REQ-241 | When a batch runs, the Mākoha platform shall split each item into documents, recognise each block, classify the document type, extract fields and match the patient, recording per-block and per-field reliability and spans. | SCN-15.2; COMP-29 | Test | Every extracted field on the synthetic archive carries reliability and a span into the recognised text. |
+| REQ-242 | The Mākoha platform shall not make a recognised field that is below the reliability floor or of a review-always type a fact without a review act. | MN-17; SCN-15.3 | Test | No fact on the synthetic archive run derives from a below-floor or review-always field without an act (DAI-01). |
+| REQ-243 | When a reviewer accepts an extracted field, the Mākoha platform shall write the fact with reliability set to the review floor and the reviewer as principal. | SCN-15.5 | Test | An accepted field's fact carries the floor reliability and the reviewer's principal. |
+| REQ-244 | When a batch is paused, interrupted or re-uploaded, the Mākoha platform shall resume from its cursor and skip documents already processed by content hash. | SCN-15.6; TGT-20 | Test | An interruption drill resumes with zero re-processed documents and a re-upload creates no duplicate facts (DAI-02). |
+| REQ-245 | The Mākoha platform shall sustain document batch intake at 1,000 pages per hour on the reference machine. | TGT-20; PERF-16 | Test | The synthetic archive run reports at least 1,000 pages per hour sustained. |
+| REQ-246 | The Mākoha platform shall register the handwriting recognition engine with its own benchmark and pin separate from the OCR engine. | TECH-18 | Inspection | The registry holds two pins with two benchmark records (DAI-03). |
+| REQ-247 | When an extracted laboratory result is filed, the Mākoha platform shall create an unsolicited Observation and fire the same rules as a live result including the critical lane. | SCN-15.5 | Test | An extracted critical value raises the critical event (DAI-04). |
+| REQ-248 | If the split reliability for an item is below the floor, then the Mākoha platform shall send the whole item to the manual split queue. | SCN-15.2 | Test | A low split-reliability item appears in the split queue and yields no documents (DAI-05). |
+
+## 19. Campaigns, follow-through and revision 2 cross-cutting rules (SCN-16; CAP-21)
+
+Derived from OpsCon SCN-16, ROL-18, MN-19, DAT-15, TechSpec TGT-21, DEC-09 and PRD CST-16, MET-14, MET-15, MET-17.
+
+| Id | Requirement | Trace | Verification | Acceptance criterion |
+| --- | --- | --- | --- | --- |
+| REQ-249 | When a campaign brief is filed, the Mākoha platform shall accept it only as a typed form and draft landing-page copy, a message sequence and a nurture cadence as slot text within 30 s at p95. | SCN-16.1; SCN-16.2; TGT-21 | Test | A free-text brief is refused; a typed brief yields three drafts within 30 s at p95 containing slot text only. |
+| REQ-250 | The Mākoha platform shall reject any campaign draft carrying a cure, guarantee or outcome claim at the claims-boundary lint. | MN-19; SCN-16.3 | Test | A brief yielding a cure claim is rejected with the matching rule (CAMP-01). |
+| REQ-251 | The Mākoha platform shall publish campaign drafts only through the compiler as pinned templates and a loop fragment. | SCN-16.4 | Test | A published sequence resolves to pins; an edit creates new pins (CAMP-02). |
+| REQ-252 | When a follow-through loop runs, the Mākoha platform shall send its steps at the ratified intervals on the lead's consented channels within the tenant's monthly message allowance. | SCN-11.6 | Test | Steps occur at the configured intervals on consented channels only; the allowance is never exceeded in the synthetic month. |
+| REQ-253 | When a lead replies, opts out, converts or reaches the step cap, the Mākoha platform shall stop the follow-through loop within one event. | SCN-11.6 | Test | A reply ends the loop before the next step (CAMP-03). |
+| REQ-254 | The Mākoha platform shall grant the queue-worker role no read access to resources, facts, attempts or actual arguments. | ROL-18 | Test | The role's grants exclude the four tables and a read attempt is denied (CAMP-04). |
+| REQ-255 | When a campaign audience is launched from a patient list, the Mākoha platform shall exclude deceased patients and patients lacking the contact-for-programme consent scope. | SCN-16.5 | Test | The launched audience excludes both groups and reports the exclusion count (CAMP-05). |
+| REQ-256 | When a campaign touch occurs, the Mākoha platform shall record the lead, campaign pin, step, channel and time for first-touch and last-touch attribution. | SCN-16.5; DAT-15 | Test | Each touch row carries the five fields; conversion reports name first and last touch. |
+| REQ-257 | The Mākoha platform shall reach the WhatsApp Business provider and the telephony carrier only through adapter traits with credentials held in the hardware-backed store. | DEC-09; TIF-19; TIF-20 | Inspection | No module calls a provider API outside its adapter; the secret inventory lists the provider credentials in the store. |
+| REQ-258 | The Mākoha platform shall not run a hosted model on the release path in any engine, tester or renderer. | CST-16; D-19 | Inspection | Every release-path model is a pinned self-hosted weight set; tenant-supplied keys appear in no pin. |
+| REQ-259 | The Mākoha platform shall publish front-door conversion by source and channel, response-clock breaches, no-show and rebooking rates and document intake field acceptance as Measures with lineage. | MET-14; MET-15; MET-17 | Test | Each Measure exists and its MeasureReport rows carry lineage; recomputation yields an identical hash. |
+
+## 20. Coverage of upstream
+
+Every TechSpec target TGT-01 to TGT-16 is quoted: TGT-01 REQ-029; TGT-02 REQ-025; TGT-03 REQ-146; TGT-04 REQ-031, REQ-033; TGT-05 REQ-034; TGT-06 REQ-036; TGT-07 REQ-048, REQ-049; TGT-08 REQ-065, REQ-076; TGT-09 REQ-041; TGT-10 REQ-140, REQ-141; TGT-11 REQ-135 to REQ-139; TGT-12 REQ-100; TGT-13 REQ-145; TGT-14 REQ-006, REQ-142; TGT-15 REQ-143; TGT-16 REQ-009. Every OpsCon must-never MN-01 to MN-13 has a requirement: MN-01 REQ-187; MN-02 REQ-018; MN-03 REQ-017, REQ-028; MN-04 REQ-003, REQ-015; MN-05 REQ-005, REQ-007; MN-06 REQ-067; MN-07 REQ-022, REQ-168; MN-08 REQ-042, REQ-127; MN-09 REQ-086; MN-10 REQ-012; MN-11 REQ-001; MN-12 REQ-013, REQ-014; MN-13 REQ-016. Revision 2 (15 Oct 2026): TGT-17 REQ-191; TGT-18 REQ-190, REQ-207, REQ-208; TGT-19 REQ-223; TGT-20 REQ-244, REQ-245; TGT-21 REQ-249; MN-14 REQ-194, REQ-195; MN-15 REQ-211, REQ-213; MN-16 REQ-218, REQ-224, REQ-226; MN-17 REQ-242; MN-18 REQ-189, REQ-200; MN-19 REQ-197, REQ-250. Every OpsCon scenario SCN-11 to SCN-16 and every PRD capability CAP-21 to CAP-25 is traced in sections 14 to 19; CAP-26 to CAP-28 are deferred from operation (PRD section 8.1) and carry no requirement in this revision.
 
 | Id | Requirement | Trace | Verification | Acceptance criterion |
 | --- | --- | --- | --- | --- |
 | REQ-187 | The Mākoha platform shall not transmit, dispense or act on an order, prescription or plan without a signing clinician's act. | MN-01; NG-01; POL-01 | Test | An order without a sign act cannot reach the transmitted state. |
 
-## 15. Withdrawn
+## 21. Withdrawn
 
 Withdrawn identifiers are kept here with their original text and reason and are never reused. Each was split because it carried more than one obligation.
 
@@ -1420,31 +1814,34 @@ Withdrawn identifiers are kept here with their original text and reason and are 
 | REQ-165 | When a de-identified export is produced, the Mākoha platform shall use an export type that cannot hold identifier fields and shall keep the residual identifier rate on the adjudicated set below the declared value. | CAP-14 | Test | Withdrawn: two obligations; replaced by REQ-166 and REQ-167. |
 | REQ-177 | The Mākoha platform shall retain every ledger row, resource version and original for at least ten years from the patient's last treatment and shall not delete them. | OpsCon section 6; STD-05 | Test | Withdrawn: two obligations; replaced by REQ-178. |
 
-## 16. Change requests to upstream
+## 22. Change requests to upstream
 
-None.
+None. Revision of 15 Oct 2026: none raised.
 
-## 17. Assumptions
+## 23. Assumptions
 
 | Assumption | Confidence | How it would be checked |
 | --- | --- | --- |
 | The configured values named "configured threshold", "configured window" and "configured interval" are each a pinned fragment by go-live | High | Compiler registry lists them |
 | The synthetic practice of 10,000 patients is available before M5 for every performance requirement | Medium | PRD open item |
+| A synthetic lead set, a scripted call and cue set and a synthetic archive with handwriting exist beside the synthetic practice for sections 14 to 19 | Medium | Produced with the synthetic practice before M5 |
 
-## 18. Open questions
+## 24. Open questions
 
 - [ ] Availability, RPO and RTO values (REQ-145, deferred with PERF-12)
 - [ ] Voice turn latency (REQ-146, set at M9)
 - [x] All thirteen sections confirmed 25 Sep 2026; verification methods accepted
+- [x] Revision 2 (15 Oct 2026): sections 14 to 19, REQ-188 to REQ-259; no existing requirement changed
+- [ ] Reference machine for REQ-245 (deferred with TGT-20)
 
 
 # 6. Validation Activities
 
-_status: final · version 1.0_
+_status: final · version 2.0_
 
 # Validation Activities
 
-Plan and record of validating every requirement in 05-requirements.md (final v1.0). Cycle 1 (25 Sep 2026) is the planning cycle: every requirement has one entry inheriting its verification method and acceptance criterion, grouped into activities; complete = no throughout; modification required = no unless stated. Later cycles record outcomes and raise change requests. Identifiers minted here: VAL-nnn (one entry per requirement, same number as the requirement), ACT- (grouped activities), VCR- (change requests raised by validation). Every REQ identifier of phase 5 appears below, including the withdrawn ones, which are listed as not validated.
+Plan and record of validating every requirement in 05-requirements.md (final v2.0). Revised 15 Oct 2026 against compendium revision 2: activities ACT-14 to ACT-16 and entries VAL-188 to VAL-259 added for the new requirement sections 14 to 19; existing entries unchanged; cycle 1 remains the planning cycle. Cycle 1 (25 Sep 2026) is the planning cycle: every requirement has one entry inheriting its verification method and acceptance criterion, grouped into activities; complete = no throughout; modification required = no unless stated. Later cycles record outcomes and raise change requests. Identifiers minted here: VAL-nnn (one entry per requirement, same number as the requirement), ACT- (grouped activities), VCR- (change requests raised by validation). Every REQ identifier of phase 5 appears below, including the withdrawn ones, which are listed as not validated.
 
 ## 1. Activities
 
@@ -1466,6 +1863,9 @@ Each activity covers many entries; each entry references exactly one requirement
 | ACT-11 | Security test and inspection (M8): MFA, audit, break-glass, consent, tenancy, seccomp, secrets, manifest, de-identification | M8 | CI and review session | hardware-backed key store |
 | ACT-12 | Regulatory and knowledge inspection (M8): bundle verifier, obligations register, ratification gates, retention, terminology pin, configuration audit | M8 | Review session | sponsor appointed; standards list confirmed |
 | ACT-13 | Voice sidecar demonstration and tests (M9): interruption, pinned weights, transcript spans, fallback, consent, bounded loop | M9 | Staging with GPU node | voice model selected; GPU hardware |
+| ACT-14 | Front door and channels suite (M5, M7, M9; revision 2): lead register and clocks, conversion, omnichannel desk with rule routing and the PHI check (M5), front-office aperture, consoles and form designer (M7), intent classifier, follow-through drafts and campaign drafting (M9); E2E-14, E2E-15, E2E-17 | M5, M7, M9 | Staging with the synthetic lead set and provider fakes; provider sandboxes for the WhatsApp items | synthetic lead set; WhatsApp provider selected (D-14); intent taxonomy ratified (D-21) |
+| ACT-15 | Voice line telephony suite (M5, M9; revision 2): IVR floor, identity confirmation, consent prompt, booking by keypad, message taking (M5); dialogue, hand-off cues, after-hours, check-in instruments (M9); E2E-16 | M5, M9 | Staging with a carrier sandbox and the scripted call and cue set; GPU node for M9 items | telephony carrier selected (D-15); voice model (M9 items) |
+| ACT-16 | Document intake batch suite (M5, M9; revision 2): batch control, resume and idempotence, field review, unsolicited result trigger (M5); OCR, layout and handwriting engines at volume (M9); E2E-18 | M5, M9 | Staging with the synthetic archive and the reference machine | synthetic archive with handwriting; recognition models; reference machine |
 
 ## 2. Validation register
 
@@ -1718,6 +2118,108 @@ Columns: entry; requirement; activity; method (inherited); evidence location; co
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | VAL-187 | REQ-187 | ACT-01 | Test | `evidence/ACT-01/REQ-187/` under the build hash; mirrored to Ketryx | no | no | none |
 
+### Front door and lead register (SCN-11)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-188 | REQ-188 | ACT-14 | Test | `evidence/ACT-14/REQ-188/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-189 | REQ-189 | ACT-14 | Test | `evidence/ACT-14/REQ-189/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-190 | REQ-190 | ACT-14 | Test | `evidence/ACT-14/REQ-190/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-191 | REQ-191 | ACT-14 | Test | `evidence/ACT-14/REQ-191/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-192 | REQ-192 | ACT-14 | Test | `evidence/ACT-14/REQ-192/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-193 | REQ-193 | ACT-14 | Test | `evidence/ACT-14/REQ-193/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-194 | REQ-194 | ACT-14 | Inspection | Inspection record `evidence/ACT-14/REQ-194/` signed by the reviewer | no | no | none |
+| VAL-195 | REQ-195 | ACT-14 | Test | `evidence/ACT-14/REQ-195/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-196 | REQ-196 | ACT-14 | Test | `evidence/ACT-14/REQ-196/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-197 | REQ-197 | ACT-14 | Test | `evidence/ACT-14/REQ-197/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-198 | REQ-198 | ACT-14 | Test | `evidence/ACT-14/REQ-198/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-199 | REQ-199 | ACT-14 | Test | `evidence/ACT-14/REQ-199/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-200 | REQ-200 | ACT-14 | Test | `evidence/ACT-14/REQ-200/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-201 | REQ-201 | ACT-14 | Test | `evidence/ACT-14/REQ-201/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-202 | REQ-202 | ACT-14 | Test | `evidence/ACT-14/REQ-202/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-203 | REQ-203 | ACT-14 | Test | `evidence/ACT-14/REQ-203/` under the build hash; mirrored to Ketryx | no | no | none |
+
+### Omnichannel desk (SCN-12)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-204 | REQ-204 | ACT-14 | Test | `evidence/ACT-14/REQ-204/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-205 | REQ-205 | ACT-14 | Test | `evidence/ACT-14/REQ-205/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-206 | REQ-206 | ACT-14 | Test | `evidence/ACT-14/REQ-206/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-207 | REQ-207 | ACT-14 | Test | `evidence/ACT-14/REQ-207/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-208 | REQ-208 | ACT-14 | Test | `evidence/ACT-14/REQ-208/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-209 | REQ-209 | ACT-14 | Test | `evidence/ACT-14/REQ-209/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-210 | REQ-210 | ACT-14 | Test | `evidence/ACT-14/REQ-210/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-211 | REQ-211 | ACT-14 | Test | `evidence/ACT-14/REQ-211/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-212 | REQ-212 | ACT-14 | Test | `evidence/ACT-14/REQ-212/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-213 | REQ-213 | ACT-14 | Test | `evidence/ACT-14/REQ-213/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-214 | REQ-214 | ACT-14 | Test | `evidence/ACT-14/REQ-214/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-215 | REQ-215 | ACT-14 | Test | `evidence/ACT-14/REQ-215/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-216 | REQ-216 | ACT-14 | Demonstration | Demonstration record and recording `evidence/ACT-14/REQ-216/` | no | no | none |
+
+### Voice line (SCN-13)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-217 | REQ-217 | ACT-15 | Test | `evidence/ACT-15/REQ-217/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-218 | REQ-218 | ACT-15 | Test | `evidence/ACT-15/REQ-218/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-219 | REQ-219 | ACT-15 | Test | `evidence/ACT-15/REQ-219/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-220 | REQ-220 | ACT-15 | Test | `evidence/ACT-15/REQ-220/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-221 | REQ-221 | ACT-15 | Test | `evidence/ACT-15/REQ-221/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-222 | REQ-222 | ACT-15 | Test | `evidence/ACT-15/REQ-222/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-223 | REQ-223 | ACT-15 | Test | `evidence/ACT-15/REQ-223/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-224 | REQ-224 | ACT-15 | Test | `evidence/ACT-15/REQ-224/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-225 | REQ-225 | ACT-15 | Test | `evidence/ACT-15/REQ-225/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-226 | REQ-226 | ACT-15 | Test | `evidence/ACT-15/REQ-226/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-227 | REQ-227 | ACT-15 | Test | `evidence/ACT-15/REQ-227/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-228 | REQ-228 | ACT-15 | Test | `evidence/ACT-15/REQ-228/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-229 | REQ-229 | ACT-15 | Test | `evidence/ACT-15/REQ-229/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-230 | REQ-230 | ACT-15 | Test | `evidence/ACT-15/REQ-230/` under the build hash; mirrored to Ketryx | no | no | none |
+
+### Form designer (SCN-14)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-231 | REQ-231 | ACT-14 | Test | `evidence/ACT-14/REQ-231/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-232 | REQ-232 | ACT-14 | Test | `evidence/ACT-14/REQ-232/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-233 | REQ-233 | ACT-14 | Test | `evidence/ACT-14/REQ-233/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-234 | REQ-234 | ACT-14 | Test | `evidence/ACT-14/REQ-234/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-235 | REQ-235 | ACT-14 | Test | `evidence/ACT-14/REQ-235/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-236 | REQ-236 | ACT-14 | Test | `evidence/ACT-14/REQ-236/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-237 | REQ-237 | ACT-14 | Inspection | Inspection record `evidence/ACT-14/REQ-237/` signed by the reviewer | no | no | none |
+| VAL-238 | REQ-238 | ACT-14 | Test | `evidence/ACT-14/REQ-238/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-239 | REQ-239 | ACT-14 | Test | `evidence/ACT-14/REQ-239/` under the build hash; mirrored to Ketryx | no | no | none |
+
+### Document intake at volume (SCN-15)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-240 | REQ-240 | ACT-16 | Test | `evidence/ACT-16/REQ-240/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-241 | REQ-241 | ACT-16 | Test | `evidence/ACT-16/REQ-241/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-242 | REQ-242 | ACT-16 | Test | `evidence/ACT-16/REQ-242/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-243 | REQ-243 | ACT-16 | Test | `evidence/ACT-16/REQ-243/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-244 | REQ-244 | ACT-16 | Test | `evidence/ACT-16/REQ-244/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-245 | REQ-245 | ACT-16 | Test | `evidence/ACT-16/REQ-245/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-246 | REQ-246 | ACT-16 | Inspection | Inspection record `evidence/ACT-16/REQ-246/` signed by the reviewer | no | no | none |
+| VAL-247 | REQ-247 | ACT-16 | Test | `evidence/ACT-16/REQ-247/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-248 | REQ-248 | ACT-16 | Test | `evidence/ACT-16/REQ-248/` under the build hash; mirrored to Ketryx | no | no | none |
+
+### Campaigns, follow-through and revision 2 cross-cutting rules (SCN-16)
+
+| Entry | Requirement | Activity | Method | Evidence | Complete | Modification | Change request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VAL-249 | REQ-249 | ACT-14 | Test | `evidence/ACT-14/REQ-249/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-250 | REQ-250 | ACT-14 | Test | `evidence/ACT-14/REQ-250/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-251 | REQ-251 | ACT-14 | Test | `evidence/ACT-14/REQ-251/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-252 | REQ-252 | ACT-14 | Test | `evidence/ACT-14/REQ-252/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-253 | REQ-253 | ACT-14 | Test | `evidence/ACT-14/REQ-253/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-254 | REQ-254 | ACT-14 | Test | `evidence/ACT-14/REQ-254/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-255 | REQ-255 | ACT-14 | Test | `evidence/ACT-14/REQ-255/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-256 | REQ-256 | ACT-14 | Test | `evidence/ACT-14/REQ-256/` under the build hash; mirrored to Ketryx | no | no | none |
+| VAL-257 | REQ-257 | ACT-11 | Inspection | Inspection record `evidence/ACT-11/REQ-257/` signed by the reviewer | no | no | none |
+| VAL-258 | REQ-258 | ACT-11 | Inspection | Inspection record `evidence/ACT-11/REQ-258/` signed by the reviewer | no | no | none |
+| VAL-259 | REQ-259 | ACT-10 | Test | `evidence/ACT-10/REQ-259/` under the build hash; mirrored to Ketryx | no | no | none |
+
 ### Withdrawn requirements (not validated)
 
 | Entry | Requirement | Status |
@@ -1738,17 +2240,17 @@ Columns: entry; requirement; activity; method (inherited); evidence location; co
 
 | Count | Value |
 | --- | --- |
-| Requirements with an entry | 176 |
+| Requirements with an entry | 248 (176 at cycle 1 plus 72 at revision 2) |
 | Withdrawn identifiers listed | 11 |
 | Entries complete | 0 |
 | Entries with modification required | 0 |
 | Open change requests | 0 |
-| Entries by method | Test 155, Inspection 15, Analysis 3, Demonstration 3 |
-| Activities | 13 |
+| Entries by method | Test 221, Inspection 20, Analysis 3, Demonstration 4 |
+| Activities | 16 |
 
 ## 4. Change requests
 
-None raised in cycle 1.
+None raised in cycle 1. Revision of 15 Oct 2026: none raised.
 
 | Id | Raised by | Target document | Target item | Change | Status |
 | --- | --- | --- | --- | --- | --- |
@@ -1761,11 +2263,15 @@ Every activity writes its evidence under `evidence/<activity>/<requirement>/` ke
 
 | Risk or limitation | Bearing on validation |
 | --- | --- |
-| Fifteen requirements are validated by inspection, three by analysis and three by demonstration rather than test | Acceptable for structural and measure-based items; each names its artefact; to be reconfirmed with compliance for the regulatory application |
+| 20 requirements are validated by inspection, 3 by analysis and 4 by demonstration rather than test | Acceptable for structural and measure-based items; each names its artefact; to be reconfirmed with compliance for the regulatory application |
 | REQ-145 (availability, RPO, RTO) and REQ-146 (voice turn latency) carry deferred numbers | Their entries cannot pass until the numbers are set |
 | National sandbox access (Hira, HealthLink, NZePS) is not yet arranged | ACT-09 is blocked until onboarding |
 | The voice model is not yet selected | ACT-13 and the voice items in ACT-02 are blocked until M9 |
 | The synthetic practice is not yet produced | ACT-10 and every scenario suite are blocked until it exists (PRD open item) |
+| WhatsApp and telephony providers are not yet selected (D-14, D-15; revision 2) | ACT-14 provider items and ACT-15 are blocked until selection before M5; fakes cover the rule and PHI-check items |
+| The intent taxonomy codebook is not yet ratified (D-21; revision 2) | VAL-207 and the classifier items of ACT-14 cannot pass until ratification before M7 |
+| Recognition models, the synthetic archive and the reference machine for ACT-16 do not yet exist (revision 2) | VAL-241 to VAL-246 are blocked until M9 inputs exist; batch-control items run on fixtures |
+| Deferred revision 2 modules (PRD section 8.1) carry no requirement and no entry | Their activation needs a later requirements revision and validation cycle before operation |
 
 ## 7. Assumptions
 
@@ -1778,21 +2284,25 @@ Every activity writes its evidence under `evidence/<activity>/<requirement>/` ke
 
 - [x] Evidence convention confirmed (section 5)
 - [ ] Blocker owners: deferred 25 Sep 2026
+- [x] Revision 2 (15 Oct 2026): ACT-14 to ACT-16, VAL-188 to VAL-259 added
+- [ ] Owners for the revision 2 blockers (providers, taxonomy, synthetic archive): platform operator for D-14 and D-15, clinical governance for D-21, otherwise deferred
 
 
 # 7. Completion and Approvals
 
-_status: final · version 1.0_
+_status: final · version 2.0_
 
 # Completion and Approvals
 
-Record that the Mākoha specification set is complete, consistent and approved for its intended purpose, with the approved versions pinned. Completion evidence is tool output from `docpipe status` and `docpipe build` on 25 Sep 2026. Identifiers minted here: APR- (approvals), CND- (conditions and follow-up actions).
+Record that the Mākoha specification set is complete, consistent and approved for its intended purpose, with the approved versions pinned. Completion evidence is tool output from `docpipe status` and `docpipe build` on 25 Sep 2026 (cycle 1, v1.0) and on 15 Oct 2026 (revision 2, v2.0). Revised 15 Oct 2026: the v2.0 cycle is recorded beside the v1.0 cycle in every section; nothing from cycle 1 is removed. Identifiers minted here: APR- (approvals), CND- (conditions and follow-up actions).
 
 ## 1. Scope of approval (confirmed 25 Sep 2026)
 
 What is approved: the seven phase documents at version 1.0 with the hashes in section 3, compiled as `docs/spec/PSD.md`, together with `docpipe.json` conventions and the Mākoha Design Compendium (25 Sep 2026) as the authoritative build specification they map to.
 
 For what use: the build baseline for milestones M1 to M9 of the Tier 3 first release for telehealth and hospital in the home in New Zealand (PRD section 8.1), and the source of requirements, risks and verification evidence captured into Ketryx for the planned regulatory applications. This approval is not a regulatory submission, a clinical governance ratification of any fragment, or an ethics approval of any study; each of those remains with its named role.
+
+Revision 2 (confirmed 15 Oct 2026): what is approved is the six phase documents at version 2.0 with the hashes in section 3, compiled as `docs/spec/PSD.md` on 15 Oct 2026, mapped to the Mākoha Design Compendium revision 2 (15 Oct 2026). The use is unchanged, with the first-release scope now including the revision 2 modules A6, A7, J4, J5, H4 and F5 under the front-office profile (PRD section 8.1, TechSpec DEC-08) and the remaining revision 2 modules built but not operated until a later release decision.
 
 
 ## 2. Completion checklist (answered from tool output)
@@ -1806,6 +2316,18 @@ For what use: the build baseline for milestones M1 to M9 of the Tier 3 first rel
 | Residual risks accepted | Pending approver | Five residual risks in 06-validation.md section 6: inspection and analysis in place of test for 21 requirements; two deferred numbers; national sandbox access; voice model selection; synthetic practice |
 | Requirement syntax and identifier checks | Met | `docpipe check 5` clean apart from the two deferred numbers |
 | Traceability export | Met | `docs/spec/traceability.csv` built 25 Sep 2026 |
+
+Revision 2 cycle, answered from tool output on 15 Oct 2026:
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| All phases 1 to 6 final and none stale | Met | `docpipe status` 15 Oct 2026: six rows final v2.0, stale = no |
+| Zero open markers | Not met; carried as condition CND-01 | 28 markers across phases 1 to 5: the 25 of cycle 1 plus three metric baselines for MET-14, MET-15 and MET-17 captured at cut-over |
+| Every requirement covered by validation | Met | `docpipe check 6` clean: all 259 REQ identifiers referenced; 248 entries, 11 withdrawn listed; 72 new entries VAL-188 to VAL-259 in activities ACT-10, ACT-11 and ACT-14 to ACT-16 |
+| All change requests closed | Not met; carried as conditions CND-02 and CND-17 | CR-01 amended 15 Oct 2026 to add `projection`, still open against the compendium; CR-02 raised against compendium Volume 13.2 (the open item this revision discharges); no change request raised by phases 2 to 6 in this revision |
+| Residual risks accepted | Pending approver | Ten residual risks in 06-validation.md section 6: the five of cycle 1 plus providers not selected, taxonomy not ratified, recognition inputs missing, deferred modules without entries, and the inspection and demonstration count now 24 |
+| Requirement syntax and identifier checks | Met | `docpipe check 5` clean apart from the two deferred numbers; every new requirement EARS-shaped |
+| Traceability export | Met | `docs/spec/traceability.csv` built 15 Oct 2026: 1099 identifiers; REQ-188 to REQ-259 present with phase 6 references |
 
 ## 3. Document register at approval
 
@@ -1822,6 +2344,17 @@ Pasted from `docs/spec/PSD.md`, built 25 Sep 2026.
 
 Conventions: intended purpose as recorded in `docpipe.json`; identifier pattern `\b[A-Z][A-Z0-9]{0,4}-\d{2,3}\b`; requirement syntax EARS.
 
+Register at revision 2, pasted from `docs/spec/PSD.md` built 15 Oct 2026:
+
+| # | Document | Status | Version | Finalised | Hash |
+|---|---|---|---|---|---|
+| 1 | Product Requirements Document | final | 2.0 | 2026-10-15 | 0e34202c06cdf092 |
+| 2 | Concept of Operations | final | 2.0 | 2026-10-15 | 7fdb53fbc48fff39 |
+| 3 | Operations Concept | final | 2.0 | 2026-10-15 | 98addfd786475290 |
+| 4 | Technical Specifications | final | 2.0 | 2026-10-15 | 4248dd6478ed6328 |
+| 5 | Specific Requirements | final | 2.0 | 2026-10-15 | 6d65c655a1ac2b42 |
+| 6 | Validation Activities | final | 2.0 | 2026-10-15 | afcfede65dc2140a |
+
 ## 4. Approvals
 
 The product owner is the sole approver for this cycle (stated 25 Sep 2026). Clinical governance, compliance and architecture roles have no named holder yet; their acceptance of residual risks, standards list and deferred stack choices is carried as conditions CND-09 to CND-11.
@@ -1829,10 +2362,13 @@ The product owner is the sole approver for this cycle (stated 25 Sep 2026). Clin
 | Id | Role | Name | Decision | Conditions | Date |
 | --- | --- | --- | --- | --- | --- |
 | APR-01 | Product owner | Ken Lee | Approve with conditions | CND-01 to CND-11 | 2026-09-25 |
+| APR-02 | Product owner | Ken Lee | Approve with conditions (revision 2, v2.0) | CND-01 to CND-11 carried; CND-12 to CND-19 added | 2026-10-15 |
 
 ## 5. Release decision
 
 Go: the set is approved with conditions as the build baseline for the Tier 3 New Zealand first release, authorising M1 to M4 to start immediately and M5 onward subject to CND-03 and CND-04 (decided by the product owner, 25 Sep 2026).
+
+Revision 2 (decided by the product owner, 15 Oct 2026): Go stands for v2.0. M4 now includes the eleven new fragment classes; M5 now includes the revision 2 crates (TechSpec COMP-25 to COMP-29 operated, COMP-31 build-only) and is additionally subject to CND-12 and CND-19; M7 and M9 items of ACT-14 to ACT-16 are subject to CND-13.
 
 ## 6. Conditions and follow-up actions
 
@@ -1849,12 +2385,21 @@ Go: the set is approved with conditions as the build baseline for the Tier 3 New
 | CND-09 | Name a clinical governance holder who accepts or rejects the five residual risks in 06-validation.md section 6 and ratifies fragments | Product owner | Before M4 |
 | CND-10 | Name a compliance holder who confirms the standards list, appoints the sponsor and lodges the WAND notification | Product owner | Before M5 |
 | CND-11 | Name an architecture holder who takes the deferred stack choices (TechSpec section 5) | Product owner | Before M1 exit |
+| CND-12 | Select the WhatsApp Business provider (coexistence mode) and the telephony carrier (warm transfer), record their terms in the obligations register (D-14, D-15; TechSpec DEC-09) | Platform operator | Before M5 |
+| CND-13 | Ratify the intent taxonomy codebook, urgency bands, tone classes and the default routing rules (D-21) | Clinical governance | Before M7 |
+| CND-14 | Decide tokenisation key custody and rotation cadence (D-16; TechSpec DEC-10) | Compliance with architecture | Before M8, or before the release that operates L2 if later |
+| CND-15 | Confirm demand for the overlay posture before the incumbent snapshot path is built (D-13; TechSpec DEC-11) | Architecture | Before any overlay deployment is scheduled |
+| CND-16 | Activate a deferred revision 2 module (B9, E3, G4, I3, J6, J7, L1, L2, L3, composer, body map, overlay) only after a requirements revision and validation cycle covering it (PRD section 8.1; TechSpec DEC-08) | Product owner | At each activation decision |
+| CND-17 | Close CR-02 by ticking the compendium Volume 13.2 item and reflect the `projection` amendment to CR-01 in Volume 4.2 at the next compendium revision | Product owner | With CND-02, before M4 |
+| CND-18 | Confirm the Unsolicited Electronic Messages Act 2007 reading (ConOps POL-20, TechSpec STD-17) | Compliance | Before the first campaign publication |
+| CND-19 | Produce the synthetic lead set, the scripted call and cue set and the synthetic archive with handwriting beside the synthetic practice (CND-04) | Deferred owner | Before M5 |
 
 ## 7. Assumptions
 
 | Assumption | Confidence | How it would be checked |
 | --- | --- | --- |
 | A sole product-owner approval is sufficient for the build baseline; role approvals are needed before the regulatory application | Medium | Reviewed when CND-09 to CND-11 are filled |
+| The revision 2 scope ruling (six modules operated, nine deferred) can be revisited without re-baselining M1 to M4, because activation is a profile manifest change (TechSpec DEC-08) | High | Any activation goes through CND-16 |
 
 ## 8. Open questions
 
@@ -1862,3 +2407,5 @@ Go: the set is approved with conditions as the build baseline for the Tier 3 New
 - [x] Sole approver: product owner, approve with conditions, 2026-09-25
 - [x] Release decision: go
 - [ ] Owners for CND-01, CND-03 to CND-05, CND-08: deferred 25 Sep 2026
+- [x] Revision 2 re-approval: product owner, approve with conditions, 2026-10-15 (APR-02); CND-12 to CND-19 added
+- [ ] Owner for CND-19: deferred 15 Oct 2026

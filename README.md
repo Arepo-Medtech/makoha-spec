@@ -5,6 +5,7 @@ Specification set for Mākoha, a clinical language platform and AI-native record
 - `docs/spec/PSD.md`: compiled Product Specification Document (seven phases, produced with docpipe).
 - `docs/spec/0*.md`: the phase documents; edit these, never the PSD.
 - `docs/ref/` and the root markdown files: the Mākoha Design Compendium and its eight source documents, the authoritative build specification.
+  - Revision 2 (15 Oct 2026): the compendium folds in every capability from the Care Execution Platform teardown (`~/Documents/DESIGN/Care Execution Platform - Product Specification.md`), placed in situ with rulings; the placement index is in its "How to read" section. The root copy and `docs/ref/makoha-design-compendium.md` are kept byte-identical. The eight source documents are unchanged and predate revision 2.
 - `docpipe/`: the phase-gated documentation pipeline. `python3 docpipe/docpipe.py status`.
 
 - [Wave 2 intake assessment](docs/planning/MAKOHA_SPEC_WAVE2_INTAKE.md): baseline reconciliation findings and proposed integration into the Jira/Ketryx, Linear, GitHub and Symphony pipeline.

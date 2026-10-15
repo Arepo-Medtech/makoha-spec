@@ -24,8 +24,35 @@ Each volume is written to be executed from, not consulted. Where an earlier docu
 | 12 Additive services | Patient journey, terminology service, evidence-linked coding and risk register | Thesaurus |
 | 13 Decisions and glossary | Open decisions, assumptions, and the working vocabulary | All |
 
-Four build volumes sit beside their parent volumes: Volume 4A converts the design-corpus scan into build instructions (the twenty-one clusters each with what is already built and the delta to build, the ten repository assets as adopted components with integration specs, the five disagreements as rulings with tests, the fold-in list mapped to milestones); Volume 2A converts the three-portals document into functional deliverables (aperture model, pre-intake agent, engagement loop engine, decision aids, consent controls, the eight loops, brief field spec, augmented reasoning, learning surface, decision-event view, nine surveillance signals, sentinel timeline assembler, user audit, study builder, model registry, evaluation register, the discharge episode as E2E-13, the improvement cycle as a pipeline); Volume 1A converts the moonshot concept section by section into functional deliverables (fact contract, eighteen capability services, seventeen runtime operations, five setting profiles, layer-to-crate map, instrumented benefits, gates, milestones); Volume 3A specifies the complete EHR module by module (thirty-eight modules in groups A to K with the Cargo workspace, cross-cutting rules and the twelve-scenario parity suite).
+Four build volumes sit beside their parent volumes: Volume 4A converts the design-corpus scan into build instructions (the twenty-one clusters each with what is already built and the delta to build, the ten repository assets as adopted components with integration specs, the five disagreements as rulings with tests, the fold-in list mapped to milestones); Volume 2A converts the three-portals document into functional deliverables (aperture model, pre-intake agent, engagement loop engine, decision aids, consent controls, the eight loops, brief field spec, augmented reasoning, learning surface, decision-event view, nine surveillance signals, sentinel timeline assembler, user audit, study builder, model registry, evaluation register, the discharge episode as E2E-13, the improvement cycle as a pipeline); Volume 1A converts the moonshot concept section by section into functional deliverables (fact contract, eighteen capability services, seventeen runtime operations, five setting profiles, layer-to-crate map, instrumented benefits, gates, milestones); Volume 3A specifies the complete EHR module by module (thirty-eight modules in groups A to K, plus fifteen modules folded in at revision 2 across groups A to L with the Cargo workspace, cross-cutting rules and the twelve-scenario parity suite).
 
+**Revision 2 (15 October 2026).** This revision folds in every capability identified in the Care Execution Platform teardown (Product Specification, 15 October 2026: a vendor-anonymised reconstruction of a competitor's FHIR-native "execution layer" from its public website). Each item is placed in the volume that owns it, specified to build depth, and bound by the ten laws; where the teardown's design and a law disagree, the law wins and the ruling is recorded at the item and in Volume 13. Nothing from the teardown is adopted as fact: every figure quoted from it is a vendor claim and is marked as such, and no claim becomes a baseline. The index below is the only place the fold-in appears as a list; everything else is in situ.
+
+| Teardown feature (its name) | Lands in | Treatment |
+| --- | --- | --- |
+| Intake Pipeline (Patient CRM and Growth): lead capture, stages, lead scoring, response clock, campaigns, Follow-Through, Queue Worker | 3A.2 A6, A7; 1A.2 #21; 1A.3 ops 18, 21; 1A.4 front-office profile; 2A.0 front-office aperture | Adopted; lead scoring reframed as per-factor rule outputs with no composite (D-12) |
+| Channel Desk (Omni-channel): WhatsApp coexistence, SMS, email, call records, twelve-intent triage, outbound PHI check | 3A.11 J4; 1A.2 #22; 1A.3 op 19; 9.8; 6.1 | Adopted; intent classifier class 2, routing class 1 |
+| Voice agent (31 languages, 7 voices) and Night Line after-hours answering | 3A.11 J5; 1A.2 #23; 1A.3 op 20; 7.3; 7.5 | Adopted as the voice line; dialogue class 3 under the bounded loop, booking class 1 |
+| Consult Capture (ambient scribe, five note types, concept confirmation, co-sign, video visits) | 2A.2; 3A.3 B1; 3A.11 J3 | Adopted; every concept confirmed as an act or held as a provisional fact |
+| Panel Manager (Population Health), Risk Ledger, next best actions, outreach SLA, role views, contracts | 2A.3; 3A.6 E3; 12.3 | Adopted; no composite ranking (Law 3, Volume 1.3); risk engines class 2, flagged |
+| Chart Briefing (Patient 360), ask-the-record | 9.5; 2A.2; 1A.3 ops 1, 6 | Already built; body map added in 12.8 |
+| Slot Book (public booking, waitlist, no-show recovery) | 3A.2 A4 | Augmented |
+| Home Readings (remote patient monitoring) | 3A.11 J3 | Already built; programme enrolment and thresholds added |
+| Margin View, Claims Check | 3A.8 G4 | Adopted as cost attribution and pre-submission claim check |
+| Referral Tracker, Plan Runner, Feedback Forms, Record Search | 3A.7 F1 (built), 3A.3 B7 (built), 3A.11 J6, 3A.3 B9 | Augmented or adopted |
+| Ward Board, Bed Flow, Theatre Schedule | 3A.11 J7; D-18 | Ward and bed as the HITH census board; theatre not adopted, outside intended purpose |
+| Pocket Chart (patient and provider apps) | Volume 2; 4A.14 | Already built as faces; mobile rules in 4A.14 |
+| Agent Studio, Workflow Studio (35 node types), App Studio | 12.7 | Adopted as the pathway and loop composer that emits compiler fragments; no runtime rule authoring |
+| Document AI (OCR, handwriting, fax archive batch, per-field confidence) | 3A.7 F5; 1A.2 #25; 1A.3 op 22 | Adopted; OCR class 2, field review queue |
+| Analytics Studio (plain-English to SQL, saved metrics, dashboard designer) | 3A.10 I3; 12.6; 1A.2 #27 | Adopted; a generated query is a class-3 draft confirmed by an act before execution |
+| Signal Lab (body map, What-If, synthetic cohorts) | 12.8; 10.3 | Body map over facts; What-If as flagged projection arguments; synthetic data in the evaluation zone |
+| Six-model layer, gateway controls, bring-your-own model keys | 7.3; 11.9 | Engine families already cover each job; BYO keys authoring-time only (D-19) |
+| Developer platform (FHIR REST, webhooks, Agents API, SDKs, sandbox) | 3A.12b L3; 12.5 | Adopted; partner engines enter under the Volume 7 contract |
+| Data Privacy Gateway (on-prem HMAC tokenisation, vault, mTLS re-identification) | 3A.12b L2; 12.4; 11.7 | Adopted as the tokenisation gateway |
+| White-label, reseller, partner console, multi-tenant isolation | 3A.12b L1; 11.8 | Adopted for tenancy and brand packs; commercial terms out of scope (D-17) |
+| Deployment postures (overlay or full system of record); hosting (cloud, private, on-premise, air-gapped) | 11.6; 11.7 | Overlay posture adopted with replay constraints (D-13) |
+| "Nothing reaches the chart unapproved" | Volume 5 | Already stronger here: evaluator, then sign-off |
+| Clinic pricing, capabilities per tier, pilot model, partner margins | Not adopted | Commercial, outside this compendium (D-17); usage meters provided as Measures (3A.12b L1) |
 Four conventions hold throughout. First, every number that governs behaviour (a threshold, a latency budget, a coverage level) is a configured, versioned, signed value, never a literal in code; where this compendium quotes one, it is the default the first release ships with. Second, "released", "flagged" and "held" are the only three states a piece of decision support can be in, and only Volume 5 may assign them. Third, anything a learned model produces is a proposal until the deterministic gate has passed it; no exception is granted by any later volume. Fourth, every volume has the same shape: a short statement of why the design is as it is, then the build specification (types, schema, state machines, algorithms, interfaces), then a numbered acceptance-test table; the test ids are the contract between volumes and the delivery milestones in Volume 11.
 
 ## Volume 1 — Thesis and governing principles
@@ -67,6 +94,8 @@ The platform does not perform autonomous prescribing, does not act on an order w
 | Hospital in the home | Orders sent straight to patients with a state machine that surfaces overdue and unacknowledged items; inbound results reconcile to the originating order | Volume 3 |
 | Practice governance and regulators | Sentinel events, prospective studies and audits are queries over the ledger, not projects; a regulator bundle is a signed export of a time window | Volumes 8, 10 |
 | Patients | Engagement loops driven by released arguments only; the patient never sees a held or flagged item, and sees a released one only after sign-off | Volumes 2, 9 |
+| Front office and practice growth | A lead register with response clocks, an omnichannel desk, a voice line and a form designer that all write to the same record; outreach that is itself a released argument | Volumes 1A, 3A groups A, H, J |
+| Partners and integrators | Tenancy with brand packs, a developer platform with a sandbox and typed SDKs, engines admitted only under the purity contract | Volumes 11, 12 |
 
 ### 1.5 System context (build view)
 
@@ -171,6 +200,19 @@ Each capability is a service crate under `sidecars/language/` (class-2 models) o
 | 17 | Domain packs | Configuration of 1–16 by locale/specialty fragments (class K) | Pack manifest | Swapped vocabularies, abbreviations, codebooks by pin, no retraining | PACK-01 switching pack changes only pins K/I; engine pins unchanged |
 | 18 | Workflow embedding | `orchestrator` + faces (Volumes 7, 9) | Released/flagged arguments | Rendered within budget; act recorded | WF-01 every rendered item has an argument id and attempt id in its response headers |
 
+Rows 19 and 20 are reserved for the PRD-minted capabilities CAP-19 (prospective study machinery, Volumes 2A.3 and 10.4) and CAP-20 (real-time patient voice, Volume 3A.11 J5), so numbering here and in the PRD agree. Rows 21 to 28 are folded in at revision 2.
+
+| # | Capability | Service and class | Input | Output contract | Acceptance test |
+| --- | --- | --- | --- | --- | --- |
+| 21 | Lead and engagement rules | `engage` (class 1) | Lead resource, channel events, stage history, consent snapshot | Response-clock state, stage transitions, follow-through step due, per-factor contributions as separate typed outputs; never a summed score | LEAD-01 clinical risk tier absent from every engagement rule input; LEAD-02 two leads with identical factors yield identical outputs |
+| 22 | Conversation intent, urgency and tone | `lang-intent` (class 2) + routing rules (class 1) | Inbound message or call transcript | Intent from the ratified taxonomy (3A.11 J4), urgency band, tone class, each with reliability; routing target from a rule fragment | OMNI-01 "possible emergency" intent routes to the critical lane under 100 ms; OMNI-02 distressed and negative tone distinguished on the sealed set above floor |
+| 23 | Telephony voice line | `voiceline` sidecar (ASR class 2, dialogue class 3, synthesis class 2) | Inbound and outbound calls | Transcript DocumentReference with spans, Communication, Appointment transitions through class-1 scheduling, hand-off events | VOX-01 a call writes nothing clinical beyond patient-reported Observation and QuestionnaireResponse; VOX-02 a hand-off cue reaches a person within one turn |
+| 24 | Form definition and FHIR binding | `forms` (class 1) | FormDefinition fragment, answers | FHIR transaction Bundle with every field bound to a path; computed fields in fixed point; QuestionnaireResponse with span index | FRM-01 every field in a shipped form has a binding; FRM-02 a formula field (BMI) equals the calculator fragment output |
+| 25 | Document intake at volume | `docai` (OCR and layout class 2; batch orchestration class 1) | PDF, image, fax stream, archive | Text blocks with per-block and per-field reliability, document type, extracted facts; low-reliability fields to review | DAI-01 a field below floor never becomes a fact without a review act; DAI-02 a 1,000-page batch is resumable and idempotent |
+| 26 | Tokenisation | `tokenise` (class 1) | Resource or export, tokenisation policy | Deterministic HMAC-SHA256 tokens per identifier class with the key in the tenant vault; re-identification only through the vault | DPG-01 same identifier and key yield the same token across two exports; DPG-02 no token reverses without the vault |
+| 27 | Plain-language analytics query | `gen-sql` (class 3) + view engine (class 1) | Question, view catalogue | Candidate query over declarative views with its interpretation, shown verbatim; executes only after a confirming act | ANA-01 a generated query never executes without an act; ANA-02 result rows carry lineage (RPT-03) |
+| 28 | Cost and margin attribution | `cost` (class 1) | ChargeItems, invoices, claims, pinned cost schedule | Per-encounter and per-episode cost and margin with lineage; leakage flags from rules | MRG-01 margin recomputed identically on replay; MRG-02 every leakage flag names its rule pin |
+
 ### 1A.3 Runtime operations as event-driven specifications
 
 The concept states that the platform runs continuously: every new document, message, result or transcript is an event; each event triggers extraction, updates the fact graph, re-scores risk and fires the workflow the change warrants. The build implements that as subscriptions on the event stream (Volume 3A.1) feeding the orchestrator (Volume 7), with every output passing the evaluator (Volume 5) before any face shows it.
@@ -208,8 +250,15 @@ flowchart LR
 | 15 | Register and recall maintenance | Nightly; on phenotype fragment change | `phenotype` (1), recall rules (1) | Register membership rows; recalls created/closed | Released (class 1) | Full run under 30 min for 10,000 patients | PHE-01; RC-03 |
 | 16 | Quality and safety analytics | Nightly; on demand | Views and Measures (1) | MeasureReports; safety-signal aggregates; equity views | n/a (reports) | Under 2 s per query | QM-01; RPT-03 |
 | 17 | De-identified export | Scheduled or requested | `deid` (2/1) with consent check (1) | Dataset with manifest | n/a | Batch | DEID-01; QM-03 |
+| 18 | Lead intake and follow-through | Lead created on any channel; stage change; response-clock boundary | `engage` (1); `gen-summary` for message drafts (3) | Lead stage, Task for the owner, drafted outreach message as a queue item, Communication on send | Rule outputs released; drafted text queue-only until a person sends it or a ratified template fires | Clock state under 1 s of the event | LEAD-03 breached clock creates a Task and a signal row; LEAD-04 a draft carrying a clinical claim fails the bright-line lint |
+| 19 | Omnichannel conversation triage | Inbound message or call record on any channel | `lang-intent` (2), routing rules (1), red-flag rules (1) | Intent, urgency and tone on the Communication; lane; Task carrying intent and urgency; patient match or hold | Lane by rule (released); classification summary strip flagged (class 2) | Under 2 s | OMNI-01; COM-03 |
+| 20 | Voice line call handling | Inbound call; scheduled outbound call | `voiceline` (2 and 3), scheduling rules (1), check-in loop (1) | Transcript, booking transitions, check-in answers as Observations, message taken as Communication, hand-off to on-call | Dialogue text queue-class (class 3 under 7.5); bookings released through class-1 rules | First response within the ratified turn latency (REQ-146) | VOX-01, VOX-02; APP-03 |
+| 21 | Campaign generation | Governance or front office files a campaign brief | `gen-summary` (3) over the brief fragment; claims-boundary lint (1) | Draft landing page copy, message sequence, nurture cadence as a loop fragment proposal | Queue-class; publishes only through the compiler as class U templates and an EngagementLoop fragment | Under 30 s | CAMP-01 a brief yielding a cure or guarantee claim is rejected by the claims boundary; CAMP-02 the published sequence is a pinned loop fragment |
+| 22 | Document batch intake | Archive upload; fax stream | `docai` (2), services 1 to 6, routing rules (1) | Classified documents, facts with spans and field reliability, review queue items for low-reliability fields | Facts above floor released as facts; below floor queue only | 1,000 pages per hour sustained | DAI-01, DAI-02 |
+| 23 | Panel worklist and outreach | Nightly; any flagged risk or eligibility argument; care-gap recall due | Risk engines (2), `match` (1), recall rules (1), loops (1) | Worklist rows, one argument per row with its reason and act buttons; outreach loop instance with an SLA; escalation to the named care manager on breach | Rows render exactly the verdict class; no composite ordering (D-12) | Worklist under 2 s for 10,000 patients | PNL-01 worklist has no composite column; PNL-02 breached outreach without a confirmed reply is labelled unverified |
+| 24 | Cost attribution | Encounter finish; invoice; claim report | `cost` (1) | Cost and margin rows per encounter and episode; leakage flags as Task proposals | Released (class 1); never on the patient face | Under 5 s of the event | MRG-01, MRG-02 |
 
-**Lifecycle sequences.** The four phases of the concept map to these operations: before the encounter = 1; during = 2, 3, 4, 5, 6; after = 7, 8, 9; between = 10, 11, 12, 13, 14; population = 15, 16, 17.
+**Lifecycle sequences.** The four phases of the concept map to these operations: before the encounter = 1; during = 2, 3, 4, 5, 6; after = 7, 8, 9; between = 10, 11, 12, 13, 14; population = 15, 16, 17. Folded operations: front door and growth = 18, 19, 20, 21; between (extended) = 22, 23; finance = 24.
 
 ```mermaid
 sequenceDiagram
@@ -250,7 +299,7 @@ One platform, one graph, five front doors: each setting is a signed profile frag
 ```rust
 pub struct SettingProfile {
     pub pin: Pin,
-    pub setting: Setting,                       // GeneralPractice | NursePrescriber | PharmacistPrescriber | Telehealth | HospitalInHome
+    pub setting: Setting,                       // GeneralPractice | NursePrescriber | PharmacistPrescriber | Telehealth | HospitalInHome | FrontOffice
     pub operations_enabled: BTreeSet<OperationId>,   // subset of 1A.3 #1..#17
     pub claim_types_receivable: BTreeSet<ClaimType>,
     pub scope: Option<ScopeFragment>,           // formulary, protocols, red-flag rules (prescriber settings)
@@ -267,6 +316,7 @@ pub struct SettingProfile {
 | Pharmacist prescriber | 1, 4, 6, 8, 10, 11, 13, 15 | Minor-ailment protocols, repeat-management rules, red-flag routing, formulary | Reconciled medication history across GP notes, discharge, dispense records and patient account (3A.4 C3) with discrepancy rows; medication review draft with recommendations as arguments citing evidence; deprescribing candidates from `lang-ae` signals | GP or emergency by red-flag rule | SET-PP-01 review draft recommendations each carry backing pin; SET-PP-02 red flag routes and blocks prescribing |
 | Telehealth | 1, 2, 3, 6, 12, 13 | No-examination rule set: red-flag weights raised; question-first protocol | Brief within 3 s of booking for an unfamiliar patient; message queue ordered by urgency and distress; hand-back packet: what was asked and answered (facts with spans) + open items | Usual provider via hand-back packet | SET-TH-01 brief ready before session join; SET-TH-02 hand-back packet contains every session fact and its answer |
 | Hospital in the home | 1, 2, 7, 9, 10, 11, 13, 16 | Deterioration, sepsis, readmission engines enabled; device promotion rules; visit-plan generator | Daily risk trajectory (attempt per re-score, plotted from ledger); next-day visit plan as tasks; daily physician summary draft (queue); "no longer fits home care" argument (flagged, severity tier 1); structured discharge-to-GP handover = episode summary + extracted actions | Supervising physician; GP at discharge | SET-HH-01 re-score after every contact within 10 s; SET-HH-02 handover document cites facts and tasks; SET-HH-03 trajectory replayable from attempts |
+| Front office (practice and service staff, ROL-06) | 18, 19, 20, 21; 10 and 11 as routing only | Channel consents, response-clock windows, after-hours guidance fragment, hand-off cue list, message allowance | Lead register with clocks; omnichannel desk; voice line console; campaign brief form; nothing clinical signable | Clinician queue by routing rule; on-call by the after-hours fragment | SET-FO-01 a front-office token cannot post a sign_off or any clinical act; SET-FO-02 response-clock states computed from the profile's windows |
 
 The context packet that travels on escalation is the same object in every setting: the consult-prep brief as of now, the session facts, every open attempt with its verdict, and the acts taken; it is a signed bundle with pins, so the receiving clinician reads the argument, not a phone summary.
 
@@ -304,6 +354,12 @@ Each benefit in the concept names a mechanism and a measurement. The build ships
 | Better use of advanced-practice prescribers | Setting profiles (1A.4) | Encounters completed within scope / encounters in prescriber settings; escalation packets with full context / escalations | First quarter | Monthly |
 | Grounded telehealth and locum care | Brief (op 1), record Q&A (op 6) | Brief delivered before session join / sessions; re-contact within 72 h / sessions; clinician-rated preparedness (questionnaire) | First quarter | Monthly |
 | Equity visibility | SDOH extraction (capability 10) | Outcome measures stratified by SDOH fact presence, with imprecise-Dirichlet intervals | First quarter | Quarterly |
+| Front-door conversion and responsiveness | Lead register (3A.2 A6), follow-through (op 18) | Leads reaching Converted / leads, by source and channel; response-clock breaches / leads; cost per acquired patient = entered campaign spend / conversions | First quarter | Monthly |
+| Non-attendance | Reminders and no-show recovery (3A.2 A4), voice-line confirmations (3A.11 J5) | No-show appointments / booked; no-shows rebooked within 7 d / no-shows | Migration month | Weekly |
+| Outreach closure | Panel worklist (3A.6 E3), loops | Threads closed with a confirmed reply within the SLA / threads; unverified threads / breached threads | First quarter | Monthly |
+| Document intake accuracy | Document intake at volume (3A.7 F5) | Fields accepted unchanged at review / fields reviewed, by document type; pages per hour | First quarter | Monthly |
+
+The teardown's vendor figures for these mechanisms (reminders cutting no-shows "by up to 40%"; remote monitoring "adding $60 to $120 per patient per month") are claims, not baselines; every baseline here is captured at cut-over.
 
 Every measure is replayable (same period, same pins → identical MeasureReport hash) and every figure carries lineage to events (RPT-03).
 
@@ -477,6 +533,7 @@ pub struct Aperture {
 | Patient | Consumer identity with proofing; carer delegation via RelatedPerson scope | QuestionnaireResponse, Observation (patient-reported, device), Consent, Goal, Communication (to practice) | none (patient inputs are resources, not acts) | Own record, released and signed-off arguments, patient register |
 | Clinician | Professional identity; registration; scope profile | Composition, Condition, AllergyIntolerance, MedicationRequest, ServiceRequest, CarePlan, Task, Communication, Reflection (2A.2) | accept, reject, defer, sign\_off, override, deviation, order\_transition | One patient's reasoning surface; released and flagged; clinician register |
 | Governance | Organisational identity with role; regulator federated | Study registration (sealed envelope), audit cycle, obligation evidence, incident report, authority act | break\_glass, reidentify (with authority), study\_open, action\_close | De-identified aggregates; drill-through re-identifies only under recorded authority |
+| Front office (restricted clinician aperture, ROL-06) | Professional or staff identity; registration not required; practice scope | Lead (Person), Communication on any channel, Appointment, Task (front-office kinds), QuestionnaireResponse on behalf of a caller with the helper tag | lead\_stage, send\_message (template or reviewed draft), hand\_off, file (inbound) | Lead register, omnichannel desk, voice-line console; no clinical arguments beyond the routing lane and urgency badge |
 
 **The circulation loop as build flows.** The document's circulation (patient feeds the graph, clinician reasons, governance measures, findings flow back) is three concrete flows: patient inputs become `Fact` rows with `source = patient-reported`; clinician decisions become acts on arguments; governance findings become fragments through the compiler (thresholds, pathways, prompts) and engagement-loop definitions (2A.1), never direct edits. Tests: AP-01 a governance user without a recorded authority act sees no direct identifier in any response · AP-02 a threshold change from the governance face produces a compiler submission, not a configuration write · AP-03 a patient-reported fact carries `source = patient-reported` and is rendered with that label in the clinician register.
 
@@ -557,7 +614,19 @@ pub struct EngagementLoop {            // compiled fragment (class R); one per l
 | Automated-message labelling | Every Communication generated by a loop or agent carries `automated = true` and a reach-a-person route; template validation refuses a message without them |
 | Tests | CT-01 access report lists a model inference with purpose · CT-02 withdrawal of `secondary-use` excludes the patient from the next extract (QM-03) · CT-03 template without automated label rejected at compile |
 
-**Evidence-driven loops (the eight loops as build items)**
+**Omnichannel transports and the public front door (crate `channels`; module spec in 3A.11 J4, J5)**
+
+Folded from the teardown's Channel Desk and Intake Pipeline. The patient face is not one app: every loop above has a transport on the portal, SMS, WhatsApp, email, IVR and a live voice line, and the public front door (website widget, QR code, booking link, landing page, the practice's phone number) is where a person first touches the record.
+
+| Function | Specification |
+| --- | --- |
+| Transport parity | Each EngagementLoop declares its transports (LR-03 already requires SMS and IVR); WhatsApp and the voice line are added as transports; the same QuestionnaireResponse, Observation and Communication resources result whichever transport carried the answer, with `medium` recorded |
+| Public front door | Widget, QR and landing pages submit an H4 form whose audience is `Public`; the submission creates a Lead (3A.2 A6) with source and channel, never a Patient; booking from the public link creates an Appointment with `participant` as the Lead's Person until conversion; a red-flag fragment runs on enquiry text and emits the critical-lane event and a spoken or written emergency guidance fragment |
+| WhatsApp as a patient transport | Patient-initiated threads are in the 24-hour service window; loop messages outside it use provider-approved template fragments only; every automated message carries the label and a reach-a-person route; content classes per channel bind (9.8) |
+| Unknown sender | A message from an unmatched number or address lives in the lead compartment until staff convert or link it (3A.11 J4); nothing the sender says is a clinical fact until conversion, and then only as provisional patient-reported facts with spans |
+| Voice as a transport | A loop step may place or receive a call: the instrument is spoken item by item, answers stored with dialogue spans, hand-off cues honoured (3A.11 J5) |
+| Tests | OMNI-08 the same loop step on portal, SMS, WhatsApp and voice yields resources that differ only in `medium` and span source · OMNI-09 public form submission creates a Lead and no Patient · OMNI-10 enquiry text with a red-flag term emits the critical event under 100 ms |
+**Evidence-driven loops (the eight loops, plus two front-door loops, as build items)**
 
 | Loop | Trigger | Patient action → resource | Escalation rule | Measured endpoint (Measure) |
 | --- | --- | --- | --- | --- |
@@ -569,6 +638,8 @@ pub struct EngagementLoop {            // compiled fragment (class R); one per l
 | Outcome and experience | Pathway milestones | PROM/PREM → Observations with instrument pin | none | Score by pathway, clinician, cohort |
 | Preferences and goals | Any time | Goal, preference Observations | none | Goals recorded / plans; goal-concordant decisions (act reason) |
 | Screening and prevention | Eligibility event (3A.6 E2) | Response, booking → Appointment | none | Uptake by cohort and channel |
+| Enquiry to registration | Public front-door enquiry (widget, QR, WhatsApp, call) | Pre-registration answers → Lead, then Patient on conversion with QuestionnaireResponses carried over | Red-flag fragment on enquiry text | Enquiry-to-booking conversion by channel; time to first response |
+| No-show recovery | Appointment.status `noshow` | Rebooking offer → Appointment | none | No-shows rebooked within 7 d / no-shows |
 
 Each row is one `EngagementLoop` fragment and one Measure; governance reads loop performance by cohort (2A.3). Test LOOPS-01: every loop fragment names a Measure that exists and is replayable.
 
@@ -613,6 +684,20 @@ Test BR-01: every brief line resolves to a resource version or span; BR-02 the b
 **Prescribing and ordering support** — built in 3A.4 C1/C2 and 3A.5 D1; the portal surface additionally shows for prescriber settings: formulary-eligible options (filtered by scope fragment), protocol step (from the protocol state machine), monitoring due (rule fragment), and the escalation control that assembles the context packet (1A.4). Tests: RX-03, SET-NP-02.
 
 **Documentation, coding and closing loops** — built as operations 7–10 of Volume 1A.3: drafts with per-statement traceability (each drafted sentence cites a session fact or record span; fidelity tester), coding proposals (Volume 12.3), tasks from planned facts, inbound pre-read into a review queue ordered by urgency. Test DOC-05: a drafted sentence without a citation fails the fidelity tester and the draft is withheld.
+
+**Ambient capture review surface (folded from the teardown's Consult Capture)**
+
+| Function | Specification |
+| --- | --- |
+| Capture control | One button with pause and resume; the consent flag on the Encounter is required before any audio is stored (TH-02); the live transcript streams as DocumentReference versions; a "My Notes" scratchpad is a clinician-entered section whose sentences are authoritative steering input to the drafting loop (prompt context pinned under P), never a fact |
+| Languages | Transcription and drafting language packs are class K fragments; the teardown claims 48 to 50 languages and 63 to 72 regional variants as vendor figures; this build ships the packs whose ASR benchmark is registered (1A.2 benchmark rule) and lists them in the self-description (4A.5) |
+| Note types | Five pinned class U templates ship: SOAP, progress note, consultation note, discharge summary, GP letter; workspace templates authored in the form designer (3A.9 H4) appear in the picker; "regenerate in another format" re-runs drafting from the same signed facts under a different template pin and both drafts are retained |
+| Review screen | Draft, scratchpad, next steps, extracted concepts and the full transcript in one view; hovering a drafted sentence highlights the transcript span it cites (fidelity element map); every section editable; a note may be written by hand in the same editor |
+| Concept confirmation | Every extracted concept (condition, medication, allergy, result) is confirmed individually as an act; a concept the patient denied (assertion Absent in the transcript) cannot be confirmed Present; a concept contradicting the chart (a stopped medication still listed; "no diabetes" against an active diabetes problem) is written as a `fact_disagreement` row and rendered beside the chart entry, never filed over it |
+| Orders from speech | Only orders decided out loud (an explicit `planned` predicate in the signed facts) become draft orders; inferred orders are never created; each draft order cites its transcript span |
+| Sign, co-sign, discard | Sign (act); save draft; send to a colleague to co-sign (`co_sign` act kind; both signatures recorded; the note renders as signed only when the profile's required co-signature exists); discard with reason |
+| Downstream | The signed note files as Composition and DocumentReference; confirmed concepts write Condition, MedicationStatement and AllergyIntolerance with provenance; a confirmed diagnosis becomes a ground for the next risk and eligibility attempts (ops 13, 14) |
+| Tests | AMB-01 a denied concept cannot be confirmed Present · AMB-02 a chart contradiction yields a disagreement row and no overwrite · AMB-03 the hover span equals the cited transcript bytes · AMB-04 an inferred order is never created; a spoken order creates a draft with span · AMB-05 under a co-sign profile the note stays unsigned until the second act |
 
 **Augmenting the clinician's knowledge over time (crate `faces/clinician`, module `learning`)**
 
@@ -685,6 +770,9 @@ Each signal is a declarative view with a drill-through to cases; each case drill
 | Diagnostic | Referral never completed | referral state not reported within window | cases |
 | Deterioration | Escalation lag | time from first flagged deterioration attempt to escalation act; distribution by setting | cases |
 | Access | Access without care relationship | AuditEvent reads where no PractitionerRole–patient relationship and no break-glass | events |
+| Outreach | SLA breach without confirmed reply | loop instances past window with no inbound Communication from the patient, by care manager | threads |
+| Front door | Response clock breached | leads with clock state overdue / leads, by channel and hour of day | leads |
+| Channels | Outbound PHI override | send acts carrying a PHI-check override reason, by sender | messages |
 
 Tests: SV-01 each signal has a ratified threshold pin; SV-02 drill from signal to a case returns argument, attempt, pins and spans; SV-03 signal replayable for a closed period.
 
@@ -779,6 +867,20 @@ Per-output reconstruction is replay (Volume 8.6): inputs (request hash → facts
 | External research | De-identified extracts under `secondary-use` consent (3A.10 I2); data-sharing agreements recorded in the obligations register |
 | Tests | RE-01 fragment without evaluation-register entry → compiler refuses · RE-02 every ratified change links to a prior MeasureReport and a follow-up Study |
 
+**Panel worklist, outreach SLA and programme contracts (folded from the teardown's Panel Manager and Risk Stratification)**
+
+Rulings first. Law 3 and Volume 1.3 forbid a composite panel score and any ranking of patients by one, so the teardown's "composite 0 to 100 across four areas and 34 factors" and "panel ranked by preventable risk" are not adopted. What is adopted: every risk engine output is a flagged argument carrying its own typed signals and exactly the facts it consumed (RISK-02); the "preventable fraction" becomes the list of open gap, overdue task and missed follow-up arguments linked to the patient; a worklist is a queue of arguments, not a league table.
+
+| Function | Specification |
+| --- | --- |
+| Worklist | A view over flagged risk arguments, released eligibility and recall arguments, and open Tasks per patient; one row per argument with its plain-language reason (the clinical-register claim line), severity tier, due state and act buttons (create task, open care plan, start outreach loop); ordered by severity tier, then due state, then argument id; no composite column exists (PNL-01) |
+| Next best actions | A row's actions are the released gather_information, recall and eligibility arguments already in the ledger for that patient; one act creates the Task, CarePlan activity or loop instance |
+| Outreach SLA | Starting outreach creates an EngagementLoop instance with an SLA window from the pathway fragment; every thread is tracked; unanswered at window end escalates by Task to the named care manager; a breached thread without a confirmed reply is labelled unverified, never "sent" |
+| Role views | Four saved views over the same ledger (population-health lead, operational lead, care manager, provider), each a pinned view definition (class R) landing on a different first question; no view computes a number the others cannot reproduce |
+| Programme contracts | `Contract { programme, targets, gates[], savings_split, window }` as a class R fragment; programmes are fragments per jurisdiction (New Zealand PHO capitation and performance measures; Australian PIP-QI; United States CMS models); targets are per-member-per-period cost analogues and quality gates expressed as published Measures; avoidable utilisation is classified against a pinned classification fragment (ambulatory-care-sensitive conditions and the jurisdiction's indicators); a gate at risk within the period creates a governance queue item; every report names its data source and labels proxies where claims data is absent |
+| Avoided-event estimates | The teardown's year-to-date "avoided admissions, avoided ED visits and cost from actions taken" are counterfactual estimates; adopted only as MeasureReports of content class `estimate` with method pin and interval, shown on the governance face, never on the clinician disposition line or any patient surface |
+| Ingestion | HL7 v2, FHIR, ADT feeds and flat files through the inbound pipeline (Volume 3.5); claims files in the jurisdiction's formats as a batch channel feeding `cost` (3A.8 G4); post-acute cost is not reported until claims arrive |
+| Tests | PNL-01 no composite column · PNL-02 unverified label on a breached thread · PNL-03 a contract gate breach creates a queue item with lineage · PNL-04 the `estimate` class never renders on clinician or patient faces |
 **Governance function table as build items**
 
 | Function | Build item | Test |
@@ -1125,6 +1227,21 @@ Parity means a practice can switch off its incumbent system on cut-over day and 
 | K1 | Images and attachments | Clinical photos, documents, viewer, annotation | 3A.12 | T1 |
 | K2 | Migration, import, export | Import from incumbent systems; standards export; bulk export | 3A.12 | T1 |
 | K3 | Backup, restore, offline, printing | Point-in-time restore; edge operation; print templates and scripts | 3A.12 | T1 |
+| A6 | Intake pipeline and lead register | Lead capture from every channel, stages, response clocks, owner queues, conversion to Patient | 3A.2 | T1 |
+| A7 | Campaigns and follow-through | Campaign briefs, landing pages, message sequences, nurture cadences, attribution | 3A.2 | T1 (drafting T3) |
+| B9 | Record search | Search across one record and across the practice: facts, documents, arguments, cohorts, guidelines; launch outreach from a result | 3A.3 | T1 |
+| E3 | Panel worklist and outreach SLA | Worklist of flagged risk and open-gap arguments, outreach loops with SLA, escalation | 3A.6 | T2 |
+| F5 | Document intake at volume | OCR with handwriting, fax archives, batch control, per-field confidence review | 3A.7 | T1 (OCR class 2, flagged) |
+| G4 | Cost, margin and pre-submission claim check | Per-encounter and per-episode cost and margin, leakage flags, claim rule check before submission | 3A.8 | T1 |
+| H4 | Form designer | Typed fields, conditional logic, formulas, FHIR path binding, versioned publication | 3A.9 | T1 |
+| I3 | Analytics studio | Plain-language questions to confirmed queries, saved metrics, dashboard designer, drill to denominator | 3A.10 | T1 (query drafting T3) |
+| J4 | Omnichannel desk | WhatsApp, SMS, email and call records in one queue; intent, urgency, tone; outbound PHI check | 3A.11 | T1 (classifier T2) |
+| J5 | Voice line | Inbound and outbound telephony: IVR, booking, check-ins, after-hours answering, hand-off | 3A.11 | T1 (IVR), T3 (dialogue) |
+| J6 | Surveys and feedback | Practice-level satisfaction and experience surveys beyond PROMs; themes | 3A.11 | T1 |
+| J7 | HITH census and capacity board | Every HITH patient on one board: stay against plan, delays, deterioration, expected discharge, capacity | 3A.11 | T1 |
+| L1 | Tenancy, brand packs, partner console | Tenants, projects, brand packs, sending identities, partner-scoped administration | 3A.12b | T1 |
+| L2 | Tokenisation gateway | Deterministic tokenisation of identifiers before data leaves the tenant boundary; vault; re-identification under authority | 3A.12b | T1 |
+| L3 | Developer platform | Sandbox, scoped credentials, FHIR REST, subscriptions and webhooks, engine admission, typed SDKs | 3A.12b | T1 |
 
 The open-source headless clinical data repository that informed the spine's budgets publishes: FHIR R4 headless API; create and update under 10 ms; over 25,000 writes per second on ten threads; typical search under 50 ms; under 100 MB per instance; immutable resource history; per-request audit events; attribute-based policies scoped to compartments; OAuth2 and app-launch support with TOTP multi-factor and memory-hard password hashing; multi-tenant scoping by tenant and project; custom operations as sandboxed scripts stored as operation definitions; declarative flattening views over resources to CSV/JSON/NDJSON; an agent tool interface generated from the server's capability statement; and a single-command local stack ([haste.health](https://haste.health/)). This build adopts every one of those as a requirement (3A.1) and adds the modules above, which a data repository does not ship.
 
@@ -1173,6 +1290,16 @@ spine/
     ops/                     # backup/restore (event-log based, point in time), offline edge sync, print rendering
     scripting/               # embedded sandboxed script runtime (typed bindings; custom operations as OperationDefinition)
     api-gateway/             # FHIR R4 REST + subscribe + bulk export; OAuth2/SMART; ABAC; audit per request; agent tool interface generated from CapabilityStatement
+    crm/                     # leads, stages, response clocks, campaigns, attribution (3A.2 A6, A7)
+    channels/                # omnichannel desk: WhatsApp, SMS, email, call records; intent, urgency, tone; outbound PHI check (3A.11 J4)
+    voiceline/               # telephony adapter, IVR, dialogue sidecar host, hand-off (3A.11 J5)
+    forms/                   # form designer, FHIR binding, conditional logic, formulas (3A.9 H4)
+    docai/                   # batch OCR orchestration, field review, archive intake (3A.7 F5)
+    cost/                    # cost schedules, margin attribution, claim pre-check, leakage rules (3A.8 G4)
+    tenancy/                 # tenants, projects, brand packs, partner console (3A.12b L1)
+    tokenise/                # HMAC tokenisation, vault client, re-identification (3A.12b L2)
+    devportal/               # sandbox provisioning, scoped credentials, webhooks, SDK generation (3A.12b L3)
+    analytics/               # plain-language query drafting, saved metrics, dashboard designer (3A.10 I3)
   sidecars/                  # rule engine (JVM), extractor, Bayesian/conformal, generative — Volume 7
   faces/                     # patient, clinician, governance web clients (thin; API-only)
   deploy/compose.yml         # one command: `docker compose up` brings up core, store, sidecars, faces
@@ -1283,6 +1410,7 @@ pub fn commit<R: Resource>(w: Write<R>) -> Result<Version, WriteError>;   // als
 | Routes | `GET /schedules?practitioner=&date=` · `GET /slots?schedule=&start=&end=&status=free` · `POST /appointments` · `PATCH /appointments/{id}` (reschedule/cancel with reason) · `POST /waitlist` · `POST /appointments/{id}/remind` · `GET /appointments?patient=&date=&practitioner=` |
 | Recurring | Series stored as one Appointment with `recurrenceTemplate`; instances materialised 90 days ahead; edit-one vs edit-series explicit |
 | Reminders | SMS/email at configured lead times through `comms`; reply-to-confirm and reply-to-cancel parsed; non-attendance recorded as Appointment.status `noshow` with act |
+| Public booking and recovery | A 24-hour public booking link per tenant brand pack (3A.12b L1) with the appointment type's triage questions (J2); the waitlist auto-fills a cancelled slot by offering it to waitlisted patients in priority order through their consented channel, first acceptance wins; a `noshow` status starts the no-show recovery loop (2A.1) that offers rebooking; both are EngagementLoop fragments and every offer is a Communication with the automated label |
 | Predicted demand and non-attendance | Class-2 model outputs shown only as capacity hints to the roster view; never books or cancels (Volume 5 class rule) |
 | Tests | APP-01 double-booking a slot without override role → 409 · APP-02 session template change regenerates future free slots only · APP-03 reply "C" cancels and frees slot within 60 s · APP-04 recurring edit-one leaves series intact |
 
@@ -1308,6 +1436,52 @@ stateDiagram-v2
 | Arrival tasks | Forms due, consent renewals, eligibility warnings, overdue recalls shown at arrival and pushed to the patient's device for completion while waiting |
 | Tests | WR-01 arrival creates Encounter and outbox event under 100 ms · WR-02 queue order by appointment time, not arrival time · WR-03 telehealth join updates lobby within 2 s |
 
+### A6 Intake pipeline and lead register (crate `crm`)
+
+Folded from the teardown's Intake Pipeline. A lead is a person who has enquired but is not yet a patient of the tenant. The spine keeps leads in their own compartment so that nothing clinical attaches to a lead and nothing about a lead leaks into clinical grounds; conversion creates or links a Patient and carries the lead's answers across as patient-reported facts. Ruling D-12: no lead score is stored or displayed as one number; the rule fragment emits each factor as a separate typed output and the queue orders by response-clock state and stage only. The clinical risk tier of an existing patient is never an input to any engagement rule (LEAD-01).
+
+| Item | Specification |
+| --- | --- |
+| Resources and tables | FHIR `Person` (lead identity; `link` to Patient on conversion) with extension `lead`; private tables `lead(lead_id ULID, tenant_id, project_id, person_id, source, source_detail, stage, owner, created, clock_state, consent_snapshot_ref, converted_patient_id, converted_at)`, `lead_stage_transition(lead_id, from_stage, to_stage, at, actor, reason)`, `lead_factor(lead_id, factor_code, value_text, points INTEGER, rule_pin, computed_at)`; Communications for leads are FHIR Communication with `subject = Person`, kept for non-patients |
+| Capture channels | Web form and embedded widget (J2, H4), QR landing page, landing page (A7), spreadsheet import (K2 importer `leads.csv` with dry run), inbound call on the voice line (J5), WhatsApp or SMS first contact (J4), referral, walk-in (A5), health camp or event list; every channel stamps `source`, `source_detail` and the capturing principal |
+| Stages | Default pipeline `New → Contacted → Qualified → Scheduled → Showed → Converted` plus terminal `Lost{reason}`; the stage set is a class R fragment per tenant, renameable and reorderable; `Scheduled` is set when an Appointment is booked, `Showed` on `arrived`, `Converted` only by the system when a Patient exists and an Appointment reaches `fulfilled` (A4) |
+| Response clock | `clock_state ∈ {on_track, at_risk, overdue}` computed from the front-office profile windows (1A.4) against time since the last inbound without an outbound reply; recomputed on every Communication event and by a minute timer; `overdue` creates a Task for the owner and a front-door signal row (2A.3); shown on mobile and desktop queues |
+| Factors, not scores | `lead_factor` rows from the `engage` rule fragment: source class, recency band, stage progress, existing-patient status, and for existing patients coverage band and billing-history band (bands only, read from `billing`, never amounts); each factor renders as its own chip with its points; the queue never sums them and no column named `score` exists (LEAD-05) |
+| Queues | Owner queue filtered by own, breached, at risk, on track; team queue; mobile queue with call and message actions through J5 and J4 |
+| Consent | `consent_snapshot_ref` holds per-channel consent captured at first contact; an opt-out on any channel stops every channel for that Person, never expires, is re-checked before every automated send, and is carried to the Patient's Consent resources on conversion (COM-01) |
+| Conversion | `POST /leads/{id}/convert` runs the matcher (Volume 3.10) against existing patients: above the upper threshold links; between thresholds queues for clerical review; none creates the Patient; QuestionnaireResponses and Communications re-point to the Patient compartment with provenance `source = lead-intake`; the lead row keeps `converted_patient_id` |
+| Analytics | Conversion funnel by stage; attribution by source and channel; cost per acquired patient = entered campaign spend / conversions (A7); all as Measures with lineage (I1) |
+| Isolation | The lead compartment has no read path from engines or the evaluator; a lead's Communications never become grounds; cross-tenant lead reads return 404 (XC-04) |
+| Routes | `POST /leads` · `GET /leads?stage=&owner=&clock=&source=` · `PATCH /leads/{id}/stage` · `POST /leads/{id}/convert` · `GET /leads/{id}/factors` · `POST /leads/import` (dry run, then commit) |
+| Tests | LEAD-01 the engagement rule input schema has no risk-tier field · LEAD-02 identical factors yield identical outputs · LEAD-03 a breached clock creates a Task and a signal row · LEAD-05 the `lead` table has no score column and the API no composite field · LEAD-06 an opt-out on SMS blocks a WhatsApp send to the same Person · LEAD-07 conversion carries QuestionnaireResponses with `source = lead-intake` · LEAD-08 a spreadsheet dry run reports duplicates against existing leads and patients |
+
+```mermaid
+stateDiagram-v2
+  [*] --> New: capture on any channel
+  New --> Contacted: first outbound reply
+  Contacted --> Qualified: staff act
+  Qualified --> Scheduled: Appointment booked
+  Scheduled --> Showed: arrived
+  Showed --> Converted: Patient linked and appointment fulfilled
+  New --> Lost: reason
+  Contacted --> Lost: reason
+  Qualified --> Lost: reason
+  Converted --> [*]
+```
+
+### A7 Campaigns and follow-through (crate `crm`, module `campaigns`)
+
+| Item | Specification |
+| --- | --- |
+| Campaign brief | `CampaignBrief { audience: PhenotypePin or LeadFilter, goal, offer, channels[], cadence, spend, owner }` captured as a typed H4 form, never free text to a model; the class-3 drafting loop fills a typed brief into three drafts: landing-page copy (class U template), a message sequence (class U template per step) and a nurture cadence (EngagementLoop fragment proposal); the model writes slot text only, never markup or queries |
+| Claims boundary | Every draft passes the claims-boundary lint (4A.15) and the plain-register lint; cure, guarantee and outcome claims are rejected with the matching rule; health information in campaign copy is content class "certified general information" only |
+| Publication | Drafts publish only through the compiler as pinned templates and a loop fragment; a campaign in flight references pins; an edit creates new pins |
+| Follow-through | The automated lead chaser is an EngagementLoop of kind `LeadFollowThrough`: steps at ratified intervals over the lead's consented channels within the tenant's monthly message allowance (a configured, signed value); it stops on reply, opt-out, conversion or the step cap |
+| Audience from lists | A patient list (phenotype query, I1) can be a campaign audience: membership resolves at launch, the deceased are excluded, and the consent scope `contact-for-programme` is required per patient; standing cohorts refreshed on event (the teardown's hourly refresh) are the same phenotype subscription that eligibility matching uses (op 14) |
+| Queue worker | The teardown's enterprise "Queue Worker" (reads the queue every 15 minutes, decides contact, leave or hand off, drafts the message) is adopted as a class-1 rule step for the decision plus a class-3 draft for the text under 7.5; it has no read grant on the record, care gaps or risk arguments; proposals collect on the owner's queue for edit, approve or reject; a consent block renders as "approved, not sent" |
+| Attribution | `campaign_touch(lead_id, campaign_pin, step, channel, at)`; conversion attributed by first and last touch; cost per acquired patient from entered spend |
+| Tests | CAMP-01 claim rejected · CAMP-02 published sequence pinned · CAMP-03 follow-through stops within one event of a reply · CAMP-04 the queue-worker role has no read grant on `resource`, `fact`, `attempt` or `actual_argument` · CAMP-05 an audience launch excludes the deceased and patients without the scope |
+
 ### 3A.3 Group B — Clinical encounter, histories, care plans, growth, antenatal, calculators
 
 M-ENC, M-CLN and M-OBS (Volume 3.13) cover encounters and notes, problems and allergies, and observations; this group adds what a clinician expects around them.
@@ -1321,6 +1495,8 @@ M-ENC, M-CLN and M-OBS (Volume 3.13) cover encounters and notes, problems and al
 | Autotext | `autotext(trigger, expansion, scope: user \| practice)` table; expansion inserted at cursor; merge fields resolved from record (`{{patient.age}}`, `{{last.bp}}`) |
 | Dictation and ambient capture | Audio stored as original in object store; transcript stored as DocumentReference with timestamps; a class-2 extractor drafts the note sections as a Composition version marked `draft`, attributed to the model pin; clinician edits and signs; signing is an act; unsigned drafts are excluded from grounds |
 | Past-note browsing | `GET /patients/{id}/notes?section=&from=&to=&q=` with full-text search under 50 ms |
+| Note types and co-sign | Five pinned templates (SOAP, progress note, consultation note, discharge summary, GP letter); regenerate under another template pin from the same signed facts; `co_sign` act kind per profile; the review surface is specified in 2A.2 |
+| Transcript spans and concept confirmation | Every drafted sentence carries an element-map entry to its transcript span; hover highlights it; concepts are confirmed one by one as acts; a denied concept cannot be confirmed Present; chart contradictions become disagreement rows (AMB-01 to AMB-05) |
 | Routes | `POST /encounters/{id}/notes` · `PUT /notes/{id}` · `POST /notes/{id}/sign` · `POST /notes/{id}/from-transcript` · `GET /templates` · `POST /autotext` |
 | Tests | NOTE-01 ambient draft is `draft`, excluded from evaluator grounds until signed · NOTE-02 template answer of type quantity creates Observation with span link to the note · NOTE-03 merge field resolves to versioned value at note time |
 
@@ -1375,6 +1551,19 @@ All histories are versioned entries with source method; social determinants extr
 | Execution | `POST /calculate/{id}` with explicit inputs or `auto=true` to pull latest observations; output stored as Observation with `derivedFrom` inputs and calculator pin |
 | Rules | A calculator output used in a draft argument carries the fragment pin as backing; a calculator with a validation population declares it as an envelope |
 | Tests | CALC-01 output stores input observation versions · CALC-02 recompute with same inputs is byte-identical · CALC-03 input outside envelope → fit Out on any draft using it |
+
+### B9 Record search (crate `clinical`, module `search`; practice-wide search in `reporting`)
+
+Folded from the teardown's Universal Search.
+
+| Item | Specification |
+| --- | --- |
+| One-patient search | Full-text and structured search over the patient's record: documents by span, facts by code and predicate, arguments by claim type and state (held excluded by the authorisation rule), orders by state; ranked by recency then lexical relevance; every hit links to its version and span; under 50 ms (Volume 3.7) |
+| Practice-wide search | A cohort search is a `CohortQuery` (12.1) typed by the user or drafted from plain language by `gen-sql` and confirmed by an act (I3); guideline search runs over the content registry and evidence library by condition, medication and criterion (12.2 `$expand` plus the fragment index); results carry pins |
+| Launch from a result | A cohort result row offers only acts that already exist: create recall, start an outreach loop (E3), add to a campaign audience (A7, consent-checked); no search result renders a claim that is not a released argument |
+| Governance view | Searches by governance users return aggregates unless break-glass (RPT-04); every search is an AuditEvent with purpose |
+| Routes | `GET /patients/{id}/search?q=&kinds=` · `POST /search/cohort` · `GET /search/guidelines?q=` |
+| Tests | SRCH-01 hits resolve to version and span · SRCH-02 a governance cohort search returns counts only without break-glass · SRCH-03 a result action creates the same resource as the direct route |
 
 ### 3A.4 Group C — Prescribing, electronic prescriptions, medication management
 
@@ -1506,6 +1695,18 @@ flowchart LR
 | Routes | `POST /recalls` · `GET /recalls?status=&due_before=&reason=` · `POST /recalls/run` · `POST /recalls/{id}/contact` · `GET /screening/{program}/eligible` |
 | Tests | RC-01 result action "recall in 3 months" creates recall with due date · RC-02 reminder run respects channel consent; no SMS to opted-out patient · RC-03 satisfying result auto-completes recall within 100 ms of event · RC-04 screening eligibility excludes patient with exclusion code from extracted fact (reliability above floor) · RC-05 max attempts reached → escalation list entry |
 
+### E3 Panel worklist and outreach SLA (crate `recalls`, module `panel`)
+
+Function specification in 2A.3 (worklist, next best actions, SLA, role views, programme contracts, estimates). Module items:
+
+| Item | Specification |
+| --- | --- |
+| Tables | `outreach_thread(thread_id, patient_id, loop_instance, sla_due, state, care_manager, verified BOOLEAN)` with `state ∈ {open, replied, breached, escalated, closed}`; the worklist is a view, not a table |
+| Channels | Outreach uses the patient's consented channels through J4 (text) and J5 (voice) in the patient's language pack; booking offers write Appointments through A4 |
+| Escalation | `breached` without an inbound reply creates a Task for `care_manager` within the window; `verified = false` persists until an inbound Communication from the patient exists |
+| Routes | `GET /panel/worklist?view=&setting=` · `POST /panel/{argument}/act` · `POST /outreach` · `GET /outreach?state=` |
+| Tests | PNL-01 to PNL-04 (2A.3) · OUT-01 a breach creates a Task for the named care manager · OUT-02 an inbound reply sets `verified` and closes the breach |
+
 ### 3A.7 Group F — Correspondence, referrals, secure messaging, inbound documents, shared national record
 
 **F1 Letters and correspondence (crate `correspondence`)**
@@ -1551,6 +1752,20 @@ flowchart LR
 | Ingestion | Downloaded documents pass through the inbound pipeline; extracted facts are marked source = national record with the document's own provenance |
 | Routes | `GET /patients/{id}/national-record/documents` · `GET /national-record/documents/{id}` · `POST /patients/{id}/national-record/shared-health-summary` · `POST /patients/{id}/national-record/event-summary` |
 | Tests | NR-01 upload without patient consent flag → refused · NR-02 uploaded summary content equals reconciled list at upload time (pinned) · NR-03 view logged with purpose and visible on patient access report · NR-04 downloaded discharge summary drives medication reconciliation trigger |
+
+### F5 Document intake at volume (crate `docai`; extends F3)
+
+Folded from the teardown's Document AI. F3 handles one document at a time; F5 adds archives, fax streams, handwriting and per-field review at scale. Nothing here changes the law: OCR and layout models are class 2, so a field is a fact only above the reliability floor or after a review act.
+
+| Item | Specification |
+| --- | --- |
+| Inputs | Archive upload (zip, PDF bundle), fax gateway stream, scanner batches, referral-backlog exports; each item content-addressed on arrival |
+| Pipeline | Split into documents (layout model, class 2, with split reliability) → OCR per block with per-block reliability; handwriting recognition is a separate class-2 engine with its own benchmark and pin → document type (class 2) → section parser → field extraction (demographics, conditions, medications with dose, laboratory results with units, observations) each with field reliability → patient match (Volume 3.10) → facts with spans and `capture_context = imported` → routing |
+| Field review | Fields below the floor, and every field in a document type marked review-always (medication doses, allergies), go to the review queue (10.5) grouped by document; the reviewer sees the image crop, the recognised text and the proposed code; accept, amend or reject is an act; an accepted field becomes a fact with `reliability` set to the review floor and the reviewer as principal |
+| Batch control | `docai_batch(batch_id, tenant_id, source, pages, state, cursor)` with `state ∈ {queued, running, paused, complete, failed}`; resumable from the cursor; idempotent on content hash; throughput target 1,000 pages per hour sustained on the reference machine; progress and per-document outcome visible |
+| Result as trigger | An extracted laboratory result becomes an Observation with no `basedOn` and the `unsolicited` flag, and fires the same rules as a live result (D2) including the critical lane |
+| Routes | `POST /docai/batches` · `GET /docai/batches/{id}` · `POST /docai/batches/{id}/pause` · `GET /docai/review?batch=` · `POST /docai/fields/{id}/act` |
+| Tests | DAI-01 a field below floor is never a fact without an act · DAI-02 a 1,000-page batch is resumable and idempotent on re-upload · DAI-03 the handwriting engine is registered with its own benchmark and pin · DAI-04 an extracted critical laboratory value fires the critical lane · DAI-05 split reliability below floor sends the whole item to a manual split queue |
 
 ### 3A.8 Group G — Billing, claiming, debtors and banking
 
@@ -1610,6 +1825,21 @@ stateDiagram-v2
 | Routes | `GET /debtors?aged=` · `POST /statements/run` · `POST /write-offs` · `GET /banking/eod?date=` · `GET /providers/{id}/statement?period=` |
 | Tests | DEB-01 aged buckets sum to outstanding · DEB-02 write-off requires approval role · DEB-03 EOD totals equal sum of receipts by method; terminal mismatch flagged |
 
+### G4 Cost, margin and pre-submission claim check (crate `cost`)
+
+Folded from the teardown's Margin View and Claims Check. The teardown gives no detail of cost-data sources; this build does.
+
+| Item | Specification |
+| --- | --- |
+| Cost schedule | Class K fragment per tenant: direct costs by item (consumables from the catalogue; pathology and imaging purchase costs where the practice bears them), labour cost per minute by role, overhead allocation rule (per encounter, per minute or per room-hour), device and HITH equipment cost per day; every value signed and dated |
+| Attribution | Per encounter: duration from the Encounter period and waiting room, items from ChargeItems, consumables from administrations and procedures, labour from PractitionerRole; per HITH episode: visits, administrations, device days, escalations; stored as `cost_row(subject_ref, component, amount, schedule_pin, lineage_refs[])` |
+| Margin | Revenue from Invoice and claim payments (G1, G2) less attributed cost; by encounter, episode, provider, payer, item class and period; always with lineage to rows |
+| Leakage rules | Class R fragment: unbilled encounter of a billable type, item proposed but never confirmed, claim rejected and not resubmitted within the window, care-plan item completed without a billing proposal, write-off without approval; each firing is a Task proposal naming the rule pin |
+| Claim pre-check | Before a claim batch is prepared (G2), a class-1 rule run over every line: item eligibility, frequency and co-claim rules (BIL-02), documentation present for the item (note signed, required sections present), provider eligibility, authority numbers; a failure blocks the line with the rule id; the teardown's "claims checked before discharge" becomes "checked before submission" |
+| Faces | Governance and practice-manager views only; never on the clinician disposition line; never on any patient surface |
+| Routes | `GET /cost/encounters/{id}` · `GET /cost/episodes/{id}` · `GET /margin?by=&period=` · `GET /leakage?state=` · `POST /claims/precheck` |
+| Tests | MRG-01 replay identical · MRG-02 a leakage flag names its rule pin · MRG-03 the pre-check blocks a line whose note is unsigned · MRG-04 the margin view returns 403 to clinician and patient roles |
+
 ### 3A.9 Group H — Practice administration, audit, configuration
 
 **H1 Users, roles, providers, locations (crate `admin`)**
@@ -1648,6 +1878,37 @@ stateDiagram-v2
 
 Rule: nothing that changes clinical behaviour is a toggle; it is a fragment through the compiler (Volume 6). Tests: CFG-01 editing a letter template produces a new class-U pin; old letters still render from their pin · CFG-02 toggle document change audited with diff · CFG-03 attempt to store a threshold in a toggle → schema refuses
 
+### H4 Form designer (crate `forms`)
+
+Folded from the teardown's Forms and Form Designer. A form is a compiled fragment, not a configuration object: it enters through the compiler (Volume 6) so that every field's binding, code and formula is checked before a patient or clinician sees it.
+
+```rust
+pub struct FormDefinition {               // class R fragment; also serialised as a FHIR Questionnaire with SDC extensions
+    pub pin: Pin, pub name: String, pub version: String,
+    pub audience: FormAudience,           // Patient | Clinician | FrontOffice | Public
+    pub items: Vec<FormItem>,
+    pub rules: Vec<ConditionalRule>,      // show, hide, require; operators from the closed set below
+    pub formulas: Vec<Formula>,           // fixed-point expressions over item answers; cites a calculator fragment where one exists
+    pub bindings: Vec<FhirBinding>,       // every item -> FHIRPath target in a resource template; a transaction is assembled on submit
+    pub locale_packs: Vec<Pin>,
+}
+pub enum FieldType { Text, LongText, Integer, Decimal, Date, DateTime, Time, Choice, MultiChoice, Boolean, Attachment, Signature,
+    Quantity(UnitSet), Coded(ValueSetPin), VitalsPanel, MedicationList, ProblemList, ProcedureList, AllergyList, BodyMap,
+    Range, Rating, Consent, Address, Contact, Identifier, Repeat(Box<FieldType>) }
+pub enum Operator { Eq, Ne, Gt, Ge, Lt, Le, In, NotIn, Contains, StartsWith, IsEmpty, IsNotEmpty, Between, MatchesCode, SubsumedBy }   // fifteen operators
+```
+
+| Item | Specification |
+| --- | --- |
+| Field types | The teardown claims 59 field types; this build ships the typed set above (26 base types, composites by `Repeat` and the panels) and adds a type only as a compiled addition with a binding and a rendering per register; every type has a plain-register rendering, a keyboard-only path, and an IVR or SMS fallback where the low-resource floor requires it (4A.14) |
+| Conditional logic | Rules are evaluated client-side for display and re-evaluated server-side on submit; the server result governs; the fifteen operators are the closed set; `SubsumedBy` runs against the pinned terminology edition |
+| Formulas | Fixed point; a formula that reproduces a calculator (BMI, eGFR) must cite the calculator fragment and its result is stored as the calculator's Observation (B8), not as a free number |
+| Bindings and submission | Submit assembles one FHIR transaction Bundle: a QuestionnaireResponse always, with span index, plus bound resources (Observation, Condition with `verificationStatus = provisional`, MedicationStatement, AllergyIntolerance, Consent); provenance `capture_context` is `patient-reported` or `clinician-entered` by audience; facts from bound resources carry span links to the response items |
+| Designer | A governance and clinical-owner tool in the governance face: arrange items, set rules, bind fields from a picker over resource templates, preview in each register, run the compiler locally, submit for ratification; publication is a pin; old responses render against their pin |
+| Assignment | Forms attach to appointment types (J2), care plans (B7), recalls (E2), loops (2A.1), the public front door (A6), the voice line spoken item by item (J5), and campaign briefs (A7) |
+| Routes | `POST /forms` (compile) · `GET /forms/{pin}` · `POST /forms/{pin}/render?register=` · `POST /forms/{pin}/submit` · `GET /forms/{pin}/preview` |
+| Tests | FRM-01 every item bound · FRM-02 formula equals the calculator fragment · FRM-03 rule outcome identical client and server · FRM-04 submit yields one transaction Bundle whose resources carry provenance and spans · FRM-05 a binding to a non-existent FHIRPath fails compile gate 1 · FRM-06 a response renders against its original pin after the form is republished |
+
 ### 3A.10 Group I — Reporting, quality measures, data extraction
 
 Reporting reads the columnar layer, which is materialised from events through declarative views; nothing is computed from a nightly copy, and every figure carries lineage to the events that produced it.
@@ -1675,6 +1936,19 @@ Reporting reads the columnar layer, which is materialised from events through de
 | Bulk export | FHIR bulk data export (NDJSON per resource type) for the tenant, scoped by policy; also CSV from views |
 | Routes | `GET /measures` · `POST /measures/{id}/evaluate?period=` · `GET /measure-reports` · `POST /extracts` (profile, cohort) · `GET /extracts/{id}` · `POST /$export` |
 | Tests | QM-01 measure evaluation is replayable: same period, same pins → identical MeasureReport hash · QM-02 extract profile including a name field does not compile/validate · QM-03 patient with secondary-use consent withdrawn excluded from extract · QM-04 bulk export respects tenant scope and logs purpose |
+
+### I3 Analytics studio (crate `analytics`; service spec in 12.6)
+
+Folded from the teardown's Analytics Studio and Ask Your Data agent.
+
+| Item | Specification |
+| --- | --- |
+| Plain-language question | `gen-sql` (class 3) drafts a query over the declarative views (I1) from the question, with a one-paragraph interpretation and the exact query text; clinical terms are mapped to codes through the terminology service and the mapping is shown ("diabetic patients" → the SNOMED set used); the draft executes only after the user confirms it as an act; the executed query, its term mappings, its pins and the confirming act are ledgered |
+| Results | Rows with lineage (RPT-03); charts rendered from the result by pinned chart templates; no narrative recommendation is generated over results |
+| Saved metrics | A confirmed query may be published as a Measure through the compiler as an argued metric with purpose, definition, known failure modes and owner (4A.12); only published Measures may appear on dashboards |
+| Dashboard designer | A grid of widgets, each bound to a published Measure or view with a pinned chart template; the layout is a class U fragment; embedding is by signed URL within the tenant; "real time" means materialised on event (RPT-01), not nightly; every tile drills to its denominator rows under RLS (RPT-04) |
+| Routes | `POST /analytics/ask` returns a draft · `POST /analytics/drafts/{id}/confirm` · `GET /analytics/results/{id}` · `POST /metrics/publish` · `POST /dashboards` · `GET /dashboards/{pin}` |
+| Tests | ANA-01 a draft never executes without an act · ANA-02 lineage on every row · ANA-03 a tile bound to an unpublished query is refused · ANA-04 the term mapping is shown and pinned on the executed query · ANA-05 governance drill returns aggregates without break-glass |
 
 ### 3A.11 Group J — Patient communication, portal and online booking, telehealth and remote monitoring
 
@@ -1708,11 +1982,70 @@ Reporting reads the columnar layer, which is materialised from events through de
 | Item | Specification |
 | --- | --- |
 | Sessions | Video/phone session bound to Encounter; provider adapter trait (WebRTC service); join tokens short-lived; recording only with consent, stored as original with transcript pipeline (3A.3 B1) |
+| Video features | Browser join by link or app with no download or account; camera, microphone and speaker selection; background blur; in-call chat with file sharing (files stored as DocumentReference with consent); screen share; snapshot stored as Media with consent; participants up to the ratified cap (default 10) for family and interpreters; media servers tenant-hosted or a provider under the adapter trait with residency recorded; "Complete and document" ends the session and opens the note editor with the transcript (2A.2 ambient capture review surface) |
+| Programme enrolment and thresholds | A remote-monitoring programme fragment (class R): eligibility phenotype, device set, reading schedule, threshold rules, review cadence, exit criteria; enrolment is a loop instance with consent; adherence to the reading schedule is a Measure; a run of readings can move a risk attempt and open a Task (ops 13 and 9) |
 | Record context | Consult-prep brief (Volume 9.5) shown in-session; ambient capture over the call produces a draft note |
 | Remote monitoring intake | Device gateways (home BP, glucose, SpO2, weight, wearables, hospital-in-the-home equipment) as inbound channel; time-series store; promotion rules (pinned fragments) turn sustained threshold breaches into discrete Observations with a critical-lane event; device identity, calibration status and sampling rate stored per stream |
 | Hospital in the home | EpisodeOfCare (HITH) with care plan, scheduled visits/administrations, device streams, escalation rules; orders and results loop identical to practice |
 | Routes | `POST /telehealth/sessions` · `POST /telehealth/{id}/end` · `POST /devices/streams` (gateway ingest) · `GET /patients/{id}/streams?code=&window=` · `GET /episodes/{id}/hith` |
 | Tests | TH-01 join with expired token refused · TH-02 recording without consent resource refused · TH-03 sustained SpO2 below threshold for configured window promotes Observation and emits critical event under 100 ms of promotion · TH-04 device with unknown calibration status → reliability floor on promoted observation |
+
+### J4 Omnichannel desk (crate `channels`; extends J1)
+
+Folded from the teardown's Channel Desk. J1 defines channels, consent and content classes; J4 adds one queue over every channel, WhatsApp coexistence, intent and urgency classification, and the outbound check that keeps identifiers out of messages.
+
+| Item | Specification |
+| --- | --- |
+| One queue | Communications from WhatsApp, SMS, email and call records in one list per tenant, newest first with critical-lane items pinned to the top; a reply goes back on the inbound channel by default; a thread is a `Communication.partOf` chain |
+| Patient matching | Match only on a single high-confidence phone or email identifier (verified-identifier short-circuit, Volume 3.10); ambiguous or partial matches are held in the reconciliation queue; no Patient is created automatically from a message; an unknown sender is a Person in the lead compartment (A6) until staff convert or link |
+| Unknown sender to patient | Staff draft demographics from the conversation; conditions, allergies and medications mentioned are written as provisional facts with `capture_context = patient-reported` and span links into the thread; nothing is confirmed by the system |
+| WhatsApp coexistence | WhatsApp Business through a provider adapter trait (D-14); the practice's existing number keeps working on the reception handset and the same threads appear in the desk (provider coexistence mode); the self-connect flow records the number, the provider receipt and the consent text; the 24-hour customer-service window is tracked per thread: free-form messages are refused outside it and only approved template fragments (class U with provider template ids) may be sent; approval status is stored on the fragment |
+| Intent, urgency, tone | `lang-intent` (class 2) classifies each inbound item: intent from the ratified taxonomy (twelve as shipped: appointment request, existing-appointment question, refill, medication question, symptom report, test results, billing, referral, follow-up, general question, greeting, possible emergency), urgency `low`, `medium`, `high` or `critical`, tone `neutral`, `negative` or `distressed`, each with reliability; the taxonomy is a codebook fragment (6.5, D-21); a classification summary strip renders as flagged class-2 content on the clinician and front-office faces only |
+| Routing rules | Class R fragment: conditions on intent, urgency, tone or word list → lane, queue, owner role and optionally a Task carrying intent and urgency; red-flag words and `possible emergency` reach the critical lane under 100 ms regardless of the classifier, because the class-1 floor runs first (OM-9) |
+| Outbound PHI check | A render-time lint on every outbound message (9.8): identifier patterns (record numbers, policy numbers, national identifiers, dates of birth in the jurisdiction's formats and common international formats, as a class K pattern set) and clinical content beyond the channel's content class; the sender sees a redacted version to accept; an override is an act with reason; a message carrying a record number is blocked until removed, with no override |
+| Filing | Every message is a Communication, kept for non-patients; Tasks from routing; coded form data from J2 and H4; a chart tab shows SMS, WhatsApp, email and the call log beside problems, medications and results |
+| Routes | `GET /desk?lane=&channel=&assignee=` · `POST /desk/{thread}/reply` · `POST /desk/{thread}/assign` · `POST /desk/{thread}/convert` · `POST /channels/whatsapp/connect` · `GET /channels/templates` |
+| Tests | OMNI-01 emergency intent reaches the critical lane under 100 ms · OMNI-02 tone classes separated on the sealed set · OMNI-03 free-form WhatsApp outside 24 h refused, template allowed · OMNI-04 an outbound message with a record number is blocked and no override path exists · OMNI-05 a partial phone match goes to the reconciliation queue and no Patient is created · OMNI-06 an unknown sender's medication mention becomes a provisional fact with span · OMNI-07 the class-1 red-flag floor fires when the classifier says low |
+
+### J5 Voice line (crate `voiceline`; dialogue under 7.5, extending CAP-20)
+
+Folded from the teardown's voice agent and Night Line. CAP-20 (PRD) specified real-time voice for the patient face; J5 adds the telephone as a channel: inbound calls to the practice number, outbound calls the system places, after-hours answering, message taking and hand-off to on-call. The law holds: dialogue text is class 3 and never advice; bookings, reminders and check-in capture run through class-1 rules; the bright line binds every spoken prompt (4A.16).
+
+| Item | Specification |
+| --- | --- |
+| Telephony | SIP or a hosted provider behind an adapter trait (D-15); numbers per tenant and location; call records as Communication with `medium = phone`; recording only after a consent prompt is accepted at call start, stored as original with a transcript DocumentReference and spans |
+| IVR floor (class 1) | Menus speak codebook terms (LR-03); DTMF and spoken-keyword navigation; identity confirmation by two identifiers before any patient-specific action; every menu is a fragment |
+| Dialogue (class 3) | Self-hosted speech-to-speech, or ASR → text engine → synthesis composition (CST-13 and the PRD's deferred decision); full duplex with interruption; language packs are class K fragments (the teardown claims 31 languages and 7 voices as vendor figures; this build ships packs with registered benchmarks); every turn passes the bounded-loop testers before synthesis (REQ-186); the model has no tools except the typed scheduling, message-taking and hand-off functions |
+| Booking, moving, cancelling | Through A4 routes against live availability under the appointment type's rules; the confirmation is read back and sent on the consented text channel; outbound confirmation and reminder calls are loop steps |
+| Designed check-ins | Post-discharge, follow-up and adherence check-ins are EngagementLoop instances (2A.1) with a spoken instrument (an H4 form, item by item); answers are stored as QuestionnaireResponse with dialogue spans and patient-reported Observations; red-flag rules escalate |
+| After-hours | The after-hours guidance is a class U fragment the line speaks (what the service offers, where to go in an emergency); message taking creates a Task with the transcript; hand-off to on-call follows the profile's escalation target with warm transfer where the provider supports it; emergency keywords play the emergency guidance fragment and emit the critical-lane event |
+| Hand-off | Cues (the caller asks for a person, distressed tone, repeated misunderstanding, any clinical question) hand to a human within one turn or take a message; the cue list is a fragment |
+| No patient portal required | The teardown notes its voice agent needs no app; here the line is a transport of the patient face: every patient-specific statement spoken is a released, signed argument rendered in the plain register and read aloud, and nothing else about the patient is spoken |
+| Routes | `POST /voiceline/numbers` · `GET /voiceline/calls?state=` · `POST /voiceline/outbound` · `GET /voiceline/calls/{id}/transcript` · `POST /voiceline/handoff-cues` |
+| Tests | VOX-01 a call writes only QuestionnaireResponse, patient-reported Observation, Communication and Appointment transitions · VOX-02 hand-off within one turn on each cue · VOX-03 a clinical question is never answered; an emergency keyword speaks the guidance fragment and emits the critical event · VOX-04 no consent prompt accepted means no audio stored · VOX-05 identity confirmation precedes any patient-specific action · VOX-06 a spoken statement about a result traces to a released, signed argument |
+
+### J6 Surveys and feedback (crate `comms`, module `surveys`)
+
+Folded from the teardown's Feedback Forms.
+
+| Item | Specification |
+| --- | --- |
+| Instruments | Satisfaction, experience and service surveys as H4 forms with `audience = Patient`; PROMs and PREMs remain pathway loops (2A.1); practice-level surveys trigger on encounter close, discharge or a schedule; consent and quiet hours apply (J1) |
+| Themes | Free-text answers are classified into a ratified theme codebook by `lang-classify` (class 2) with reliability and human-confirmed before aggregation (2A.3) |
+| Reporting | Response rate; scores by provider, setting and cohort with imprecise-Dirichlet intervals; equity stratification by SDOH facts; drill under RLS |
+| Tests | SRV-01 a survey send respects channel consent · SRV-02 theme aggregation uses confirmed classes only · SRV-03 scores carry intervals |
+
+### J7 HITH census and capacity board (crate `telehealth`, module `census`)
+
+Folded from the teardown's Ward Board and Bed Flow, which describe an inpatient hospital. Mākoha's intended purpose is primary care, telehealth and hospital in the home, so the board is a virtual-ward census; theatre scheduling is not adopted (D-18).
+
+| Item | Specification |
+| --- | --- |
+| Board | Every open HITH EpisodeOfCare on one board: patient, day of stay against the care plan's expected length, today's visits and administrations with state, open Tasks, the latest flagged deterioration attempt with its severity tier (never a composite), expected discharge date from the plan, device stream status (live, gap, unknown calibration) |
+| Delays and flow | A delay is a planned activity past its window without a completion act, shown per patient; pending admissions are accepted referrals into HITH awaiting a first visit; the discharge board lists episodes with expected discharge within 48 h and their handover state (OpsCon SCN-03.6) |
+| Capacity | Virtual-ward capacity from the service profile (nurse visit capacity per day, device inventory, supervising GP load); an occupancy view by day and locality; capacity hints from the class-2 demand model are hints only (A4 rule) |
+| Case chat | A per-episode team thread as Communications among the care team; a message proposing a clinical change is a note, not an order; nothing in the thread is a ground until it is a signed fact |
+| Tests | FLOW-01 a delay shows when an activity window has passed · FLOW-02 the board has no composite acuity column · FLOW-03 a discharge-board row carries handover state and lead time |
 
 ### 3A.12 Group K — Images and attachments, migration, backup and restore, offline, printing
 
@@ -1749,6 +2082,44 @@ Reporting reads the columnar layer, which is materialised from events through de
 | Routes | `POST /ops/backup/verify` · `POST /ops/restore` · `GET /ops/sync/status` · `POST /print` · `GET /ops/health` |
 | Tests | OPS-02 restore to a timestamp reproduces ledger hashes up to that point · OPS-03 edge node offline for 8 h: prescriptions printed, queued e-prescriptions transmitted in order on reconnect · OPS-04 print job audited and stored; reprint from stored DocumentReference is byte-identical · OPS-05 weekly restore drill report generated |
 
+## 3A.12b Group L — Tenancy, tokenisation gateway, developer platform
+
+Numbered 3A.12b so that cross-references to 3A.13 stand. Service-level specifications are in Volume 12 (12.4, 12.5) and Volume 11 (11.6 to 11.9); the module items are here.
+
+### L1 Tenancy, brand packs and partner console (crate `tenancy`)
+
+Folded from the teardown's white-label and partner programme and its multi-tenant isolation claims.
+
+| Item | Specification |
+| --- | --- |
+| Model | `tenant(tenant_id, legal_entity, jurisdiction, residency_region, data_controller_ref, created)`; `project(tenant_id, project_id, purpose)` with `purpose ∈ {care, study, sandbox}`; every resource, fact, lead, attempt and act carries `tenant_id` and `project_id`; RLS and ABAC evaluate both (XC-04) |
+| Brand pack | Class U fragment per tenant: logo, colours, typography, product name, domain, sending identities (email domain with DKIM and SPF records, SMS sender id, WhatsApp number, telephony caller id), legal footer text; faces render from the pack; the plain-register and claims-boundary lints run over every brand string, so no clinical claim can live in branding |
+| White-label | A partner tenant may operate child tenants under its own brand pack and domain; the partner sees a partner console (counts, provisioning state, usage meters) and never clinical content; child tenants are isolated from each other and from the partner by RLS; the whole platform or a single module (for example ambient capture alone) is a project feature set, which is a profile manifest subset recorded in the build manifest (11.2), never a runtime toggle of clinical behaviour (H3 rule) |
+| Reseller and referral | Margins, list prices and referral fees are outside this compendium (D-17); the console exposes usage meters (captured consults, messages by channel, voice minutes, video sessions, evaluator attempts by claim type) as Measures with lineage so any commercial model can read them |
+| Provisioning | `POST /tenants` with jurisdiction and residency; residency selects the deployment region (11.7); provisioning compiles the tenant's default fragments (profiles, forms, templates, routing rules) from the jurisdiction pack; identity providers are bound per face (2.8) |
+| Tests | TEN-01 child-tenant data is invisible to the partner console beyond counts · TEN-02 a brand string with a clinical claim fails lint · TEN-03 a module subset is a manifest difference, not a toggle (CFG-03) · TEN-04 a sending identity without DKIM verification cannot send email |
+
+### L2 Tokenisation gateway (crate `tokenise`; service spec 12.4)
+
+| Item | Specification |
+| --- | --- |
+| Where it runs | Inside the tenant's trust boundary (an on-premise appliance or the tenant's private cloud account); nothing leaves the boundary for analytics, evaluation-zone work, research export or an authoring-time hosted-model proposer until identifiers are tokenised |
+| Tokens | Deterministic HMAC-SHA256 over a canonicalised identifier with a per-tenant, per-identifier-class key; the same person yields the same token everywhere so longitudinal linking survives; the token format carries class and key-version prefixes; keys live only in the vault |
+| Vault | Customer-owned and pluggable (HSM, cloud KMS in the tenant's account, or the appliance's encrypted store); it holds keys and the token-to-identity map; re-identification is an authenticated mTLS callback that returns one identity per request under a recorded authority act (2A.0), is never cached, and is logged as an AuditEvent with purpose |
+| Policy | Class K fragment: identifier classes (names, dates, addresses, contacts, national identifiers, record numbers, free-text identifier patterns), a date-shift rule per patient, quasi-identifier generalisation rules; the same engine serves `deid` (1A.2 #14) with surrogates instead of tokens where re-identification must be impossible |
+| Logs | No identifier in any log line: log fields are schema-typed and a lint rejects free-text logging of identifier classes |
+| Tests | DPG-01 determinism across exports · DPG-02 no reversal without the vault · DPG-03 re-identification without an authority act returns 403 and writes an audit row · DPG-04 a log scan on the synthetic-practice run finds zero identifiers · DPG-05 an analytics export holds only tokens for identifier classes |
+
+### L3 Developer platform (crate `devportal`; service spec 12.5)
+
+| Item | Specification |
+| --- | --- |
+| Sandbox | A project of purpose `sandbox` provisioned with the 10,000-patient synthetic practice (or a slice), synthetic pins and no route to care projects; the `docker compose` local stack for offline development (OPS-01) |
+| Credentials | OAuth2 client credentials and SMART scopes per project; scopes map to resource types and acts; agent tool tokens as in 3A.1; rotation and revocation audited |
+| Surfaces | FHIR R4 REST with search, history and transaction Bundles (3A.1); durable subscriptions and signed webhooks with retry; bulk export; the argument read API; engine admission for partner engines through the Volume 7 contract and purity harness; typed SDKs generated from the CapabilityStatement and the argument schema (TypeScript, Python, Rust, Kotlin, Swift) |
+| Agents API | The teardown's "trigger agents on your own events, stream their reasoning, gate the result behind approval" maps as: subscribe to events; submit `ArgumentDraft`s from an admitted engine to the draft queue; read the stage trace (RG-2) of the resulting attempt; the gate is the evaluator and the sign-off act, which no API call bypasses (N-01 to N-09) |
+| Documentation | Reference generated from schemas; three-step onboarding (sandbox, scoped credentials, read-write-subscribe); a conformance kit a partner runs against their engine before admission |
+| Tests | API-01 a sandbox token cannot reach a care project (404) · API-02 webhook delivery is signed and retried with backoff · API-03 a partner engine without a purity-harness record is not admitted (ENG-01) · API-04 every generated SDK round-trips every schema fixture · API-05 no API route writes a verdict |
 ### 3A.13 Parity acceptance suite
 
 These are the end-to-end scenarios a practice runs on cut-over day. Each is automated against the synthetic practice and run against a real gateway test environment where one exists. A Tier 1 release requires every scenario green.
@@ -1767,6 +2138,14 @@ These are the end-to-end scenarios a practice runs on cut-over day. Each is auto
 | E2E-10 | Migration cut-over | Incumbent export → dry run report → binding review → commit → first day operates on migrated data → spot-check 100 records against source | Counts equal; uncoded legacy items labelled; spot-check 100% traceable to source ids |
 | E2E-11 | Privacy request | Patient requests access report and portability bundle; consent withdrawn for secondary use; extract re-run | Report lists every access incl. models; bundle complete; patient absent from new extract |
 | E2E-12 | Regulator inspection | Regulator bundle for the month (Volume 10.7) → offline verifier → replay 1% attempts → corruption campaign coverage | Manifest verifies; replays identical; coverage cells ≥ 20 |
+| E2E-14 | Lead to patient | Enquiry on WhatsApp from an unknown number → lead with source → follow-through step → booking by the voice line → arrival → conversion → pre-registration answers carried over | Stages in order; opt-out honoured across channels; QuestionnaireResponse on the Patient with `source = lead-intake`; no clinical fact before conversion |
+| E2E-15 | Omnichannel triage | Mixed inbound: emergency keyword, refill request, billing question, distressed message → lanes and Tasks → replies within the 24-hour window → an outbound draft containing a record number | Critical lane under 100 ms; template rule enforced; record-number message blocked with no override |
+| E2E-16 | Voice line after hours | Inbound call after hours → identity confirmation → guidance fragment spoken → message taken → clinical question handed off → outbound confirmation call next morning | Only permitted resources written; hand-off within one turn; recording only with consent |
+| E2E-17 | Form to record | Designer builds an intake form with a formula and a coded list → compile → assign to an appointment type → patient completes on phone and partly by IVR → transaction Bundle | Every field bound; formula equals calculator; provisional facts with spans; identical resources across transports |
+| E2E-18 | Fax archive | 1,000-page archive with handwriting → split, OCR, classify, match → review queue for low-reliability fields → accepted facts → critical laboratory value fires | Resumable batch; no fact below floor without an act; critical event raised |
+| E2E-19 | Tokenised analytics | Governance asks a plain-language question → draft shown and confirmed → result from the tokenised columnar layer → one row re-identified under an authority act | Query never ran before the act; export holds tokens only; re-identification audited |
+| E2E-20 | White-label tenant | Partner provisions a child tenant with a brand pack and module subset → sending identities verified → a patient receives a branded summary | Partner sees counts only; module subset is a manifest difference; branded message passes lints |
+| E2E-21 | Overlay posture | Deployment in overlay mode against an incumbent FHIR server → resources read and pinned by content hash → attempt → sign-off → write-back → replay from pinned snapshots | Replay identical although the incumbent's resource changed afterwards; every write-back carries provenance |
 
 Parity sign-off is an act in the ledger by the practice's clinical governance lead and practice manager, recorded against the build hash, after E2E-01 to E2E-12 pass on that build. The module catalogue in 3A.0 is re-published with the build hash as the parity declaration for that release.
 
@@ -2466,6 +2845,13 @@ All clinical knowledge the runtime uses (guideline logic, thresholds, codebooks,
 | Codebooks | Linguistic variables and membership functions for fuzzy terms | Published in a standard fuzzy-markup form with author and review |
 | Threshold sets and loss matrices | Release floors, defer ceilings, cost matrices per claim type | Ratification act by the governance role |
 | Templates and render templates | Generic arguments; register templates | Render-invariance property test passed |
+| Form definitions | Items, conditional rules, formulas, FHIR bindings (3A.9 H4) | Every binding resolves; formulas cite calculator fragments; lints pass per register |
+| Routing rules and taxonomies | Intent taxonomy codebook, urgency bands, routing conditions, hand-off cues, after-hours guidance (3A.11 J4, J5) | The class-1 red-flag floor is present; every lane has an owner role |
+| Channel templates | WhatsApp, SMS, email, IVR and voice templates per content class (9.8) | Provider template approval status recorded; identifier-pattern lint passed; automated label present |
+| Identifier pattern sets and tokenisation policies | Outbound PHI-check patterns; identifier classes, date-shift and generalisation rules (12.4) | Jurisdiction coverage declared; pass rate on the pattern test corpus recorded |
+| Brand packs and campaign templates | Tenant branding, sending identities, landing-page and message-sequence templates (3A.12b L1, 3A.2 A7) | Claims-boundary and plain-register lints passed; no clinical logic |
+| Cost schedules and leakage rules | Unit costs, allocation rules, leakage conditions (3A.8 G4) | Signed and dated per tenant; effective dates |
+| Programme contracts | Targets, gates, savings splits, utilisation classifications (2A.3) | Governance ratification; every gate is a published Measure |
 
 ### 6.2 Guideline verification
 
@@ -2516,7 +2902,9 @@ The interval above is the imprecise-Dirichlet estimate for the rate of outcome i
 ### 6.9 Fragment and compiler (build spec)
 
 ```rust
-pub enum FragmentClass { Template, Rule, Envelope, ThresholdSet, LossMatrix, Codebook, Binding, Evidence, RenderTemplate, FeedbackOverlay }
+pub enum FragmentClass { Template, Rule, Envelope, ThresholdSet, LossMatrix, Codebook, Binding, Evidence, RenderTemplate, FeedbackOverlay,
+                         EngagementLoop, Profile, PhenotypeDefinition, FormDefinition, RoutingRule, ChannelTemplate, PatternSet,
+                         TokenisationPolicy, BrandPack, CostSchedule, Contract }   // the last eleven added at revision 2
 
 pub struct Fragment {
     pub class: FragmentClass,
@@ -2670,6 +3058,12 @@ Run on every fixture in the engine's conformance set (minimum 50 fixtures per cl
 | Register-fidelity tester | Rendered text; source argument | Pass/fail per element | 2 | Frozen NLI model | Test-only, never in request path |
 | Backing-entailment tester | Warrant text; cited evidence text | Entailment score | 2 | Frozen NLI model | Compiler gate 6 support, flag-only |
 | Generative assistant | Prompt; policy; grounded facts | None (drafts text under §7.5) | 3 | Base model behind policy | Never a control |
+| Intent, urgency and tone classifier | Message or call transcript | Reliability per label; Membership for tone where the codebook defines it | 2 | Frozen text classifier over the intent taxonomy | Sidecar, seccomp-wrapped |
+| Layout, OCR and handwriting | Page images | Reliability per block and per field; span links into recognised text | 2 | Frozen layout and recognition models; handwriting as a separate pin | Sidecar, seccomp-wrapped |
+| Speech recognition and synthesis | Audio stream; text | Transcript with timestamps and reliability; audio | 2 | Frozen ASR and TTS, self-hosted (CST-13) | Voice sidecar |
+| Engagement and routing rules | Lead events, Communications, profile windows | None; class-1 outputs are stage, clock state, lane and factor rows | 1 | Rule evaluation over compiled fragments | Core |
+| Cost attribution | ChargeItems, encounters, schedule fragment | None; rows with lineage | 1 | Fixed-point arithmetic over pinned schedules | Core |
+| Query drafter | Question, view catalogue | None; drafts a query and never executes it | 3 | Base model behind policy | Never a control; executes only after an act (3A.10 I3) |
 
 Class-2 engines must ship with a validation report in their pin: dataset hash, n, sensitivity, specificity, calibration slope and intercept, and the conformal coverage achieved at the declared level.
 
@@ -2717,6 +3111,8 @@ sequenceDiagram
 ```
 
 Bounds: maximum 3 iterations; total token budget per encounter from policy; no tool calls from the model; grounded facts are the only patient data in the prompt; the generation block is mandatory for completeness (Volume 5 check C-16).
+
+Class-3 uses folded in at revision 2 and bound by this loop: voice-line dialogue turns (3A.11 J5), drafted outreach and follow-through messages (3A.2 A6, A7), campaign copy (A7), analytics query drafts (3A.10 I3) and re-explanation drafts (2A.1). Each has a policy pin with its own round cap and token budget, and every output passes the claims-boundary lint (4A.15) and the plain-register lint before it reaches a queue or a speech synthesiser.
 
 ### 7.6 Acceptance tests
 
@@ -2886,6 +3282,9 @@ Rules: a superseding argument names exactly one predecessor; the current argumen
 | Patient consent | Consent | Input to evaluator, not a UI gate |
 | Pre-intake answers | QuestionnaireResponse | Span links as extensions |
 | Evidence | EBM-on-FHIR Evidence, EvidenceVariable, Citation | Hash pinned at admission |
+| Lead | Person with extension `lead`; Communications with `subject = Person` | Lead compartment; never a ground |
+| Call record, message | Communication with `medium` phone, sms, whatsapp or email and a `partOf` thread chain | Classification labels as extensions with reliability |
+| Form | Questionnaire (SDC) and QuestionnaireResponse | Pin as `Questionnaire.version` |
 
 Projections are generated on read from the ledger and cached; the cache holds released content only.
 
@@ -3032,6 +3431,17 @@ The disposition line is one line per argument: claim, verdict badge, top fired r
 | REN-06 | Class-3 draft marked interruptive | Rejected at orchestrator; sentinel entry |
 | REN-07 | Hard stop present, budget exhausted | Hard stop still shown |
 
+### 9.8 Channel templates and the outbound PHI check
+
+Messages that leave the system on SMS, WhatsApp, email, IVR or a voice call are renders too, and the same two rules bind them: a template is a pinned class U fragment with an element map, and nothing a patient can reach carries pre-release clinical content (4A.16). Folded from the teardown's Channel Desk at revision 2.
+
+| Rule | Specification |
+| --- | --- |
+| Content class per channel | The content classes of 3A.11 J1 (appointment, recall, result-notify by severity, token delivery, care-plan loop, general, lead follow-through) each name the channels they may use; an urgent result class has no SMS or WhatsApp template (COM-02); a WhatsApp template outside the 24-hour window must be a provider-approved template fragment |
+| Element map | A channel template maps slots to argument elements or to non-clinical resources (appointment time, location, token); a template with a free slot that could carry clinical narrative fails compile |
+| Outbound PHI check | Before send, a deterministic pass over the rendered text with the identifier pattern set (class K): record numbers, policy and insurance numbers, national identifiers, dates of birth in the jurisdiction's formats and the common international formats, full addresses; plus clinical-content detection beyond the content class (coded terms from the terminology snapshot found in a general-class message); the sender sees the redacted version; an override is an act with reason; a record number blocks with no override |
+| Automated label | Every automated message carries the label and a reach-a-person route (LP-04); the voice line speaks the equivalent |
+| Tests | REN-08 a free-slot template fails compile · REN-09 a record number blocks the send and no override path exists · REN-10 an override act is recorded with reason and appears in the channel surveillance signal · REN-11 the same argument rendered to SMS and WhatsApp passes render invariance over the plain register |
 ## Volume 10 — Adversary, evaluation and governance
 
 The platform is attacked continuously by its own corruption engine, evaluated behind a firewall that no training or knowledge path can cross, and governed through queues, boards and bundles that are queries over the ledger rather than separate systems.
@@ -3089,6 +3499,8 @@ flowchart LR
 
 Rules: the evaluation zone has read access to the ledger and no write path to the pin registry, compiler input or any model training set; case bundles and sealed envelopes carry a zone label checked by the compiler (gate 1 rejects any fragment whose provenance includes an evaluation-zone artefact); reports crossing to production are signed and contain aggregates only.
 
+Synthetic cohorts (folded from the teardown's Signal Lab population and synthetic mode) are generated inside the evaluation zone from tokenised or de-identified facts by a pinned generator that emits a disclosure-risk report (re-identification risk under the ratified model; a k-anonymity floor per quasi-identifier set); outputs are versioned and content-addressed for reproducibility, labelled synthetic on every row, and cross to production or to a partner only as signed exports under a data-sharing record in the obligations register (10.8); a synthetic row can never be a ground.
+
 ### 10.4 Sealed envelopes and prospective studies
 
 ```text
@@ -3114,12 +3526,17 @@ A study whose plan is changed after registration is a new envelope; the old one 
 | Binding review | Tier-3 terminology edge proposed | approve to tier 2 / reject | 14 days |
 | Reconciliation | Inbound match weight between thresholds | link / new patient / discard | 24 h |
 | Replay mismatches | Replay not identical | investigate; outcome recorded | 72 h |
+| Lead hand-offs | A follow-through or queue-worker step proposes hand-off to a person | contact / leave / convert | Response-clock window |
+| Document intake fields | Field below the reliability floor or of a review-always type | accept / amend / reject | 48 h |
+| Voice-line messages | Message taken, or a hand-off cue missed | call back / task / close | Same business day |
+| PHI-check overrides | Outbound message sent with an override act | confirm appropriate / counsel | 7 days |
+| Outreach breaches | Thread past its SLA without a confirmed reply | escalate / close with reason | 24 h |
 
 Queues are views over the ledger filtered by state and absence of a dequeue act; there is no separate queue table.
 
 ### 10.6 Sentinel board and coverage declaration
 
-Sentinel events (each a ledger query, each with its argument, attempt and pins attached): hard stops; overrides of flagged items; deviations from released plans; break-glass acts; replay mismatches; non-identical purity harness results; unresolved pins. Coverage declaration (published monthly, signed): encounters with at least one attempt / all encounters, by pathway; attempts by verdict; suppression counts by content class; queue service-target attainment.
+Sentinel events (each a ledger query, each with its argument, attempt and pins attached): hard stops; overrides of flagged items; deviations from released plans; break-glass acts; replay mismatches; non-identical purity harness results; unresolved pins; outbound messages blocked for a record number; re-identification requests through the tokenisation gateway. Coverage declaration (published monthly, signed): encounters with at least one attempt / all encounters, by pathway; attempts by verdict; suppression counts by content class; queue service-target attainment.
 
 ### 10.7 Regulator bundle
 
@@ -3145,6 +3562,10 @@ Output is a signed archive; verification tooling is published so the regulator c
 | Medicines reference licence | Licence class on fragments | Each edition |
 | Privacy impact | Consent handling tests, row-policy tests | Annually and on schema change |
 | Clinical governance review | Coverage declaration, queue attainment | Monthly |
+| Messaging and telephony provider terms (WhatsApp Business, SMS, SIP) | Provider agreement, template approvals, data-processing terms, residency statement | Each provider change |
+| Tokenisation key custody | Vault configuration, key-ownership attestation, rotation records | Quarterly and on rotation |
+| Marketing and outreach consent | Consent capture records per channel, opt-out propagation test, claims-boundary lint results on campaign templates | Each campaign publication |
+| Data sharing for synthetic or partner exports | Data-sharing agreements, disclosure-risk reports | Each export class |
 
 ### 10.9 Acceptance tests
 
@@ -3179,6 +3600,7 @@ manifest.json (signed):
   sidecar images with digests, SBOM (SPDX), seccomp profiles by process, pin classes present
 ```
 
+Fold-in placement (revision 2). The modules A6, A7, B9, E3 rules, F5 batch control, G4, H4, I3 dashboards, J4 queue and routing, J5 IVR floor, J6, J7, L1, L2 and L3 ship in Tier 1; the intent classifier, OCR at volume and the remote-monitoring risk programmes are class 2 and ship in Tier 2; voice-line dialogue, drafted outreach text, campaign copy and analytics query drafting are class 3 and ship only in Tier 3 (D-20). A Tier 1 build therefore has a working omnichannel desk with rule routing and no classifier strip, a voice line with IVR and no dialogue, and an analytics studio with typed queries and no drafter.
 ### 11.3 Process and trust topology
 
 ```mermaid
@@ -3238,6 +3660,41 @@ flowchart TD
 
 Dependencies: M2 needs M1; M3 needs M1; M4 needs M3; M5 needs M3; M6 needs M2 and M4; M7 needs M5 and M6; M8 needs M7; M9 needs M8. Additive services (Volume 12) begin after M5 and ship after M8. M5 is complete only when every module in Volume 3A (groups A to K) ships and the parity suite E2E-01 to E2E-12 passes; the Cargo workspace and crate map for M1 to M5 are in Volume 3A.1.
 
+Fold-in milestones (revision 2): M4 adds the fragment classes of 6.9 (forms, routing, channel templates, pattern sets, tokenisation policies, brand packs, cost schedules, contracts) with a rejecting fixture each; M5 adds the Tier 1 modules A6, A7, B9, E3, F5, G4, H4, J4, J5 (IVR), J6, J7, L1, L3 with their module tests and E2E-14, E2E-15 (IVR path), E2E-17, E2E-18 (review path), E2E-20 and E2E-21; M7 adds the front-office aperture, the omnichannel desk and voice-line consoles, the form designer, the dashboard designer and the body map (12.8); M8 adds the tokenisation gateway (L2, 12.4), the synthetic cohort generator (10.3) and E2E-19; M9 adds the class-2 classifiers and the class-3 dialogue, drafting and query drafting, completing E2E-16.
+
+### 11.6 Deployment postures: system of record and overlay
+
+Folded from the teardown's two postures. Decision DEC-03 in the technical specification makes Mākoha the system of record for the first release; the overlay posture is adopted as a second deployment profile (D-13) for services that keep an incumbent record.
+
+| Posture | What Mākoha owns | What the incumbent owns | Constraints |
+| --- | --- | --- | --- |
+| System of record | Everything in Volumes 3 and 3A; the ledger; all faces | Nothing; migration by 3A.12 K2 | The default |
+| Overlay | The ledger (attempts, arguments, acts), the fact graph, pins, faces, engines, the lead compartment, channels and the voice line | Patient, Encounter, clinical resources, orders, scheduling and billing, served over FHIR R4 and HL7 v2 at the edge | Every incumbent resource read for an attempt is snapshotted by content hash into the content-addressed store and pinned (class S, element `incumbent_snapshot`), so replay never depends on the incumbent's current state; write-back is a FHIR transaction with Provenance naming the released argument and the sign-off act, recording the incumbent's version id; where the incumbent cannot store Provenance the ledger holds it and the write-back carries the argument id as an identifier; the order state machine (Volume 3.3) runs as a shadow driven by incumbent events; latency budgets exclude incumbent round trips and are reported separately |
+| Switching | A service may move from overlay to system of record by migration (K2) with the ledger continuous; the reverse is not supported |
+
+Tests: OVL-01 an attempt in overlay mode resolves grounds from pinned snapshots only · OVL-02 a write-back carries the argument id and Provenance · OVL-03 replay is identical after the incumbent resource has changed · OVL-04 an incumbent outage leaves faces reading stale-as-of from snapshots with no new attempts on changed grounds (MOD-03 analogue).
+
+### 11.7 Hosting postures and the trust boundary
+
+Folded from the teardown's hosting and sovereignty claims.
+
+| Posture | Specification |
+| --- | --- |
+| Managed cloud | Jurisdiction-pinned region (TechSpec TECH-15); tenant keys; the default |
+| Private cloud | The same images in the tenant's own cloud account; tenant-held keys; the evidence pipeline unchanged |
+| On-premise | Spine node, store and sidecars on tenant hardware; signed-manifest attestation at start-up; event-log backup to a tenant-chosen second site |
+| Air-gapped | No egress; pins, fragments and models arrive as signed bundles through a controlled import path (hash-verified, manifest-checked); telemetry and evidence leave as signed bundles; the Merkle anchor is written to a tenant-held transparency log and reconciled with the external anchor on reconnection or by courier (D-08 extension) |
+| In-region inference | Every model sidecar runs inside the chosen posture; no model call crosses the boundary (CST-13 generalised); the tokenisation gateway (12.4) sits at the boundary for anything that must leave |
+
+Tests: HST-01 an air-gapped node refuses an unsigned bundle · HST-02 no egress from any sidecar in any posture (seccomp) · HST-03 the anchor is written locally and reconciled externally.
+
+### 11.8 Tenancy and white-label
+
+Model in 3A.12b L1. Rules that bind every posture: tenant and project on every row; one deployment may serve many tenants under RLS and ABAC isolation; a partner console sees counts and provisioning only; brand packs are class U fragments under the claims-boundary lint; module subsets are manifest differences; usage meters are Measures with lineage. Commercial terms are outside this compendium (D-17).
+
+### 11.9 Bring-your-own model keys
+
+The teardown lets a customer supply keys for a hosted model while keeping routing, metering and audit. Ruling D-19: a hosted model cannot be pinned by weights hash, purity-tested or replayed, so it may not run on the release path in any engine, tester or renderer. It may serve as an authoring-time proposer (4A.19, knowledge multigraph row) whose proposals enter review queues as tier-3 candidates with the model identity recorded. Tenant-supplied keys for that purpose are held in the hardware-backed store and never enter a pin.
 ## Volume 12 — Additive services
 
 Three services fall out of the build once the spine, ledger and gate exist: a patient journey service over the event stream, a terminology service over the pinned graph, and an evidence-linked coding and risk-register service in which every proposal is an argument. None adds a new trust path; each is a consumer of released data and a producer of drafts.
@@ -3308,7 +3765,62 @@ Risk register: a suspect is a coding proposal for a condition not yet on the pro
 | `GET /risk-register` | Suspects grouped by condition with spans and reliability |
 | `GET /coding/audit/{claim_item}` | Chain: claim item → act → argument → attempt → pins → spans |
 
-### 12.4 Acceptance tests
+### 12.4 Tokenisation gateway
+
+Folded from the teardown's Data Privacy Gateway; module in 3A.12b L2. The service's job is that analytics, evaluation-zone work, research exports and any authoring-time hosted-model proposer operate on complete clinical data while identities stay inside the tenant boundary.
+
+```rust
+pub struct TokenisationPolicy { pub pin: Pin, pub classes: Vec<IdentifierClass>, pub date_shift: DateShiftRule,
+                                pub generalise: Vec<GeneralisationRule>, pub free_text_patterns: Pin /* class K pattern set */ }
+pub struct Token(String);          // "<class>:<key_version>:<base32(hmac_sha256(key, canonical(identifier)))>"
+pub fn tokenise(resource: &Resource, policy: &TokenisationPolicy, vault: &dyn Vault) -> TokenisedResource;   // deterministic given key material
+pub trait Vault {
+    fn hmac(&self, class: IdentifierClass, canonical: &[u8]) -> Hmac;
+    fn reidentify(&self, token: &Token, authority: &Act) -> Result<Identity, Denied>;   // one identity per call; never cached
+}
+```
+
+| Function | Specification |
+| --- | --- |
+| Tokenisation | Canonicalise (case, whitespace, format per class), then HMAC-SHA256 with the class key; dates shifted by a per-patient offset derived from the patient token; quasi-identifiers generalised per rule; free text passes through the de-identification engine (1A.2 #14) with surrogates consistent with the tokens |
+| Linkage | The same identifier yields the same token across exports, projects and time, so longitudinal and cross-dataset linkage survive; key rotation produces a new key version and a mapping table that exists only inside the vault |
+| Re-identification | Requires a recorded authority act (2A.0 governance aperture); returns one identity; is never cached; writes an AuditEvent with purpose; batch re-identification does not exist |
+| Deployment | Runs inside the tenant trust boundary in every posture (11.7); the evaluation zone, the analytics columnar layer, the synthetic generator and any partner export read tokenised data only |
+| Not a redaction proxy | The gateway is not a prompt-redaction proxy for a hosted model: no hosted model is on the release path (11.9); an authoring-time proposer receives tokenised, de-identified text only |
+| Tests | DPG-01 to DPG-05 (3A.12b L2) · DPG-06 after key rotation old tokens resolve through the vault mapping and new exports use the new version |
+
+### 12.5 Developer platform
+
+Module in 3A.12b L3. Built from the api-gateway (FHIR REST, subscriptions, bulk export), the argument read API, the engine contract (Volume 7) and the sandbox project type. It adds sandbox provisioning with the synthetic practice, scoped credentials, signed webhooks with retry, generated typed SDKs, a conformance kit for partner engines and generated reference documentation. The Agents API is the draft queue and the stage trace, so "gate the result behind approval" is the evaluator and the sign-off act, never an API flag.
+
+### 12.6 Analytics question-and-answer service
+
+Module in 3A.10 I3. Built from the declarative views (3A.10 I1), the terminology service (12.2) for term mapping, `gen-sql` (class 3) for drafting, the act record for confirmation, Measures for publication and the dashboard designer for rendering. Invariants: a draft never executes without an act; the executed text, its term mappings and its pins are ledgered; every result row carries lineage; no narrative recommendation is generated over results.
+
+### 12.7 Pathway and loop composer
+
+Folded from the teardown's Workflow Studio, Agent Studio and App Studio. The teardown offers a drag-and-drop builder with 35 or more node types that fires on clinical events and writes back to the chart, an agent composer, and a widget canvas with one-click deploy. Under Law 6 none of those may write runtime logic; here they are authoring tools that emit compiler fragments.
+
+| Tool | Emits | Node or element types (typed; the closed set) | Rule |
+| --- | --- | --- | --- |
+| Pathway and loop composer | EngagementLoop fragments (2A.1), RoutingRule fragments (3A.11 J4), recall and task rule fragments (3A.6 E2; op 9), protocol step machines (1A.4) | Triggers: resource event, argument released or flagged, act recorded, schedule from plan, inbound item, device promotion. Conditions: fact predicate, phenotype membership, consent scope, profile, time window, envelope fit. Actions: create Task, start loop, send template message (channel and content class), booking offer, create recall, request form, escalate to role. Human steps: review-queue item, act required, sign-off. Engine steps: run an engine family (draft only), request a draft through the bounded loop. Voice steps: IVR menu, spoken instrument item, hand-off. Terminal: close, abandon with reason | Every node is a fragment element with a schema; a graph compiles to fragments through gates 1 to 11; test-then-publish runs the sentinel replay on affected attempts; a batch run across patients is a loop launch over a phenotype audience with consent checks; no node bypasses the evaluator or the gateway, because an action that would write a clinical resource is a request to the owning module, which applies its own rules |
+| Engine composer | Engine metadata and template bindings (7.1) | Select an engine family, bind criteria and templates, set profile and claim types | Composition changes no weights and no rules; a new engine version still passes the purity harness and registration (ENG-01) |
+| Widget canvas | Class U render templates and layout fragments for faces | Patient header, vitals trend, medication list, care-plan timeline, argument view, worklist, brief; data binding only to released projections through the gateway | Render invariance holds per widget; one-click deploy is publication of a pin; rollback reinstates the prior pin; publish-to-menu is a layout fragment change |
+| Tests | WFB-01 a node that would write a Condition directly fails compile · WFB-02 publish runs the sentinel replay and blocks on unacknowledged divergence · WFB-03 a widget bound to a draft or held argument fails compile · WFB-04 a batch launch excludes patients without the consent scope |
+
+### 12.8 Signal timeline, body map and projection arguments
+
+Folded from the teardown's Signal Lab (State and What-If modes) and the Patient 360 body map.
+
+| Function | Specification |
+| --- | --- |
+| Body map | A projection of facts and observations by `bodySite` onto an anatomical map (SNOMED body-structure subsumption on the pinned edition), scrubbable across the journey timeline (12.1); every marker links to its fact, span and version; genomic and device signals appear where their facts carry a body site; the map itself draws no inference |
+| Timeline storylines | Evidence-linked storylines are the journey events filtered by a pathway (12.1) with the released arguments along them; no narrative is generated except through the bounded loop as a queued summary (op 1) |
+| Dynamic re-gauging | The teardown's "dynamic risk re-gauging" is op 13: re-score on fact change, each attempt flagged with its facts |
+| What-If projections | A projection is a draft argument of claim type `projection` from a class-2 engine with a declared validation report: given a hypothetical change (a medication added, a disposition chosen) the engine returns projected signals with coverage and ignorance; the evaluator caps it at flagged; it renders only on the clinician face with the hypothetical stated first and an envelope badge; every run is an attempt, versioned and replayable; pharmacogenomic and polygenic inputs are facts with their own reliability; a projection never creates a Task, order or message |
+| Population and synthetic | Cohort finding is the 12.1 `CohortQuery`; synthetic data generation lives in the evaluation zone (10.3) |
+| Tests | SLB-01 a marker resolves to fact, span and version · SLB-02 a projection attempt is never released and never on the patient face · SLB-03 a projection creates no downstream resource · SLB-04 body-map placement equals bodySite subsumption on the pinned edition |
+### 12.9 Acceptance tests
 
 | Test | Given | Expect |
 | --- | --- | --- |
@@ -3317,6 +3829,11 @@ Risk register: a suspect is a coding proposal for a condition not yet on the pro
 | SVC-03 | Coding proposal accepted | Claim item carries argument id; audit chain resolves to spans |
 | SVC-04 | Pathway step missed | Recall draft created; goes through evaluator; no direct contact |
 | SVC-05 | Risk register requested | No composite score field present |
+| SVC-06 | Tokenised export re-identified without an authority act | 403; AuditEvent written |
+| SVC-07 | Partner engine submits a draft without an admission record | Rejected at the draft queue (ENG-01) |
+| SVC-08 | Analytics draft executed without a confirming act | Refused; nothing ledgered as executed |
+| SVC-09 | Composer graph published with unacknowledged sentinel divergence | Publication refused |
+| SVC-10 | Projection argument requested by the patient face | 403 |
 
 ## Volume 13 — Decision register, open items and glossary
 
@@ -3337,6 +3854,16 @@ Eleven decisions are open or provisional; each names its owner role, the default
 | D-09 | Live differential during encounter versus synthesis before | Synthesis before; live differential only as pre-intake question ordering | Clinical governance | 7, 9 |
 | D-10 | Severity tier vocabulary (four tiers) | Provisional | Clinical governance | 9 |
 | D-11 | Regulatory assumptions requiring confirmation (device classification per tier) | Tier 1 not a device; Tier 2 decision-support class; Tier 3 highest | Compliance | 11 |
+| D-12 | Lead and engagement scoring shape | Per-factor typed rule outputs rendered as chips; no stored or displayed composite; queues ordered by response clock and stage | Architecture; clinical governance for any factor drawn from coverage or billing bands | 1A, 3A |
+| D-13 | Overlay deployment posture | Adopted as a second profile with incumbent snapshots pinned by content hash | Architecture | 11 |
+| D-14 | WhatsApp Business provider and coexistence mode | Adapter trait; provider open | Platform operator | 3A, 9 |
+| D-15 | Telephony provider (SIP or hosted) and warm-transfer support | Adapter trait; provider open | Platform operator | 3A |
+| D-16 | Tokenisation key custody | Customer-owned vault, HSM or tenant KMS; rotation cadence open | Compliance; architecture | 12 |
+| D-17 | White-label, reseller and pricing terms | Outside this compendium; usage meters provided as Measures | Product | 3A, 11 |
+| D-18 | Theatre scheduling and inpatient bed management | Not adopted: outside the intended purpose (primary care, telehealth, hospital in the home); the HITH census board is adopted instead | Product; clinical governance | 3A |
+| D-19 | Bring-your-own hosted model keys | Authoring-time proposers only; never on the release path | Architecture | 11 |
+| D-20 | Tier placement of the revision 2 capabilities | Class-1 modules in Tier 1; classifiers and OCR at volume in Tier 2; dialogue, drafting and query drafting in Tier 3 | Architecture; compliance | 11 |
+| D-21 | Intent taxonomy, urgency bands and tone classes | Twelve intents as shipped from the teardown's list; ratified as a codebook before M7 | Clinical governance | 3A, 6 |
 
 ### 13.2 Open items
 
@@ -3346,6 +3873,11 @@ Eleven decisions are open or provisional; each names its owner role, the default
 - [ ] Confirm device classification per tier with the regulator (D-11)
 - [ ] Publish the first threshold set and codebooks through the compiler before M6
 - [ ] Produce the 10,000-patient synthetic practice for the performance suite before M5
+- [ ] Ratify the intent taxonomy codebook and the default routing rules (D-21) before M7
+- [ ] Select the WhatsApp and telephony providers and record coexistence and warm-transfer capability (D-14, D-15) before M5
+- [ ] Decide the tokenisation vault type and rotation cadence (D-16) before M8
+- [ ] Confirm demand for the overlay posture before building the incumbent snapshot path (D-13)
+- [ ] Raise a change request against the phase set (01-prd.md and downstream) to mint capabilities 21 to 28, operations 18 to 24, the front-office role and the tenancy and tokenisation constraints introduced at revision 2
 
 ### 13.3 Glossary
 
@@ -3372,7 +3904,16 @@ Eleven decisions are open or provisional; each names its owner role, the default
 | Case bundle | Versioned corpus of evaluation cases held in the evaluation zone |
 | Tier (profile) | Build-time regulatory profile 1, 2 or 3 |
 | Tier (terminology) | Provenance level 0–3 of a graph edge |
+| Lead | A Person who has enquired but is not yet a patient; lives in its own compartment; never a ground |
+| Response clock | The deterministic state of a lead or thread against the profile's reply windows |
+| Channel template | A pinned class U fragment for one channel and content class, carrying the automated label |
+| Outbound PHI check | The deterministic pass over rendered outbound text for identifier patterns and out-of-class clinical content |
+| Tokenisation gateway | The in-boundary service that replaces identifiers with deterministic HMAC tokens and re-identifies only through the vault under authority |
+| Brand pack | Class U fragment of a tenant's identity, domain and sending identities |
+| Posture | A deployment profile (system of record or overlay) or a hosting profile (managed cloud, private cloud, on-premise, air-gapped) |
+| Projection argument | A flagged class-2 argument answering a hypothetical; never released, never acted on by the system |
+| Composer | The authoring tool that emits loop, routing, recall and layout fragments through the compiler |
 
 ### 13.4 Source artefacts
 
-The compendium supersedes the eight documents it folds in; they remain as source artefacts. Where a field-level schema or check catalogue is needed beyond what a volume prints, use [the argument specification](https://claude.ai/code/artifact/4e5eb57b-f675-4162-ae93-bb7c0a2a694f), [the evaluator specification](https://claude.ai/code/artifact/e5c78c7f-1920-4d0c-8e48-46b337343e2f), [the consolidated specification](https://claude.ai/code/artifact/de5b6dd4-2423-4b13-b31c-ca446dd28d25) and [the engineering thesaurus](https://claude.ai/code/artifact/33c8ed2c-9642-4517-8f1e-e68cddbc3e42). Repository sources cited in those documents are pinned by commit there and are not repeated here.
+The compendium supersedes the eight documents it folds in; they remain as source artefacts. Where a field-level schema or check catalogue is needed beyond what a volume prints, use [the argument specification](https://claude.ai/code/artifact/4e5eb57b-f675-4162-ae93-bb7c0a2a694f), [the evaluator specification](https://claude.ai/code/artifact/e5c78c7f-1920-4d0c-8e48-46b337343e2f), [the consolidated specification](https://claude.ai/code/artifact/de5b6dd4-2423-4b13-b31c-ca446dd28d25) and [the engineering thesaurus](https://claude.ai/code/artifact/33c8ed2c-9642-4517-8f1e-e68cddbc3e42). Repository sources cited in those documents are pinned by commit there and are not repeated here. Revision 2 (15 October 2026) also folds in the Care Execution Platform Product Specification of the same date, a vendor-anonymised teardown of a competitor's public website; its placement index is in "How to read", and every figure taken from it is a vendor claim, never a baseline.
